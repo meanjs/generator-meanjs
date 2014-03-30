@@ -98,12 +98,14 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.directory('app/routes');
 		this.directory('app/tests');
 
-		// Copy public folder
+		// Create public folders
 		this.mkdir('public');
+		this.mkdir('public/js');
+
+		// Copy public folder content
 		this.directory('public/css');
 		this.directory('public/img');
 		this.directory('public/modules');
-		this.mkdir('public/js');
 		this.copy('public/js/application.js');
 
 		// Copy config folder
