@@ -21,10 +21,10 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		console.log(this.yeoman);
 
 		// replace it with a short and sweet description of your generator
-		console.log(chalk.magenta('You\'re using the official MEAN generator.'));
+		console.log(chalk.magenta('You\'re using the official MEAN.JS generator.'));
 	},
 
-	askForApplicationName: function() {
+	askForApplicationDetails: function() {
 		var done = this.async();
 
 		var prompts = [{
@@ -35,72 +35,123 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			name: 'appDescription',
 			message: 'How would you describe your application?',
 			default: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js'
+		}, {
+			name: 'appKeywords',
+			message: 'How would you describe your application in comma seperated key words?',
+			default: 'MongoDB, Express, AngularJS, Node.js'
+		}, {
+			name: 'appAuthor',
+			message: 'What is your company name?'
 		}];
 
 		this.prompt(prompts, function(props) {
 			this.appName = props.appName;
 			this.appDescription = props.appDescription;
+			this.appKeywords = props.appKeywords;
+			this.appAuthor = props.appAuthor;
 
 			done();
 		}.bind(this));
 	},
 
-	askForApplicationTemplateEngine: function() {
+	askForAngularApplicationModules: function() {
 		var done = this.async();
 
 		var prompts = [{
-			type: 'list',
-			name: 'templateEngine',
-			default: 'swig',
-			message: 'Which template engine would you like to use?',
+			type: 'checkbox',
+			name: 'modules',
+			message: 'Which AngularJS modules would you like to include?',
 			choices: [{
-				value: 'swig',
-				name: 'SWIG',
+				value: 'angularCookies',
+				name: 'ngCookies',
+				checked: true
 			}, {
-				value: 'jade',
-				name: 'JADE',
+				value: 'angularAnimate',
+				name: 'ngAnimate',
+				checked: true
 			}, {
-				value: 'ejs',
-				name: 'EJS',
+				value: 'angularTouch',
+				name: 'ngTouch',
+				checked: true
+			}, {
+				value: 'angularSanitize',
+				name: 'ngSanitize',
+				checked: true
 			}]
 		}];
 
 		this.prompt(prompts, function(props) {
-			this.templateEngine = props.templateEngine;
+			this.angularCookies = this._.contains(props.modules, 'angularCookies');
+			this.angularAnimate = this._.contains(props.modules, 'angularAnimate');
+			this.angularTouch = this._.contains(props.modules, 'angularTouch');
+			this.angularSanitize = this._.contains(props.modules, 'angularSanitize');
 
 			done();
 		}.bind(this));
 	},
 
-	copyApplicationFolders: function() {
-		this.directory('mean-project-template/app', 'app');
-		this.directory('mean-project-template/config', 'config');
-		this.directory('mean-project-template/public', 'public');
+	copyApplicationFolder: function() {
+		// Copy applicaion folder
+		this.mkdir('app');
+		this.directory('app/controllers');
+		this.directory('app/models');
+		this.directory('app/routes');
+		this.directory('app/tests');
+
+		// Copy public folder
+		this.mkdir('public');
+		this.directory('public/css');
+		this.directory('public/img');
+		this.directory('public/modules');
+		this.mkdir('public/js');
+		this.copy('public/js/application.js');
+
+		// Copy config folder
+		this.mkdir('config');
+		this.mkdir('config/env');
+
+		// Copy config folder content
+		this.directory('config/strategies')
+		this.copy('config/config.js');
+		this.copy('config/express.js');
+		this.copy('config/passport.js');
+		this.copy('config/utilities.js');
+
+		// Copy project files
+		this.copy('gruntfile.js');
+		this.copy('karma.conf.js');
+		this.copy('server.js');
+		this.copy('Procfile');
+
+		// Copy project hidden files
+		this.copy('bowerrc', '.bowerrc');
+		this.copy('jshintrc', '.jshintrc');
+		this.copy('gitignore', '.gitignore');
 	},
 
-	copyViewsFolder: function() {
-		this.directory('mean-project-views/' + this.templateEngine, 'app/views');
+	renderApplicationViewsFiles: function() {
+		this.copy('app/views/404.html');
+		this.copy('app/views/500.html');
+		this.copy('app/views/index.html');
+
+		this.template('app/views/_layout.html', 'app/views/layout.html');
 	},
 
-	renderApplicationDependenciesFiles: function() {
-		this.template('mean-project-template/_package.json', 'package.json');
-		this.template('mean-project-template/_bower.json', 'bower.json');
+	renderApplicationEnvironmentConfigFiles: function() {
+		this.template('config/env/_all.js', 'config/env/all.js');
+		this.template('config/env/_development.js', 'config/env/development.js');
+		this.template('config/env/_production.js', 'config/env/production.js');
+		this.template('config/env/_test.js', 'config/env/test.js');
+		this.template('config/env/_travis.js', 'config/env/travis.js');
 	},
 
 	renderAngularApplicationConfigFile: function() {
-		this.template('mean-project-template/public/js/config.js', 'public/js/config.js');
+		this.template('public/js/_config.js', 'public/js/config.js');
 	},
 
-	copyProjectFiles: function() {
-		this.copy('mean-project-template/bowerrc', '.bowerrc');
-		this.copy('mean-project-template/jshintrc', '.jshintrc');
-		this.copy('mean-project-template/gitignore', '.gitignore');
-
-
-		this.copy('mean-project-template/gruntfile.js', 'gruntfile.js');
-		this.copy('mean-project-template/karma.conf.js', 'karma.conf.js');
-		this.copy('mean-project-template/server.js', 'server.js');
-		this.copy('mean-project-template/Procfile', 'Procfile');
+	renderApplicationDependenciesFiles: function() {
+		this.template('_package.json', 'package.json');
+		this.template('_bower.json', 'bower.json');
 	}
 });
 
