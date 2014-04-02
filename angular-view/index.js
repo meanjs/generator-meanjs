@@ -4,7 +4,7 @@ var util = require('util'),
 	yeoman = require('yeoman-generator');
 
 
-var ModuleGenerator = yeoman.generators.NamedBase.extend({
+var ViewGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
 		var done = this.async();
 
@@ -84,4 +84,4 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 	}
 });
 
-module.exports = ModuleGenerator;
+module.exports = ViewGenerator;

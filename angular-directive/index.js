@@ -1,9 +1,10 @@
 'use strict';
-var util = require('util');
-var yeoman = require('yeoman-generator');
+
+var util = require('util'),
+	yeoman = require('yeoman-generator');
 
 
-var ModuleGenerator = yeoman.generators.NamedBase.extend({
+var DirectiveGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
 		var done = this.async();
 
@@ -25,4 +26,4 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 	}
 });
 
-module.exports = ModuleGenerator;
+module.exports = DirectiveGenerator;

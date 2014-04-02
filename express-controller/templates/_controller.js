@@ -35,7 +35,7 @@ exports.delete = function(req, res) {
 };
 
 /**
- * List of <%= _.pluralize(_.capitalize(_.slugify(name))) %>
+ * List of <%= _.capitalize(_.slugify(name))) %>
  */
 exports.list = function(req, res) {
 	

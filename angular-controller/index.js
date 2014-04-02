@@ -1,9 +1,11 @@
 'use strict';
-var util = require('util');
-var yeoman = require('yeoman-generator');
+
+var util = require('util'),
+	inflections = require('underscore.inflections'),
+	yeoman = require('yeoman-generator');
 
 
-var ModuleGenerator = yeoman.generators.NamedBase.extend({
+var ControllerGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
 		var done = this.async();
 
@@ -21,9 +23,8 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderControllerFile: function() {
-		this._.mixin(require('underscore.inflections'));
 		this.template('_controller.js', 'public/modules/' + this._.slugify(this.moduleName) + '/controllers/' + this._.slugify(this.name) + '.js')
 	}
 });
 
-module.exports = ModuleGenerator;
+module.exports = ControllerGenerator;
