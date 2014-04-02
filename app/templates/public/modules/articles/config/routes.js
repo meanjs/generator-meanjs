@@ -1,6 +1,6 @@
 'use strict';
 
-//Setting up route
+// Setting up route
 angular.module('articles').config(['$stateProvider',
 	function($stateProvider) {
 		// Articles state routing

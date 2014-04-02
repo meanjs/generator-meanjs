@@ -20,7 +20,7 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 		this.humanizedPluralName = this._.humanize(this.slugifiedPluralName);
 		this.humanizedSingularName = this._.humanize(this.slugifiedSingularName);
 
-		console.log(this.slugifiedName,this.slugifiedPluralName,this.slugifiedSingularName,this.camelizedPluralName,this.camelizedSingularName,this.classifiedPluralName,this.classifiedSingularName)
+		console.log(this.slugifiedName, this.slugifiedPluralName, this.slugifiedSingularName, this.camelizedPluralName, this.camelizedSingularName, this.classifiedPluralName, this.classifiedSingularName)
 	},
 
 	askForModuleFolders: function() {
@@ -33,27 +33,27 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 			choices: [{
 				value: 'addCSSFolder',
 				name: 'css',
-				checked: true
+				checked: false
 			}, {
 				value: 'addImagesFolder',
 				name: 'img',
-				checked: true
+				checked: false
 			}, {
 				value: 'addDirectivesFolder',
 				name: 'directives',
-				checked: true
+				checked: false
 			}, {
 				value: 'addFiltersFolder',
 				name: 'filters',
-				checked: true
+				checked: false
 			}]
 		}];
 
 		this.prompt(prompts, function(props) {
-			this.addCSSFolder = this._.contains(props.modules, 'addCSSFolder');
-			this.addImagesFolder = this._.contains(props.modules, 'addImagesFolder');
-			this.addDirectivesFolder = this._.contains(props.modules, 'addDirectivesFolder');
-			this.addFiltersFolder = this._.contains(props.modules, 'addFiltersFolder');
+			this.addCSSFolder = this._.contains(props.folders, 'addCSSFolder');
+			this.addImagesFolder = this._.contains(props.folders, 'addImagesFolder');
+			this.addDirectivesFolder = this._.contains(props.folders, 'addDirectivesFolder');
+			this.addFiltersFolder = this._.contains(props.folders, 'addFiltersFolder');
 
 			done();
 		}.bind(this));
@@ -61,13 +61,13 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 
 	renderModule: function() {
 		// Create module folder
-		this.mkdir(this.slugifiedPluralName);
+		this.mkdir('public/modules/' + this.slugifiedPluralName);
 
 		// Create module supplemental folders
-		if(this.addCSSFolder) this.mkdir(this.slugifiedPluralName + '/css');
-		if(this.addImagesFolder) this.mkdir(this.slugifiedPluralName + '/img');
-		if(this.addDirectivesFolder) this.mkdir(this.slugifiedPluralName + '/directives');
-		if(this.addFiltersFolder) this.mkdir(this.slugifiedPluralName + '/filters');
+		if (this.addCSSFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/css');
+		if (this.addImagesFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/img');
+		if (this.addDirectivesFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/directives');
+		if (this.addFiltersFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/filters');
 
 		// Render express module files
 		this.template('express-module/_controller.js', 'app/controllers/' + this.slugifiedPluralName + '.js');
@@ -79,14 +79,14 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 		this.template('angular-module/config/_routes.js', 'public/modules/' + this.slugifiedPluralName + '/config/routes.js');
 		this.template('angular-module/controllers/_controller.js', 'public/modules/' + this.slugifiedPluralName + '/controllers/' + this.slugifiedPluralName + '.js');
 		this.template('angular-module/services/_service.js', 'public/modules/' + this.slugifiedPluralName + '/services/' + this.slugifiedPluralName + '.js');
-		this.template('angular-module/tests/_tests.spec.js', 'public/modules/' + this.slugifiedPluralName + '/tests/' + this.slugifiedPluralName + 'spec.js');
+		this.template('angular-module/tests/_tests.spec.js', 'public/modules/' + this.slugifiedPluralName + '/tests/' + this.slugifiedPluralName + '.spec.js');
 
 		// Render angular module views
 		this.template('angular-module/views/_create.html', 'public/modules/' + this.slugifiedPluralName + '/views/create.html');
 		this.template('angular-module/views/_edit.html', 'public/modules/' + this.slugifiedPluralName + '/views/edit.html');
 		this.template('angular-module/views/_list.html', 'public/modules/' + this.slugifiedPluralName + '/views/list.html');
 		this.template('angular-module/views/_view.html', 'public/modules/' + this.slugifiedPluralName + '/views/view.html');
-		
+
 		// Render angular module definition
 		this.template('angular-module/_module.js', 'public/modules/' + this.slugifiedPluralName + '/' + this.slugifiedPluralName + '.js');
 	}

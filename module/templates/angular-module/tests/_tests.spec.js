@@ -1,5 +1,5 @@
 'use strict';
-// <%= %>
+
 (function() {
 	// <%= humanizedPluralName %> Controller Spec
 	describe('<%= humanizedPluralName %> Controller Tests', function() {
@@ -67,7 +67,7 @@
 			$httpBackend.flush();
 
 			// Test scope value
-			expect(scope.<%= camelizedSingularName %>).toEqualData(sample<%= classifiedPluralName %>);
+			expect(scope.<%= camelizedPluralName %>).toEqualData(sample<%= classifiedPluralName %>);
 		}));
 
 		it('$scope.findOne() should create an array with one <%= humanizedSingularName %> object fetched from XHR using a <%= camelizedSingularName %>Id URL parameter', inject(function(<%= classifiedPluralName %>) {
@@ -113,8 +113,7 @@
 			$httpBackend.flush();
 
 			// Test form inputs are reset
-			expect(scope.title).toEqual('');
-			expect(scope.content).toEqual('');
+			expect(scope.name).toEqual('');
 
 			// Test URL redirection after the <%= humanizedSingularName %> was created
 			expect($location.path()).toBe('/<%= slugifiedPluralName %>/' + sample<%= classifiedSingularName %>Response._id);
@@ -148,7 +147,7 @@
 			});
 
 			// Create new <%= humanizedPluralName %> array and include the <%= humanizedSingularName %>
-			scope.<%= camelizedSingularName %> = [sample<%= classifiedSingularName %>];
+			scope.<%= camelizedPluralName %> = [sample<%= classifiedSingularName %>];
 
 			// Set expected DELETE response
 			$httpBackend.expectDELETE(/<%= slugifiedPluralName %>\/([0-9a-fA-F]{24})$/).respond(204);
@@ -158,7 +157,7 @@
 			$httpBackend.flush();
 
 			// Test array after successful delete
-			expect(scope.<%= camelizedSingularName %>.length).toBe(0);
+			expect(scope.<%= camelizedPluralName %>.length).toBe(0);
 		}));
 	});
 }());

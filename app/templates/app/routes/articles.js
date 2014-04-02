@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ */
+var users = require('../../app/controllers/users'),
+	articles = require('../../app/controllers/articles');
+
 module.exports = function(app) {
 	// Article Routes
 	app.get('/articles', articles.list);
