@@ -41,7 +41,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			default: 'MongoDB, Express, AngularJS, Node.js'
 		}, {
 			name: 'appAuthor',
-			message: 'What is your company name?'
+			message: 'What is your company/author name?'
 		}];
 
 		this.prompt(prompts, function(props) {
@@ -51,6 +51,8 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appAuthor = props.appAuthor;
 
 			this.slugifiedAppName = this._.slugify(this.appName);
+			this.humanizedAppName = this._.capitalize(this._.humanize(this.slugifiedAppName));
+			this.capitalizedAppAuthor = this._.capitalize(this.appAuthor);
 			done();
 		}.bind(this));
 	},
@@ -102,12 +104,23 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		// Create public folders
 		this.mkdir('public');
 		this.mkdir('public/js');
+		this.mkdir('public/modules');
 
 		// Copy public folder content
 		this.directory('public/css');
 		this.directory('public/img');
-		this.directory('public/modules');
 		this.copy('public/js/application.js');
+
+		// Copy public folder modules
+		this.directory('public/modules/articles');
+		this.directory('public/modules/users');
+
+		// Copy core module files
+		this.directory('public/modules/core/config');
+		this.directory('public/modules/core/controllers');
+		this.directory('public/modules/core/tests');
+		this.copy('public/modules/core/views/home.html');
+		this.copy('public/modules/core/core.js');
 
 		// Copy config folder
 		this.mkdir('config');
@@ -150,6 +163,10 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 	renderAngularApplicationConfigFile: function() {
 		this.template('public/js/_config.js', 'public/js/config.js');
+	},
+
+	renderCoreModuleFiles: function() {
+		this.template('public/modules/core/views/_header.html', 'public/modules/core/views/header.html');
 	},
 
 	renderApplicationDependenciesFiles: function() {

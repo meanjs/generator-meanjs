@@ -5,7 +5,7 @@ var path = require('path'),
 
 module.exports = {
 	app: {
-		title: '<%= slugifiedAppName %>',
+		title: '<%= humanizedAppName %>',
 		description: '<%= appDescription %>',
 		keywords: '<%= appKeywords %>'
 	},

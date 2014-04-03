@@ -3,7 +3,7 @@
 module.exports = {
 	db: 'mongodb://localhost/<%= slugifiedAppName %>-dev',
 	app: {
-		title: '<%= slugifiedAppName %> - Development Environment'
+		title: '<%= humanizedAppName %> - Development Environment'
 	},
 	facebook: {
 		clientID: 'APP_ID',

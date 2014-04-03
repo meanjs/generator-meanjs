@@ -18,14 +18,14 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
 			this.moduleName = props.moduleName;
 			this.slugifiedModuleName = this._.slugify(this.moduleName);
 			this.slugifiedName = this._.slugify(this.name);
-			this.camelizedName = this._.camelize(this.slugifiedName);
+			this.classifiedName = this._.classify(this.slugifiedName);
 
 			done();
 		}.bind(this));
 	},
 
 	renderServiceFile: function() {
-		this.template('_service.js', 'public/modules/' + slugifiedModuleName + '/services/' + slugifiedName + '.js')
+		this.template('_service.js', 'public/modules/' + this.slugifiedModuleName + '/services/' + this.slugifiedName + '.js')
 	}
 });
 

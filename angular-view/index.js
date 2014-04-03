@@ -23,9 +23,12 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 
 			this.slugifiedModuleName = this._.slugify(this.moduleName);
 			this.humanizedModuleName = this._.slugify(this.moduleName);
+			
 			this.slugifiedName = this._.slugify(this.name);
 			this.classifiedName = this._.classify(this.slugifiedName);
-			this.classifiedControllerName = this._.classify(this.slugifiedName);
+			
+			this.slugifiedControllerName = this._.slugify(this.controllerName);
+			this.classifiedControllerName = this._.classify(this.slugifiedControllerName);
 
 			done();
 		}.bind(this));

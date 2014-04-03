@@ -4,7 +4,7 @@ module.exports = {
 	db: 'mongodb://localhost/<%= slugifiedAppName %>-test',
 	port: 3001,
 	app: {
-		title: '<%= slugifiedAppName %> - Test Environment'
+		title: '<%= humanizedAppName %> - Test Environment'
 	},
 	facebook: {
 		clientID: 'APP_ID',
