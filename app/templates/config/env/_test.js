@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/mean-test',
+	db: 'mongodb://localhost/<%= slugifiedAppName %>-test',
 	port: 3001,
 	app: {
-		title: '<%= _.slugify(appName) %> - Test Environment'
+		title: '<%= slugifiedAppName %> - Test Environment'
 	},
 	facebook: {
 		clientID: 'APP_ID',

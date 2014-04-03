@@ -17,13 +17,16 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
+			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.slugifiedName = this._.slugify(this.name);
+			this.classifiedName = this._.classify(this.slugifiedName);
 
 			done();
 		}.bind(this));
 	},
 
 	renderControllerFile: function() {
-		this.template('_controller.js', 'public/modules/' + this._.slugify(this.moduleName) + '/controllers/' + this._.slugify(this.name) + '.js')
+		this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedName + '.js')
 	}
 });
 

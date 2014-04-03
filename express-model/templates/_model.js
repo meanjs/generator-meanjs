@@ -7,10 +7,10 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * <%= _.capitalize(_.slugify(name)) %> Schema
+ * <%= classifiedName %> Schema
  */
-var <%= _.capitalize(_.slugify(name)) %>Schema = new Schema({
+var <%= classifiedName %>Schema = new Schema({
 	
 });
 
-mongoose.model('<%= _.capitalize(_.slugify(name)) %>', <%= _.capitalize(_.slugify(name)) %>Schema);
+mongoose.model('<%= classifiedName %>', <%= classifiedName %>Schema);

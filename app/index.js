@@ -1,8 +1,8 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
+var util = require('util'),
+	path = require('path'),
+	yeoman = require('yeoman-generator'),
+	chalk = require('chalk');
 
 
 var MeanGenerator = yeoman.generators.Base.extend({
@@ -50,6 +50,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appKeywords = props.appKeywords;
 			this.appAuthor = props.appAuthor;
 
+			this.slugifiedAppName = this._.slugify(this.appName);
 			done();
 		}.bind(this));
 	},

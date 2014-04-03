@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= _.slugify(moduleName) %>').factory('<%= _.classify(_.slugify(name)) %>', [
+angular.module('<%= slugifiedModuleName %>').factory('<%= classifiedName %>', [
 	function() {
 		// Service Logic 
 		// ...

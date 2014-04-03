@@ -1,13 +1,13 @@
 'use strict';
 
 //Setting up route
-angular.module('<%= _.slugify(moduleName) %>').config(['$stateProvider',
+angular.module('<%= slugifiedModuleName %>').config(['$stateProvider',
 	function($stateProvider) {
-		// <%= _.classify(moduleName) %> state routing
+		// <%= humanizedModuleName %> state routing
 		$stateProvider.
-		state('<%= _.slugify(name) %>', {
-			url: '/<%= _.slugify(routePath) %>',
-			templateUrl: 'modules/<%= _.slugify(moduleName) %>/views/<%= _.slugify(name) %>.html'
+		state('<%= slugifiedName %>', {
+			url: '/<%= slugifiedRoutePath %>',
+			templateUrl: 'modules/<%= slugifiedModuleName %>/views/<%= slugifiedName %>.html'
 		});
 	}
 ]);

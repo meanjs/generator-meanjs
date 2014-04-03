@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/mean-travis',
+	db: 'mongodb://localhost/<%= slugifiedAppName %>-travis',
 	port: 3001,
 	app: {
-		title: '<%= _.slugify(appName) %> - Travis Environment'
+		title: '<%= slugifiedAppName %> - Travis Environment'
 	},
 	facebook: {
 		clientID: 'APP_ID',

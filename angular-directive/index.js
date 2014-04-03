@@ -16,13 +16,16 @@ var DirectiveGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
+			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.slugifiedName = this._.slugify(this.name);
+			this.camelizedName = this._.camelize(this.slugifiedName);
 
 			done();
 		}.bind(this));
 	},
 
 	renderDirectiveFile: function() {
-		this.template('_directive.js', 'public/modules/' + this._.slugify(this.moduleName) + '/directives/' + this._.slugify(this.name) + '.js')
+		this.template('_directive.js', 'public/modules/' + this.slugifiedModuleName + '/directives/' + this.slugifiedName + '.js')
 	}
 });
 

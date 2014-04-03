@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= _.slugify(moduleName) %>').controller('<%= _.classify(_.slugify(name)) %>Controller', ['$scope',
+angular.module('<%= slugifiedModuleName %>').controller('<%= classifiedName %>Controller', ['$scope',
 	function($scope) {
 
 	}

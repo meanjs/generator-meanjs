@@ -7,35 +7,35 @@ var mongoose = require('mongoose'),
 	_ = require('lodash');
 
 /**
- * Create a <%= _.capitalize(_.slugify(name)) %>
+ * Create a <%= humanizedName %>
  */
 exports.create = function(req, res) {
 	
 };
 
 /**
- * Show the current <%= _.capitalize(_.slugify(name)) %>
+ * Show the current <%= humanizedName %>
  */
 exports.read = function(req, res) {
 	
 };
 
 /**
- * Update a <%= _.capitalize(_.slugify(name)) %>
+ * Update a <%= humanizedName %>
  */
 exports.update = function(req, res) {
 	
 };
 
 /**
- * Delete an <%= _.capitalize(_.slugify(name)) %>
+ * Delete an <%= humanizedName %>
  */
 exports.delete = function(req, res) {
 	
 };
 
 /**
- * List of <%= _.capitalize(_.slugify(name))) %>
+ * List of <%= humanizedPluralName %>
  */
 exports.list = function(req, res) {
 	

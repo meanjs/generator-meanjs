@@ -1,5 +1,5 @@
 {
-	"name": "<%= _.slugify(appName) %>",
+	"name": "<%= slugifiedAppName %>",
 	"description": "<%= appDescription %>",
 	"version": "0.0.1", <% if (appAuthor) { %>
 	"author": "<%= appAuthor %>", <% } %>

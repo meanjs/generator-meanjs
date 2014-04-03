@@ -5,7 +5,7 @@ var path = require('path'),
 
 module.exports = {
 	app: {
-		title: '<%= _.slugify(appName) %>',
+		title: '<%= slugifiedAppName %>',
 		description: '<%= appDescription %>',
 		keywords: '<%= appKeywords %>'
 	},
@@ -13,6 +13,6 @@ module.exports = {
 	root: rootPath,
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
-	sessionSecret: '<%= _.slugify(appName) %>',
+	sessionSecret: '<%= slugifiedAppName %>',
 	sessionCollection: 'sessions'
 };

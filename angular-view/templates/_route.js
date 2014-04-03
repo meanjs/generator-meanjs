@@ -1,5 +1,5 @@
 $stateProvider.
-		state('<%= _.slugify(name) %>', {
-			url: '/<%= _.slugify(routePath) %>',
-			templateUrl: 'modules/<%= _.slugify(moduleName) %>/views/<%= _.slugify(name) %>.html'
+		state('<%= slugifiedName %>', {
+			url: '/<%= slugifiedRoutePath %>',
+			templateUrl: 'modules/<%= slugifiedModuleName %>/views/<%= slugifiedName %>.html'
 		}).
