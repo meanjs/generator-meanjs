@@ -11,8 +11,7 @@ var should = require('should'),
 /**
  * Globals
  */
-var user;
-var <%= camelizedSingularName %> ;
+var user, <%= camelizedSingularName %> ;
 
 /**
  * Unit tests
@@ -28,7 +27,8 @@ describe('<%= humanizedSingularName %> Model Unit Tests:', function() {
 			password: 'password'
 		});
 
-		user.save(function() { <%= camelizedSingularName %> = new <%= classifiedSingularName %> ({
+		user.save(function() { 
+			<%= camelizedSingularName %> = new <%= classifiedSingularName %> ({
 				name: '<%= humanizedSingularName %> Name',
 				user: user
 			});
@@ -45,7 +45,8 @@ describe('<%= humanizedSingularName %> Model Unit Tests:', function() {
 			});
 		});
 
-		it('should be able to show an error when try to save without name', function(done) { <%= camelizedSingularName %> .name = '';
+		it('should be able to show an error when try to save without name', function(done) { 
+			<%= camelizedSingularName %> .name = '';
 
 			return <%=camelizedSingularName %> .save(function(err) {
 				should.exist(err);
@@ -54,7 +55,9 @@ describe('<%= humanizedSingularName %> Model Unit Tests:', function() {
 		});
 	});
 
-	afterEach(function(done) { <%= classifiedSingularName %> .remove().exec();
+	afterEach(function(done) { 
+		<%= classifiedSingularName %> .remove().exec();
+
 		User.remove().exec();
 		done();
 	});

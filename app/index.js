@@ -138,11 +138,14 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('karma.conf.js');
 		this.copy('server.js');
 		this.copy('Procfile');
+		this.copy('README.md');
 
 		// Copy project hidden files
 		this.copy('bowerrc', '.bowerrc');
 		this.copy('jshintrc', '.jshintrc');
 		this.copy('gitignore', '.gitignore');
+		this.copy('slugignore', '.slugignore');
+		this.copy('travis.yml', '.travis.yml');
 	},
 
 	renderApplicationViewsFiles: function() {
