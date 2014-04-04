@@ -6,19 +6,19 @@ var util = require('util'),
 
 var ModuleGenerator = yeoman.generators.NamedBase.extend({
 	init: function() {
-		this.slugifiedName = this._.slugify(this.name);
+		this.dasherizedName = this._.dasherize(this.name);
 
-		this.slugifiedPluralName = inflections.pluralize(this.slugifiedName);
-		this.slugifiedSingularName = inflections.singularize(this.slugifiedName);
+		this.dasherizedPluralName = inflections.pluralize(this.dasherizedName);
+		this.dasherizedSingularName = inflections.singularize(this.dasherizedName);
 
-		this.camelizedPluralName = this._.camelize(this.slugifiedPluralName);
-		this.camelizedSingularName = this._.camelize(this.slugifiedSingularName);
+		this.camelizedPluralName = this._.camelize(this.dasherizedPluralName);
+		this.camelizedSingularName = this._.camelize(this.dasherizedSingularName);
 
-		this.classifiedPluralName = this._.classify(this.slugifiedPluralName);
-		this.classifiedSingularName = this._.classify(this.slugifiedSingularName);
+		this.classifiedPluralName = this._.classify(this.dasherizedPluralName);
+		this.classifiedSingularName = this._.classify(this.dasherizedSingularName);
 
-		this.humanizedPluralName = this._.humanize(this.slugifiedPluralName);
-		this.humanizedSingularName = this._.humanize(this.slugifiedSingularName);
+		this.humanizedPluralName = this._.humanize(this.dasherizedPluralName);
+		this.humanizedSingularName = this._.humanize(this.dasherizedSingularName);
 	},
 
 	askForModuleFolders: function() {
@@ -84,21 +84,21 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 
 	renderModule: function() {
 		// Create module folder
-		this.mkdir('public/modules/' + this.slugifiedPluralName);
+		this.mkdir('public/modules/' + this.dasherizedPluralName);
 
 		// Create module sub-folders
-		if (this.addConfigFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/config');
-		if (this.addControllersFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/controllers');
-		if (this.addCSSFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/css');
-		if (this.addDirectivesFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/directives');
-		if (this.addFiltersFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/filters');
-		if (this.addImagesFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/img');
-		if (this.addServicesFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/services');
-		if (this.addTestsFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/tests');
-		if (this.addViewsFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/views');
+		if (this.addConfigFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/config');
+		if (this.addControllersFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/controllers');
+		if (this.addCSSFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/css');
+		if (this.addDirectivesFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/directives');
+		if (this.addFiltersFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/filters');
+		if (this.addImagesFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/img');
+		if (this.addServicesFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/services');
+		if (this.addTestsFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/tests');
+		if (this.addViewsFolder) this.mkdir('public/modules/' + this.dasherizedPluralName + '/views');
 
 		// Render angular module definition
-		this.template('_module.js', 'public/modules/' + this.slugifiedPluralName + '/' + this.slugifiedPluralName + '.js');
+		this.template('_module.js', 'public/modules/' + this.dasherizedPluralName + '/' + this.dasherizedPluralName + '.js');
 	}
 });
 

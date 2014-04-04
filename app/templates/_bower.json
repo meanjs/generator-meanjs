@@ -1,5 +1,5 @@
 {
-	"name": "<%= slugifiedAppName %>",
+	"name": "<%= dasherizedAppName %>",
 	"version": "0.0.1",
 	"description": "<%= appDescription %>",
 	"dependencies": {

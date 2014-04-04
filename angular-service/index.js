@@ -16,16 +16,18 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
-			this.slugifiedName = this._.slugify(this.name);
-			this.classifiedName = this._.classify(this.slugifiedName);
+			this.dasherizedModuleName = this._.dasherize(this.moduleName);
+			
+			this.dasherizedName = this._.dasherize(this.name);
+			this.classifiedName = this._.classify(this.dasherizedName);
+			this.humanizedName = this._.humanize(this.dasherizedName);
 
 			done();
 		}.bind(this));
 	},
 
 	renderServiceFile: function() {
-		this.template('_service.js', 'public/modules/' + this.slugifiedModuleName + '/services/' + this.slugifiedName + '.js')
+		this.template('_service.js', 'public/modules/' + this.dasherizedModuleName + '/services/' + this.dasherizedName + '.js')
 	}
 });
 

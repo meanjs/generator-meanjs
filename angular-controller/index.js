@@ -17,18 +17,18 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.dasherizedModuleName = this._.dasherize(this.moduleName);
 			
-			this.slugifiedName = this._.slugify(this.name);
-			this.classifiedName = this._.classify(this.slugifiedName);
-			this.humanizedName = this._.humanize(this.slugifiedName);
+			this.dasherizedName = this._.dasherize(this.name);
+			this.classifiedName = this._.classify(this.dasherizedName);
+			this.humanizedName = this._.humanize(this.dasherizedName);
 
 			done();
 		}.bind(this));
 	},
 
 	renderControllerFile: function() {
-		this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedName + '.js')
+		this.template('_controller.js', 'public/modules/' + this.dasherizedModuleName + '/controllers/' + this.dasherizedName + '.js')
 	}
 });
 

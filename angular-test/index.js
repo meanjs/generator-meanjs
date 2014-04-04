@@ -17,25 +17,25 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.dasherizedModuleName = this._.dasherize(this.moduleName);
 
-			this.slugifiedControllerName = this._.slugify(this.name);
-			this.classifiedControllerName = this._.classify(this.slugifiedControllerName);
-			this.humanizedControllerName = this._.humanize(this.slugifiedControllerName);
+			this.dasherizedControllerName = this._.dasherize(this.name);
+			this.classifiedControllerName = this._.classify(this.dasherizedControllerName);
+			this.humanizedControllerName = this._.humanize(this.dasherizedControllerName);
 
 			done();
 		}.bind(this));
 	},
 
 	renderTestFile: function() {
-		var controllerFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.js';
+		var controllerFilePath = process.cwd() + '/public/modules/' + this.dasherizedModuleName + '/controllers/' + this.dasherizedControllerName + '.js';
 		
-		// If controller file exists we create a test for it otherwise we raise error
-		if (fs.existsSync(controllerFilePath)) {
-			this.template('_tests.spec.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + '.spec.js')
-		} else {
-			throw new Error(this.humanizedControllerName + ' controller does not exists in the ' + this.slugifiedModuleName + ' module folder');
+		// If controller file exists we create a test for it otherwise we will first create a controller
+		if (!fs.existsSync(controllerFilePath)) {
+			this.template('_controller.js', 'public/modules/' + this.dasherizedModuleName + '/controllers/' + this.dasherizedControllerName + '.js')
 		}
+
+		this.template('_tests.spec.js', 'public/modules/' + this.dasherizedModuleName + '/tests/' + this.dasherizedControllerName + '.spec.js')
 	}
 });
 

@@ -13,6 +13,6 @@ module.exports = {
 	root: rootPath,
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
-	sessionSecret: '<%= slugifiedAppName %>',
+	sessionSecret: '<%= dasherizedAppName %>',
 	sessionCollection: 'sessions'
 };

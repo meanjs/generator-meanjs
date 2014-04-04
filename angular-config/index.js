@@ -17,17 +17,17 @@ var ConfigGenerator = yeoman.generators.NamedBase.extend({
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
 			
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.dasherizedModuleName = this._.dasherize(this.moduleName);
 			this.humanizedModuleName = this._.humanize(this.moduleName);
 
-			this.slugifiedName = this._.slugify(this.name);
+			this.dasherizedName = this._.dasherize(this.name);
 
 			done();
 		}.bind(this));
 	},
 
 	renderConfigFile: function() {
-		this.template('_config.js', 'public/modules/' + this.slugifiedModuleName + '/services/' + this.slugifiedName + '.js')
+		this.template('_config.js', 'public/modules/' + this.dasherizedModuleName + '/services/' + this.dasherizedName + '.js')
 	}
 });
 

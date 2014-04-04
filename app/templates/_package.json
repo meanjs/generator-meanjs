@@ -1,5 +1,5 @@
 {
-	"name": "<%= slugifiedAppName %>",
+	"name": "<%= dasherizedAppName %>",
 	"description": "<%= appDescription %>",
 	"version": "0.0.1", <% if (appAuthor) { %>
 	"author": "<%= capitalizedAppAuthor %>", <% } %>

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('<%= slugifiedModuleName %>').controller('<%= classifiedName %>Controller', ['$scope',
+angular.module('<%= dasherizedModuleName %>').controller('<%= classifiedName %>Controller', ['$scope',
 	function($scope) {
-		// <%= humanizedName %> Controller Logic 
+		// <%= humanizedName %> controller logic 
 		// ...
 	}
 ]);

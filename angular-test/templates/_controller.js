@@ -2,7 +2,7 @@
 
 angular.module('<%= dasherizedModuleName %>').controller('<%= classifiedControllerName %>Controller', ['$scope',
 	function($scope) {
-		// Controller Logic 
+		// <%= humanizedControllerName %> controller logic 
 		// ...
 	}
 ]);

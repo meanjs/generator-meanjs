@@ -18,12 +18,12 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 			this.moduleName = props.moduleName;
 			this.controllerName = props.controllerName;
 
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.dasherizedModuleName = this._.dasherize(this.moduleName);
 			this.humanizedModuleName = this._.humanize(this.moduleName);
 
-			this.slugifiedName = this._.slugify(this.name);
-			this.classifiedName = this._.classify(this.slugifiedName);
-			this.humanizedName = this._.humanize(this.slugifiedName);
+			this.dasherizedName = this._.dasherize(this.name);
+			this.classifiedName = this._.classify(this.dasherizedName);
+			this.humanizedName = this._.humanize(this.dasherizedName);
 
 			done();
 		}.bind(this));
@@ -35,11 +35,11 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 		var prompts = [{
 			name: 'routePath',
 			message: 'What do you want your route path to be?',
-			default: this.slugifiedName
+			default: this.dasherizedName
 		}, {
 			name: 'viewName',
 			message: 'What do you want to call your view?',
-			default: this.slugifiedName
+			default: this.dasherizedName
 		}, {
 			name: 'controllerName',
 			message: 'What do you want to call your controller?',
@@ -51,12 +51,12 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 			this.viewName = props.viewName;
 			this.controllerName = props.controllerName;
 
-			this.slugifiedRoutePath = this._.slugify(this.routePath);
+			this.dasherizedRoutePath = this._.dasherize(this.routePath);
 			
-			this.slugifiedViewName = this._.slugify(this.viewName);
+			this.dasherizedViewName = this._.dasherize(this.viewName);
 			this.humanizedViewName = this._.humanize(this.viewName);
 
-			this.slugifiedControllerName = this._.slugify(this.controllerName);
+			this.dasherizedControllerName = this._.dasherize(this.controllerName);
 			this.classifiedControllerName = this._.classify(this.controllerName);
 
 			done();
@@ -64,7 +64,7 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderRoute: function() {
-		var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/routes.js';
+		var routesFilePath = process.cwd() + '/public/modules/' + this.dasherizedModuleName + '/config/routes.js';
 
 		// If routes file exists we add a new state otherwise we render a new one
 		if (fs.existsSync(routesFilePath)) {
@@ -77,13 +77,13 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 			// Save route file
 			this.writeFileFromString(routesFileContent, routesFilePath);
 		} else {
-			this.template('_routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/routes.js')
+			this.template('_routes.js', 'public/modules/' + this.dasherizedModuleName + '/config/routes.js')
 		}
 	},
 
 	renderRouteViewController: function() {
-		this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.js')
-		this.template('_view.html', 'public/modules/' + this.slugifiedModuleName + '/views/' + this.slugifiedViewName + '.html')
+		this.template('_controller.js', 'public/modules/' + this.dasherizedModuleName + '/controllers/' + this.dasherizedControllerName + '.js')
+		this.template('_view.html', 'public/modules/' + this.dasherizedModuleName + '/views/' + this.dasherizedViewName + '.html')
 	}
 });
 

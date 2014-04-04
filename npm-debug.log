@@ -1,0 +1,297 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /Users/Amos/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball /var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz
+12 verbose folder .
+13 info prepublish generator-meanjs@0.0.1
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /Users/Amos/.npm/1f1177db-tar.lock
+16 silly lockFile 4da86cc6-6131-0-47888489766046405-tmp-tgz tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz
+17 verbose lock tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz /Users/Amos/.npm/4da86cc6-6131-0-47888489766046405-tmp-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 4da86cc6-6131-0-47888489766046405-tmp-tgz tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz
+21 silly lockFile 4da86cc6-6131-0-47888489766046405-tmp-tgz tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz
+22 verbose tar unpack /var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz
+23 silly lockFile d704200c-6131-0-47888489766046405-package tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package
+24 verbose lock tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package /Users/Amos/.npm/d704200c-6131-0-47888489766046405-package.lock
+25 silly lockFile 4da86cc6-6131-0-47888489766046405-tmp-tgz tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz
+26 verbose lock tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz /Users/Amos/.npm/4da86cc6-6131-0-47888489766046405-tmp-tgz.lock
+27 silly gunzTarPerm modes [ '755', '644' ]
+28 silly gunzTarPerm extractEntry package.json
+29 silly gunzTarPerm extractEntry README.md
+30 silly gunzTarPerm extractEntry app/index.js
+31 silly gunzTarPerm extractEntry app/templates/README.md
+32 silly gunzTarPerm extractEntry app/templates/_karma.conf.js
+33 silly gunzTarPerm extractEntry app/templates/gruntfile.js
+34 silly gunzTarPerm extractEntry app/templates/server.js
+35 silly gunzTarPerm extractEntry app/templates/config/config.js
+36 silly gunzTarPerm extractEntry app/templates/config/express.js
+37 silly gunzTarPerm extractEntry app/templates/config/passport.js
+38 silly gunzTarPerm extractEntry app/templates/config/utilities.js
+39 silly gunzTarPerm extractEntry app/templates/config/env/_all.js
+40 silly gunzTarPerm extractEntry app/templates/config/env/_development.js
+41 silly gunzTarPerm extractEntry app/templates/config/env/_production.js
+42 silly gunzTarPerm extractEntry app/templates/config/env/_test.js
+43 silly gunzTarPerm extractEntry app/templates/config/env/_travis.js
+44 silly gunzTarPerm extractEntry app/templates/config/strategies/facebook.js
+45 silly gunzTarPerm extractEntry app/templates/config/strategies/google.js
+46 silly gunzTarPerm extractEntry app/templates/config/strategies/linkedin.js
+47 silly gunzTarPerm extractEntry app/templates/config/strategies/local.js
+48 silly gunzTarPerm extractEntry app/templates/config/strategies/twitter.js
+49 silly gunzTarPerm extractEntry app/templates/app/controllers/articles.js
+50 silly gunzTarPerm extractEntry app/templates/app/controllers/core.js
+51 silly gunzTarPerm extractEntry app/templates/app/controllers/users.js
+52 silly gunzTarPerm extractEntry app/templates/app/models/article.js
+53 silly gunzTarPerm extractEntry app/templates/app/models/user.js
+54 silly gunzTarPerm extractEntry app/templates/app/routes/articles.js
+55 silly gunzTarPerm extractEntry app/templates/app/routes/core.js
+56 silly gunzTarPerm extractEntry app/templates/app/routes/users.js
+57 silly gunzTarPerm extractEntry app/templates/app/tests/articles.js
+58 silly gunzTarPerm extractEntry app/templates/app/tests/users.js
+59 silly gunzTarPerm extractEntry app/templates/app/views/404.html
+60 silly gunzTarPerm extractEntry app/templates/app/views/500.html
+61 silly gunzTarPerm extractEntry app/templates/app/views/_layout.html
+62 silly gunzTarPerm extractEntry app/templates/app/views/index.html
+63 silly gunzTarPerm extractEntry app/templates/bowerrc
+64 silly gunzTarPerm extractEntry app/templates/_bower.json
+65 silly gunzTarPerm extractEntry app/templates/gitignore
+66 silly gunzTarPerm extractEntry app/templates/Procfile
+67 silly gunzTarPerm extractEntry app/templates/jshintrc
+68 silly gunzTarPerm extractEntry app/templates/public/css/common.css
+69 silly gunzTarPerm extractEntry app/templates/public/humans.txt
+70 silly gunzTarPerm extractEntry app/templates/public/img/brand/favicon.ico
+71 silly gunzTarPerm extractEntry app/templates/public/img/brand/logo.png
+72 silly gunzTarPerm extractEntry app/templates/public/img/loaders/loader.gif
+73 silly gunzTarPerm extractEntry app/templates/public/js/_config.js
+74 silly gunzTarPerm extractEntry app/templates/public/js/application.js
+75 silly gunzTarPerm extractEntry app/templates/public/modules/articles/articles.js
+76 silly gunzTarPerm extractEntry app/templates/public/modules/articles/config/routes.js
+77 silly gunzTarPerm extractEntry app/templates/public/modules/articles/controllers/articles.js
+78 silly gunzTarPerm extractEntry app/templates/public/modules/articles/services/articles.js
+79 silly gunzTarPerm extractEntry app/templates/public/modules/articles/tests/articles.spec.js
+80 silly gunzTarPerm extractEntry app/templates/public/modules/articles/views/create.html
+81 silly gunzTarPerm extractEntry app/templates/public/modules/articles/views/edit.html
+82 silly gunzTarPerm extractEntry app/templates/public/modules/articles/views/list.html
+83 silly gunzTarPerm extractEntry app/templates/public/modules/articles/views/view.html
+84 silly gunzTarPerm extractEntry app/templates/public/modules/core/core.js
+85 silly gunzTarPerm extractEntry app/templates/public/modules/core/config/routes.js
+86 silly gunzTarPerm extractEntry app/templates/public/modules/core/controllers/header.js
+87 silly gunzTarPerm extractEntry app/templates/public/modules/core/controllers/home.js
+88 silly gunzTarPerm extractEntry app/templates/public/modules/core/tests/header.spec.js
+89 silly gunzTarPerm extractEntry app/templates/public/modules/core/tests/home.spec.js
+90 silly gunzTarPerm extractEntry app/templates/public/modules/core/views/_header.html
+91 silly gunzTarPerm extractEntry app/templates/public/modules/core/views/home.html
+92 silly gunzTarPerm extractEntry app/templates/public/modules/users/users.js
+93 silly gunzTarPerm extractEntry app/templates/public/modules/users/config/config.js
+94 silly gunzTarPerm extractEntry app/templates/public/modules/users/config/routes.js
+95 silly gunzTarPerm extractEntry app/templates/public/modules/users/controllers/authentication.js
+96 silly gunzTarPerm extractEntry app/templates/public/modules/users/controllers/settings.js
+97 silly gunzTarPerm extractEntry app/templates/public/modules/users/css/users.css
+98 silly gunzTarPerm extractEntry app/templates/public/modules/users/img/buttons/facebook.png
+99 silly gunzTarPerm extractEntry app/templates/public/modules/users/img/buttons/google.png
+100 silly gunzTarPerm extractEntry app/templates/public/modules/users/img/buttons/linkedin.png
+101 silly gunzTarPerm extractEntry app/templates/public/modules/users/img/buttons/twitter.png
+102 silly gunzTarPerm extractEntry app/templates/public/modules/users/services/authentication.js
+103 silly gunzTarPerm extractEntry app/templates/public/modules/users/services/users.js
+104 silly gunzTarPerm extractEntry app/templates/public/modules/users/views/settings/password.html
+105 silly gunzTarPerm extractEntry app/templates/public/modules/users/views/settings/profile.html
+106 silly gunzTarPerm extractEntry app/templates/public/modules/users/views/signin.html
+107 silly gunzTarPerm extractEntry app/templates/public/modules/users/views/signup.html
+108 silly gunzTarPerm extractEntry app/templates/public/robots.txt
+109 silly gunzTarPerm extractEntry app/templates/_package.json
+110 silly gunzTarPerm extractEntry app/templates/slugignore
+111 silly gunzTarPerm extractEntry app/templates/travis.yml
+112 silly lockFile d704200c-6131-0-47888489766046405-package tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package
+113 silly lockFile d704200c-6131-0-47888489766046405-package tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package
+114 silly lockFile 4da86cc6-6131-0-47888489766046405-tmp-tgz tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz
+115 silly lockFile 4da86cc6-6131-0-47888489766046405-tmp-tgz tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/tmp.tgz
+116 verbose tar pack [ '/Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz',
+116 verbose tar pack   '/var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package' ]
+117 verbose tarball /Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz
+118 verbose folder /var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package
+119 silly lockFile d704200c-6131-0-47888489766046405-package tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package
+120 verbose lock tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package /Users/Amos/.npm/d704200c-6131-0-47888489766046405-package.lock
+121 silly lockFile b02bb9e9-nerator-meanjs-0-0-1-package-tgz tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz
+122 verbose lock tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz /Users/Amos/.npm/b02bb9e9-nerator-meanjs-0-0-1-package-tgz.lock
+123 silly lockFile d704200c-6131-0-47888489766046405-package tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package
+124 silly lockFile d704200c-6131-0-47888489766046405-package tar:///var/folders/r0/t9nd08gn337gt7tdxzdx_qkh0000gn/T/npm-59524-gynikBZk/1396587516131-0.47888489766046405/package
+125 silly lockFile b02bb9e9-nerator-meanjs-0-0-1-package-tgz tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz
+126 silly lockFile b02bb9e9-nerator-meanjs-0-0-1-package-tgz tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz
+127 silly lockFile 07c5e702-m-generator-meanjs-0-0-1-package /Users/Amos/.npm/generator-meanjs/0.0.1/package
+128 verbose lock /Users/Amos/.npm/generator-meanjs/0.0.1/package /Users/Amos/.npm/07c5e702-m-generator-meanjs-0-0-1-package.lock
+129 silly lockFile 07c5e702-m-generator-meanjs-0-0-1-package /Users/Amos/.npm/generator-meanjs/0.0.1/package
+130 silly lockFile 07c5e702-m-generator-meanjs-0-0-1-package /Users/Amos/.npm/generator-meanjs/0.0.1/package
+131 verbose tar unpack /Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz
+132 silly lockFile c171d7a5-m-generator-meanjs-0-0-1-package tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package
+133 verbose lock tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package /Users/Amos/.npm/c171d7a5-m-generator-meanjs-0-0-1-package.lock
+134 silly lockFile b02bb9e9-nerator-meanjs-0-0-1-package-tgz tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz
+135 verbose lock tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz /Users/Amos/.npm/b02bb9e9-nerator-meanjs-0-0-1-package-tgz.lock
+136 silly gunzTarPerm modes [ '755', '644' ]
+137 silly gunzTarPerm extractEntry package.json
+138 silly gunzTarPerm extractEntry README.md
+139 silly gunzTarPerm extractEntry app/index.js
+140 silly gunzTarPerm extractEntry app/templates/README.md
+141 silly gunzTarPerm extractEntry app/templates/_karma.conf.js
+142 silly gunzTarPerm extractEntry app/templates/gruntfile.js
+143 silly gunzTarPerm extractEntry app/templates/server.js
+144 silly gunzTarPerm extractEntry app/templates/config/config.js
+145 silly gunzTarPerm extractEntry app/templates/config/express.js
+146 silly gunzTarPerm extractEntry app/templates/config/passport.js
+147 silly gunzTarPerm extractEntry app/templates/config/utilities.js
+148 silly gunzTarPerm extractEntry app/templates/config/env/_all.js
+149 silly gunzTarPerm extractEntry app/templates/config/env/_development.js
+150 silly gunzTarPerm extractEntry app/templates/config/env/_production.js
+151 silly gunzTarPerm extractEntry app/templates/config/env/_test.js
+152 silly gunzTarPerm extractEntry app/templates/config/env/_travis.js
+153 silly gunzTarPerm extractEntry app/templates/config/strategies/facebook.js
+154 silly gunzTarPerm extractEntry app/templates/config/strategies/google.js
+155 silly gunzTarPerm extractEntry app/templates/config/strategies/linkedin.js
+156 silly gunzTarPerm extractEntry app/templates/config/strategies/local.js
+157 silly gunzTarPerm extractEntry app/templates/config/strategies/twitter.js
+158 silly gunzTarPerm extractEntry app/templates/app/controllers/articles.js
+159 silly gunzTarPerm extractEntry app/templates/app/controllers/core.js
+160 silly gunzTarPerm extractEntry app/templates/app/controllers/users.js
+161 silly gunzTarPerm extractEntry app/templates/app/models/article.js
+162 silly gunzTarPerm extractEntry app/templates/app/models/user.js
+163 silly gunzTarPerm extractEntry app/templates/app/routes/articles.js
+164 silly gunzTarPerm extractEntry app/templates/app/routes/core.js
+165 silly gunzTarPerm extractEntry app/templates/app/routes/users.js
+166 silly gunzTarPerm extractEntry app/templates/app/tests/articles.js
+167 silly gunzTarPerm extractEntry app/templates/app/tests/users.js
+168 silly gunzTarPerm extractEntry app/templates/app/views/404.html
+169 silly gunzTarPerm extractEntry app/templates/app/views/500.html
+170 silly gunzTarPerm extractEntry app/templates/app/views/_layout.html
+171 silly gunzTarPerm extractEntry app/templates/app/views/index.html
+172 silly gunzTarPerm extractEntry app/templates/bowerrc
+173 silly gunzTarPerm extractEntry app/templates/_bower.json
+174 silly gunzTarPerm extractEntry app/templates/gitignore
+175 silly gunzTarPerm extractEntry app/templates/Procfile
+176 silly gunzTarPerm extractEntry app/templates/jshintrc
+177 silly gunzTarPerm extractEntry app/templates/public/css/common.css
+178 silly gunzTarPerm extractEntry app/templates/public/humans.txt
+179 silly gunzTarPerm extractEntry app/templates/public/img/brand/favicon.ico
+180 silly gunzTarPerm extractEntry app/templates/public/img/brand/logo.png
+181 silly gunzTarPerm extractEntry app/templates/public/img/loaders/loader.gif
+182 silly gunzTarPerm extractEntry app/templates/public/js/_config.js
+183 silly gunzTarPerm extractEntry app/templates/public/js/application.js
+184 silly gunzTarPerm extractEntry app/templates/public/modules/articles/articles.js
+185 silly gunzTarPerm extractEntry app/templates/public/modules/articles/config/routes.js
+186 silly gunzTarPerm extractEntry app/templates/public/modules/articles/controllers/articles.js
+187 silly gunzTarPerm extractEntry app/templates/public/modules/articles/services/articles.js
+188 silly gunzTarPerm extractEntry app/templates/public/modules/articles/tests/articles.spec.js
+189 silly gunzTarPerm extractEntry app/templates/public/modules/articles/views/create.html
+190 silly gunzTarPerm extractEntry app/templates/public/modules/articles/views/edit.html
+191 silly gunzTarPerm extractEntry app/templates/public/modules/articles/views/list.html
+192 silly gunzTarPerm extractEntry app/templates/public/modules/articles/views/view.html
+193 silly gunzTarPerm extractEntry app/templates/public/modules/core/core.js
+194 silly gunzTarPerm extractEntry app/templates/public/modules/core/config/routes.js
+195 silly gunzTarPerm extractEntry app/templates/public/modules/core/controllers/header.js
+196 silly gunzTarPerm extractEntry app/templates/public/modules/core/controllers/home.js
+197 silly gunzTarPerm extractEntry app/templates/public/modules/core/tests/header.spec.js
+198 silly gunzTarPerm extractEntry app/templates/public/modules/core/tests/home.spec.js
+199 silly gunzTarPerm extractEntry app/templates/public/modules/core/views/_header.html
+200 silly gunzTarPerm extractEntry app/templates/public/modules/core/views/home.html
+201 silly gunzTarPerm extractEntry app/templates/public/modules/users/users.js
+202 silly gunzTarPerm extractEntry app/templates/public/modules/users/config/config.js
+203 silly gunzTarPerm extractEntry app/templates/public/modules/users/config/routes.js
+204 silly gunzTarPerm extractEntry app/templates/public/modules/users/controllers/authentication.js
+205 silly gunzTarPerm extractEntry app/templates/public/modules/users/controllers/settings.js
+206 silly gunzTarPerm extractEntry app/templates/public/modules/users/css/users.css
+207 silly gunzTarPerm extractEntry app/templates/public/modules/users/img/buttons/facebook.png
+208 silly gunzTarPerm extractEntry app/templates/public/modules/users/img/buttons/google.png
+209 silly gunzTarPerm extractEntry app/templates/public/modules/users/img/buttons/linkedin.png
+210 silly gunzTarPerm extractEntry app/templates/public/modules/users/img/buttons/twitter.png
+211 silly gunzTarPerm extractEntry app/templates/public/modules/users/services/authentication.js
+212 silly gunzTarPerm extractEntry app/templates/public/modules/users/services/users.js
+213 silly gunzTarPerm extractEntry app/templates/public/modules/users/views/settings/password.html
+214 silly gunzTarPerm extractEntry app/templates/public/modules/users/views/settings/profile.html
+215 silly gunzTarPerm extractEntry app/templates/public/modules/users/views/signin.html
+216 silly gunzTarPerm extractEntry app/templates/public/modules/users/views/signup.html
+217 silly gunzTarPerm extractEntry app/templates/public/robots.txt
+218 silly gunzTarPerm extractEntry app/templates/_package.json
+219 silly gunzTarPerm extractEntry app/templates/slugignore
+220 silly gunzTarPerm extractEntry app/templates/travis.yml
+221 silly lockFile c171d7a5-m-generator-meanjs-0-0-1-package tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package
+222 silly lockFile c171d7a5-m-generator-meanjs-0-0-1-package tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package
+223 silly lockFile b02bb9e9-nerator-meanjs-0-0-1-package-tgz tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz
+224 silly lockFile b02bb9e9-nerator-meanjs-0-0-1-package-tgz tar:///Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz
+225 verbose chmod /Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz 644
+226 verbose chown /Users/Amos/.npm/generator-meanjs/0.0.1/package.tgz [ 501, 20 ]
+227 silly lockFile 3a52ce78- .
+228 silly lockFile 3a52ce78- .
+229 silly publish { name: 'generator-meanjs',
+229 silly publish   version: '0.0.1',
+229 silly publish   description: 'Yeoman generator',
+229 silly publish   license: 'MIT',
+229 silly publish   main: 'app/index.js',
+229 silly publish   repository: { type: 'git', url: 'git://github.com/meanjs/generator-meanjs' },
+229 silly publish   author:
+229 silly publish    { name: 'MEAN.JS',
+229 silly publish      email: 'support@meanjs.org',
+229 silly publish      url: 'https://github.com/meanjs' },
+229 silly publish   engines: { node: '>=0.10.0' },
+229 silly publish   scripts: { test: 'mocha' },
+229 silly publish   files: [ 'app' ],
+229 silly publish   keywords: [ 'yeoman-generator' ],
+229 silly publish   dependencies:
+229 silly publish    { 'yeoman-generator': '~0.16.0',
+229 silly publish      chalk: '~0.4.0',
+229 silly publish      'underscore.inflections': '~0.2.1' },
+229 silly publish   devDependencies: { mocha: '*' },
+229 silly publish   peerDependencies: { yo: '>=1.0.0' },
+229 silly publish   readme: '# generator-meanjs [![Build Status](https://secure.travis-ci.org/meanjs/generator-meanjs.png?branch=master)](https://travis-ci.org/meanjs/generator-meanjs)\n\n> [Yeoman](http://yeoman.io) generator\n\n\n## Getting Started\n\n### What is Yeoman?\n\nTrick question. It\'s not a thing. It\'s this guy:\n\n![](http://i.imgur.com/JHaAlBJ.png)\n\nBasically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.\n\nNot every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*\n\n```\n$ npm install -g yo\n```\n\n### Yeoman Generators\n\nYeoman travels light. He didn\'t pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.\n\nTo install generator-meanjs from npm, run:\n\n```\n$ npm install -g generator-meanjs\n```\n\nFinally, initiate the generator:\n\n```\n$ yo meanjs\n```\n\n### Getting To Know Yeoman\n\nYeoman has a heart of gold. He\'s a person with feelings and opinions, but he\'s very easy to work with. If you think he\'s too opinionated, he can be easily convinced.\n\nIf you\'d like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).\n\n\n## License\n\nMIT\n',
+229 silly publish   readmeFilename: 'README.md',
+229 silly publish   bugs: { url: 'https://github.com/meanjs/generator-meanjs/issues' },
+229 silly publish   homepage: 'https://github.com/meanjs/generator-meanjs',
+229 silly publish   _id: 'generator-meanjs@0.0.1',
+229 silly publish   dist: { shasum: '7ffecfe542c7089078f43de9c6ef16abaec80122' },
+229 silly publish   _from: '.' }
+230 verbose url raw generator-meanjs
+231 verbose url resolving [ 'https://registry.npmjs.org/', './generator-meanjs' ]
+232 verbose url resolved https://registry.npmjs.org/generator-meanjs
+233 info trying registry request attempt 1 at 07:58:36
+234 http PUT https://registry.npmjs.org/generator-meanjs
+235 http 403 https://registry.npmjs.org/generator-meanjs
+236 error publish Failed PUT 403
+237 error Error: forbidden cannot modify pre-existing version: 0.0.1
+237 error old={"name":"generator-meanjs","version":"0.0.1","description":"Yeoman generator","license":"MIT","main":"app/index.js","repository":{"type":"git","url":"git://github.com/meanjs/generator-meanjs"},"author":{"name":"MEAN.JS","email":"support@meanjs.org","url":"https://github.com/meanjs"},"engines":{"node":">=0.10.0"},"scripts":{"test":"mocha"},"files":["app"],"keywords":["yeoman-generator"],"dependencies":{"yeoman-generator":"~0.16.0","chalk":"~0.4.0","underscore.inflections":"~0.2.1"},"devDependencies":{"mocha":"*"},"peerDependencies":{"yo":">=1.0.0"},"bugs":{"url":"https://github.com/meanjs/generator-meanjs/issues"},"homepage":"https://github.com/meanjs/generator-meanjs","_id":"generator-meanjs@0.0.1","dist":{"shasum":"7ffecfe542c7089078f43de9c6ef16abaec80122","tarball":"http://registry.npmjs.org/generator-meanjs/-/generator-meanjs-0.0.1.tgz"},"_from":".","_npmVersion":"1.4.3","_npmUser":{"name":"amoshaviv","email":"mail@amoshaviv.com"},"maintainers":[{"name":"amoshaviv","email":"mail@amoshaviv.com"}]}
+237 error new={"name":"generator-meanjs","version":"0.0.1","description":"Yeoman generator","license":"MIT","main":"app/index.js","repository":{"type":"git","url":"git://github.com/meanjs/generator-meanjs"},"author":{"name":"MEAN.JS","email":"support@meanjs.org","url":"https://github.com/meanjs"},"engines":{"node":">=0.10.0"},"scripts":{"test":"mocha"},"files":["app"],"keywords":["yeoman-generator"],"dependencies":{"yeoman-generator":"~0.16.0","chalk":"~0.4.0","underscore.inflections":"~0.2.1"},"devDependencies":{"mocha":"*"},"peerDependencies":{"yo":">=1.0.0"},"readme":"# generator-meanjs [![Build Status](https://secure.travis-ci.org/meanjs/generator-meanjs.png?branch=master)](https://travis-ci.org/meanjs/generator-meanjs)\u000a\u000a> [Yeoman](http://yeoman.io) generator\u000a\u000a\u000a## Getting Started\u000a\u000a### What is Yeoman?\u000a\u000aTrick question. It's not a thing. It's this guy:\u000a\u000a![](http://i.imgur.com/JHaAlBJ.png)\u000a\u000aBasically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.\u000a\u000aNot every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*\u000a\u000a```\u000a$ npm install -g yo\u000a```\u000a\u000a### Yeoman Generators\u000a\u000aYeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.\u000a\u000aTo install generator-meanjs from npm, run:\u000a\u000a```\u000a$ npm install -g generator-meanjs\u000a```\u000a\u000aFinally, initiate the generator:\u000a\u000a```\u000a$ yo meanjs\u000a```\u000a\u000a### Getting To Know Yeoman\u000a\u000aYeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.\u000a\u000aIf you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).\u000a\u000a\u000a## License\u000a\u000aMIT\u000a","readmeFilename":"README.md","bugs":{"url":"https://github.com/meanjs/generator-meanjs/issues"},"homepage":"https://github.com/meanjs/generator-meanjs","_id":"generator-meanjs@0.0.1","dist":{"shasum":"7ffecfe542c7089078f43de9c6ef16abaec80122","tarball":"http://registry.npmjs.org/generator-meanjs/-/generator-meanjs-0.0.1.tgz"},"_from":".","_npmVersion":"1.4.3","_npmUser":{"name":"amoshaviv","email":"mail@amoshaviv.com"},"maintainers":[{"name":"amoshaviv","email":"mail@amoshaviv.com"}]}: generator-meanjs
+237 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:237:14)
+237 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:123:22)
+237 error     at Request.EventEmitter.emit (events.js:98:17)
+237 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:893:14)
+237 error     at Request.EventEmitter.emit (events.js:117:20)
+237 error     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:844:12)
+237 error     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+237 error     at _stream_readable.js:920:16
+237 error     at process._tickCallback (node.js:415:13)
+238 error If you need help, you may report this *entire* log,
+238 error including the npm and node versions, at:
+238 error     <http://github.com/npm/npm/issues>
+239 error System Darwin 13.1.0
+240 error command "node" "/usr/local/bin/npm" "publish"
+241 error cwd /Users/Amos/Projects/generator-meanjs
+242 error node -v v0.10.26
+243 error npm -v 1.4.3
+244 verbose exit [ 1, true ]

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/<%= slugifiedAppName %>-travis',
+	db: 'mongodb://localhost/<%= dasherizedAppName %>-travis',
 	port: 3001,
 	app: {
 		title: '<%= humanizedAppName %> - Travis Environment'

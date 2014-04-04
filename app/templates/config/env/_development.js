@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/<%= slugifiedAppName %>-dev',
+	db: 'mongodb://localhost/<%= dasherizedAppName %>-dev',
 	app: {
 		title: '<%= humanizedAppName %> - Development Environment'
 	},

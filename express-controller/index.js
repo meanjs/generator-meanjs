@@ -6,13 +6,13 @@ var util = require('util'),
 
 var ControllerGenerator = yeoman.generators.NamedBase.extend({
 	createControllerFile: function() {
-		this.slugifiedName = this._.slugify(this.name);
-		this.slugifiedPluralName = inflections.pluralize(this.slugifiedName);
+		this.dasherizedName = this._.slugify(this.name);
+		this.dasherizedPluralName = inflections.pluralize(this.dasherizedName);
 
-		this.humanizedName = this._.humanize(this.slugifiedName);
-		this.humanizedPluralName = this._.humanize(this.slugifiedPluralName);
+		this.humanizedName = this._.humanize(this.dasherizedName);
+		this.humanizedPluralName = this._.humanize(this.dasherizedPluralName);
 
-		this.template('_controller.js', 'app/controllers/' + this.slugifiedName + '.js')
+		this.template('_controller.js', 'app/controllers/' + this.dasherizedName + '.js')
 	}
 });
 

@@ -1,9 +1,9 @@
 'use strict';
 
 // <%= humanizedModuleName %> module config
-angular.module('<%= slugifiedModuleName %>').config([
+angular.module('<%= dasherizedModuleName %>').config([
 	function() {
-		// Config Logic 
+		// Config logic 
 		// ...
 	}
 ]);

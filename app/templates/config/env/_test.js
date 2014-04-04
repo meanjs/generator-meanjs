@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/<%= slugifiedAppName %>-test',
+	db: 'mongodb://localhost/<%= dasherizedAppName %>-test',
 	port: 3001,
 	app: {
 		title: '<%= humanizedAppName %> - Test Environment'
