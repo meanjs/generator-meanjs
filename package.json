@@ -1,36 +1,36 @@
 {
-  "name": "generator-meanjs",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
-  "license": "MIT",
-  "main": "app/index.js",
-  "repository": "meanjs/generator-meanjs",
-  "author": {
-    "name": "MEAN.JS",
-    "email": "support@meanjs.org",
-    "url": "https://github.com/meanjs"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "files": [
-    "app"
-  ],
-  "keywords": [
-    "yeoman-generator"
-  ],
-  "dependencies": {
-    "yeoman-generator": "~0.16.0",
-    "chalk": "~0.4.0",
-    "underscore.inflections": "~0.2.1"
-  },
-  "devDependencies": {
-    "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
-  }
+	"name": "generator-meanjs",
+	"version": "0.0.1",
+	"description": "Yeoman generator",
+	"license": "MIT",
+	"main": "app/index.js",
+	"repository": "meanjs/generator-meanjs",
+	"author": {
+		"name": "MEAN.JS",
+		"email": "support@meanjs.org",
+		"url": "https://github.com/meanjs"
+	},
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"scripts": {
+		"test": "mocha"
+	},
+	"files": [
+		"app"
+	],
+	"keywords": [
+		"yeoman-generator"
+	],
+	"dependencies": {
+		"yeoman-generator": "~0.16.0",
+		"chalk": "~0.4.0",
+		"underscore.inflections": "~0.2.1"
+	},
+	"devDependencies": {
+		"mocha": "*"
+	},
+	"peerDependencies": {
+		"yo": ">=1.0.0"
+	}
 }

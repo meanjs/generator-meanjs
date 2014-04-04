@@ -135,7 +135,6 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 		// Copy project files
 		this.copy('gruntfile.js');
-		this.copy('karma.conf.js');
 		this.copy('server.js');
 		this.copy('Procfile');
 		this.copy('README.md');
@@ -175,6 +174,10 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	renderApplicationDependenciesFiles: function() {
 		this.template('_package.json', 'package.json');
 		this.template('_bower.json', 'bower.json');
+	},
+
+	renderApplicationKarmaFile: function() {
+		this.template('_karma.conf.js', 'karma.conf.js');
 	}
 });
 

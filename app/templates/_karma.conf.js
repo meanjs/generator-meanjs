@@ -17,10 +17,12 @@ module.exports = function(config) {
 		// List of files / patterns to load in the browser
 		files: [
 			'public/lib/angular/angular.js',
-			'public/lib/angular-animate/angular-animate.js',
-			'public/lib/angular-mocks/angular-mocks.js',
-			'public/lib/angular-cookies/angular-cookies.js',
 			'public/lib/angular-resource/angular-resource.js',
+			'public/lib/angular-mocks/angular-mocks.js', <% if (angularCookies) { %>
+			'public/lib/angular-cookies/angular-cookies.js', <% } if (angularAnimate) { %>
+			'public/lib/angular-animate/angular-animate.js', <% } if (angularTouch) { %>
+			'public/lib/angular-touch/angular-touch.js', <% } if (angularSanitize) { %>
+			'public/lib/angular-sanitize/angular-sanitize.js', <% } %>
 			'public/lib/angular-bootstrap/ui-bootstrap.js',
 			'public/lib/angular-ui-utils/ui-utils.js',
 			'public/lib/angular-ui-router/release/angular-ui-router.js',
