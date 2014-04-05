@@ -50,7 +50,7 @@ Available generators:
 * [meanjs:angular-config](#angularjs-config-sub-generator)
 * [meanjs:angular-test](#angularjs-test-sub-generator)
 * [meanjs:express-model](#express-model-sub-generator)
-* [meanjs:express-controller](#express-model-sub-generator)
+* [meanjs:express-controller](#express-controller-sub-generator)
 * [meanjs:express-route](#express-routes-sub-generator)
 * [meanjs:express-test](#express-test-sub-generator)
 
@@ -272,4 +272,7 @@ This will create a test file for your Express model, and if the sub-generator do
 
 **Don’t forget!** You're suppose to pass the model name as an argument. 
 
+## License
+
+[BSD license](http://opensource.org/licenses/bsd-license.php)
 

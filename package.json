@@ -2,11 +2,10 @@
 	"name": "generator-meanjs",
 	"version": "0.0.2",
 	"description": "MEAN.JS Official Yeoman Generator",
-	"license": "MIT",
 	"main": "app/index.js",
 	"repository": "meanjs/generator-meanjs",
 	"author": {
-		"name": "MEAN.JS",
+		"name": "MEAN.JS Team",
 		"email": "support@meanjs.org",
 		"url": "https://github.com/meanjs"
 	},
@@ -20,7 +19,17 @@
 		"app"
 	],
 	"keywords": [
-		"yeoman-generator"
+		"yeoman-generator",
+		"scaffold",
+		"framework",
+		"component",
+		"front-end",
+		"app",
+		"mean",
+		"meanjs",
+		"node",
+		"express",
+		"angular"
 	],
 	"dependencies": {
 		"yeoman-generator": "~0.16.0",
@@ -32,5 +41,8 @@
 	},
 	"peerDependencies": {
 		"yo": ">=1.0.0"
-	}
+	},
+	"licenses": [{
+		"type": "BSD"
+	}]
 }
