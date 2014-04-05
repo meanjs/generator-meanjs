@@ -32,8 +32,29 @@ Once you have *yo* installed, you will need to install the MEAN.JS generator as 
 $ npm install -g generator-meanjs
 ```
 
-You are now ready to get started with the MEAN.JS generator. The generator will help you create a MEAN.JS application, a CRUD module, Angular Module, and other AngularJS/Express entities. We’ll begin with the application generator.
+You are now ready to get started with the MEAN.JS generator. The generator will help you create a MEAN.JS application, a CRUD module, Angular Module, and other AngularJS/Express entities.
 
+## Generators
+
+Available generators:
+
+* [meanjs](#application-generator)
+* [meanjs:crud-module](#crud-module-sub-generator)
+* [meanjs:angular-module](#angularjs-module-sub-generator)
+* [meanjs:angular-route](#angularjs-route-sub-generator)
+* [meanjs:angular-controller](#angularjs-controller-sub-generator)
+* [meanjs:angular-view](#angularjs-view-sub-generator)
+* [meanjs:angular-service](#angularjs-service-sub-generator)
+* [meanjs:angular-directive](#angularjs-directive-sub-generator)
+* [meanjs:angular-filter](#angularjs-filter-sub-generator)
+* [meanjs:angular-config](#angularjs-config-sub-generator)
+* [meanjs:angular-test](#angularjs-test-sub-generator)
+* [meanjs:express-model](#express-model-sub-generator)
+* [meanjs:express-controller](#express-model-sub-generator)
+* [meanjs:express-route](#express-routes-sub-generator)
+* [meanjs:express-test](#express-test-sub-generator)
+
+**Note: Generators are to be run from the root directory of your app.**
 
 
 ## Application Generator
