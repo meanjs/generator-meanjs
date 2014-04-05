@@ -60,7 +60,7 @@
 			var sample<%= classifiedPluralName %> = [sample<%= classifiedSingularName %>];
 
 			// Set GET response
-			$httpBackend.expectGET('<%= dasherizedPluralName %>').respond(sample<%= classifiedPluralName %>);
+			$httpBackend.expectGET('<%= slugifiedPluralName %>').respond(sample<%= classifiedPluralName %>);
 
 			// Run controller functionality
 			scope.find();
@@ -80,7 +80,7 @@
 			$stateParams.<%= camelizedSingularName %>Id = '525a8422f6d0f87f0e407a33';
 
 			// Set GET response
-			$httpBackend.expectGET(/<%= dasherizedPluralName %>\/([0-9a-fA-F]{24})$/).respond(sample<%= classifiedSingularName %>);
+			$httpBackend.expectGET(/<%= slugifiedPluralName %>\/([0-9a-fA-F]{24})$/).respond(sample<%= classifiedSingularName %>);
 
 			// Run controller functionality
 			scope.findOne();
@@ -106,7 +106,7 @@
 			scope.name = 'New <%= humanizedSingularName %>';
 
 			// Set POST response
-			$httpBackend.expectPOST('<%= dasherizedPluralName %>', sample<%= classifiedSingularName %>PostData).respond(sample<%= classifiedSingularName %>Response);
+			$httpBackend.expectPOST('<%= slugifiedPluralName %>', sample<%= classifiedSingularName %>PostData).respond(sample<%= classifiedSingularName %>Response);
 
 			// Run controller functionality
 			scope.create();
@@ -116,7 +116,7 @@
 			expect(scope.name).toEqual('');
 
 			// Test URL redirection after the <%= humanizedSingularName %> was created
-			expect($location.path()).toBe('/<%= dasherizedPluralName %>/' + sample<%= classifiedSingularName %>Response._id);
+			expect($location.path()).toBe('/<%= slugifiedPluralName %>/' + sample<%= classifiedSingularName %>Response._id);
 		}));
 
 		it('$scope.update() should update a valid <%= humanizedSingularName %>', inject(function(<%= classifiedPluralName %>) {
@@ -130,14 +130,14 @@
 			scope.<%= camelizedSingularName %> = sample<%= classifiedSingularName %>PutData;
 
 			// Set PUT response
-			$httpBackend.expectPUT(/<%= dasherizedPluralName %>\/([0-9a-fA-F]{24})$/).respond();
+			$httpBackend.expectPUT(/<%= slugifiedPluralName %>\/([0-9a-fA-F]{24})$/).respond();
 
 			// Run controller functionality
 			scope.update();
 			$httpBackend.flush();
 
 			// Test URL location to new object
-			expect($location.path()).toBe('/<%= dasherizedPluralName %>/' + sample<%= classifiedSingularName %>PutData._id);
+			expect($location.path()).toBe('/<%= slugifiedPluralName %>/' + sample<%= classifiedSingularName %>PutData._id);
 		}));
 
 		it('$scope.remove() should send a DELETE request with a valid <%= camelizedSingularName %>Id and remove the <%= humanizedSingularName %> from the scope', inject(function(<%= classifiedPluralName %>) {
@@ -150,7 +150,7 @@
 			scope.<%= camelizedPluralName %> = [sample<%= classifiedSingularName %>];
 
 			// Set expected DELETE response
-			$httpBackend.expectDELETE(/<%= dasherizedPluralName %>\/([0-9a-fA-F]{24})$/).respond(204);
+			$httpBackend.expectDELETE(/<%= slugifiedPluralName %>\/([0-9a-fA-F]{24})$/).respond(204);
 
 			// Run controller functionality
 			scope.remove(sample<%= classifiedSingularName %>);

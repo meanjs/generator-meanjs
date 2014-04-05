@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= dasherizedModuleName %>').filter('<%= camelizedName %>', [
+angular.module('<%= slugifiedModuleName %>').filter('<%= camelizedName %>', [
 	function() {
 		return function(input) {
 			// <%= humanizedName %> directive logic 

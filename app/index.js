@@ -50,9 +50,10 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appKeywords = props.appKeywords;
 			this.appAuthor = props.appAuthor;
 
-			this.dasherizedAppName = this._.dasherize(this.appName);
-			this.humanizedAppName = this._.capitalize(this._.humanize(this.dasherizedAppName));
+			this.slugifiedAppName = this._.slugify(this.appName);
+			this.humanizedAppName = this._.humanize(this.appName);
 			this.capitalizedAppAuthor = this._.capitalize(this.appAuthor);
+			
 			done();
 		}.bind(this));
 	},

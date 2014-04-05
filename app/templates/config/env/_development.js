@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/<%= dasherizedAppName %>-dev',
+	db: 'mongodb://localhost/<%= slugifiedAppName %>-dev',
 	app: {
-		title: '<%= humanizedAppName %> - Development Environment'
+		title: '<%= appName %> - Development Environment'
 	},
 	facebook: {
 		clientID: 'APP_ID',

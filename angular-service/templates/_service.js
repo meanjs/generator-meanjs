@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= dasherizedModuleName %>').factory('<%= classifiedName %>', [
+angular.module('<%= slugifiedModuleName %>').factory('<%= classifiedName %>', [
 	function() {
 		// <%= humanizedName %> service logic 
 		// ...

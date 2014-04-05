@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/<%= dasherizedAppName %>-travis',
+	db: 'mongodb://localhost/<%= slugifiedAppName %>-travis',
 	port: 3001,
 	app: {
-		title: '<%= humanizedAppName %> - Travis Environment'
+		title: '<%= appName %> - Travis Environment'
 	},
 	facebook: {
 		clientID: 'APP_ID',

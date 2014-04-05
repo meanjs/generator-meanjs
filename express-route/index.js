@@ -5,9 +5,9 @@ var util = require('util'),
 
 var RouteGenerator = yeoman.generators.NamedBase.extend({
 	createRouteFile: function() {
-		this.dasherizedName = this._.slugify(this.name);
+		this.slugifiedName = this._.slugify(this._.humanize(this.name));
 
-		this.template('_route.js', 'app/routes/' + dasherizedName + '.js')
+		this.template('_route.js', 'app/routes/' + this.slugifiedName + '.js')
 	}
 });
 

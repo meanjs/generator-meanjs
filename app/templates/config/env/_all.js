@@ -5,7 +5,7 @@ var path = require('path'),
 
 module.exports = {
 	app: {
-		title: '<%= humanizedAppName %>',
+		title: '<%= appName %>',
 		description: '<%= appDescription %>',
 		keywords: '<%= appKeywords %>'
 	},
@@ -13,6 +13,6 @@ module.exports = {
 	root: rootPath,
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
-	sessionSecret: '<%= dasherizedAppName %>',
+	sessionSecret: '<%= slugifiedAppName %>',
 	sessionCollection: 'sessions'
 };

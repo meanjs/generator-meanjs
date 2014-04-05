@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= dasherizedModuleName %>').directive('<%= camelizedName %>', [
+angular.module('<%= slugifiedModuleName %>').directive('<%= camelizedName %>', [
 	function() {
 		return {
 			template: '<div></div>',

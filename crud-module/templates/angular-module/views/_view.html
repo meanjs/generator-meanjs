@@ -3,7 +3,7 @@
 		<h1>{{<%= camelizedSingularName %>.name}}</h1>
 	</div>
 	<div class="pull-right" data-ng-show="authentication.user._id == <%= camelizedSingularName %>.user._id">
-		<a class="btn btn-primary" href="/#!/<%= dasherizedPluralName %>/{{<%= camelizedSingularName %>._id}}/edit">
+		<a class="btn btn-primary" href="/#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
 		<a class="btn btn-primary" data-ng-click="remove();">

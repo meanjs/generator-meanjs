@@ -1,5 +1,5 @@
 $stateProvider.
-		state('<%= dasherizedName %>', {
-			url: '/<%= dasherizedRoutePath %>',
-			templateUrl: 'modules/<%= dasherizedModuleName %>/views/<%= dasherizedName %>.html'
+		state('<%= slugifiedName %>', {
+			url: '/<%= slugifiedRoutePath %>',
+			templateUrl: 'modules/<%= slugifiedModuleName %>/views/<%= slugifiedName %>.html'
 		}).

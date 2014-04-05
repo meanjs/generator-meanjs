@@ -7,28 +7,28 @@ var mongoose = require('mongoose'),
 	_ = require('lodash');
 
 /**
- * Create a <%= humanizedName %>
+ * Create a <%= humanizedSingularName %>
  */
 exports.create = function(req, res) {
 	
 };
 
 /**
- * Show the current <%= humanizedName %>
+ * Show the current <%= humanizedSingularName %>
  */
 exports.read = function(req, res) {
 	
 };
 
 /**
- * Update a <%= humanizedName %>
+ * Update a <%= humanizedSingularName %>
  */
 exports.update = function(req, res) {
 	
 };
 
 /**
- * Delete an <%= humanizedName %>
+ * Delete an <%= humanizedSingularName %>
  */
 exports.delete = function(req, res) {
 	

@@ -1,7 +1,7 @@
 'use strict';
 
 // <%= humanizedPluralName %> controller
-angular.module('<%= dasherizedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$stateParams', '$location', 'Authentication', '<%= classifiedPluralName %>',
+angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$stateParams', '$location', 'Authentication', '<%= classifiedPluralName %>',
     function($scope, $stateParams, $location, Authentication, <%= classifiedPluralName %>) {
         $scope.authentication = Authentication;
 
@@ -14,7 +14,7 @@ angular.module('<%= dasherizedPluralName %>').controller('<%= classifiedPluralNa
 
             // Redirect after save
             <%= camelizedSingularName %>.$save(function(response) {
-                $location.path('<%= dasherizedPluralName %>/' + response._id);
+                $location.path('<%= slugifiedPluralName %>/' + response._id);
             });
 
             // Clear form fields
@@ -33,7 +33,7 @@ angular.module('<%= dasherizedPluralName %>').controller('<%= classifiedPluralNa
                 }
             } else {
                 $scope.<%= camelizedSingularName %>.$remove(function() {
-                    $location.path('<%= dasherizedPluralName %>');
+                    $location.path('<%= slugifiedPluralName %>');
                 });
             }
         };
@@ -43,7 +43,7 @@ angular.module('<%= dasherizedPluralName %>').controller('<%= classifiedPluralNa
             var <%= camelizedSingularName %> = $scope.<%= camelizedSingularName %>;
 
             <%= camelizedSingularName %>.$update(function() {
-                $location.path('<%= dasherizedPluralName %>/' + <%= camelizedSingularName %>._id);
+                $location.path('<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>._id);
             });
         };
 

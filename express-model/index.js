@@ -6,10 +6,10 @@ var util = require('util'),
 
 var ModelGenerator = yeoman.generators.NamedBase.extend({
 	createModelFile: function() {
-		this.dasherizedName = this._.slugify(this.name);
-		this.classifiedName = this._.classify(this.dasherizedName);
+		this.slugifiedName = this._.slugify(this._.humanize(this.name));
+		this.classifiedName = this._.classify(this.slugifiedName);
 
-		this.template('_model.js', 'app/models/' + this.dasherizedName + '.js')
+		this.template('_model.js', 'app/models/' + this.slugifiedName + '.js')
 	}
 });
 
