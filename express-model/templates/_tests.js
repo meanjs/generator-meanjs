@@ -39,7 +39,7 @@ describe('<%= humanizedModelName %> Model Unit Tests:', function() {
 
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
-			return <%=camelizedModelName %> .save(function(err) {
+			return <%=camelizedModelName %>.save(function(err) {
 				should.not.exist(err);
 				done();
 			});
@@ -47,7 +47,7 @@ describe('<%= humanizedModelName %> Model Unit Tests:', function() {
 	});
 
 	afterEach(function(done) { 
-		<%= classifiedModelName %> .remove().exec();
+		<%= classifiedModelName %>.remove().exec();
 		User.remove().exec();
 		done();
 	});
