@@ -14,7 +14,7 @@
 	<meta name="keywords" content="{{keywords}}">
 	<meta name="description" content="{{description}}">
 
-	<!-- Social META -->
+	<!-- Facebook META -->
 	<meta property="fb:app_id" content="{{facebookAppId}}">
 	<meta property="og:site_name" content="{{title}}">
 	<meta property="og:title" content="{{title}}">
@@ -22,6 +22,12 @@
 	<meta property="og:url" content="{{url}}">
 	<meta property="og:image" content="/img/brand/logo.png">
 	<meta property="og:type" content="website">
+
+	<!-- Twitter META -->
+	<meta name="twitter:title" content="{{title}}">
+	<meta name="twitter:description" content="{{description}}">
+	<meta name="twitter:url" content="{{url}}">
+	<meta name="twitter:image" content="/img/brand/logo.png">
 
 	<!-- Fav Icon -->
 	<link href="/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
@@ -43,8 +49,8 @@
 	<![endif]-->
 </head>
 
-<body>
-	<header data-ng-include="'/modules/core/views/header.html'" class="navbar navbar-fixed-top navbar-inverse ng-cloak"></header>
+<body class="ng-cloak">
+	<header data-ng-include="'/modules/core/views/header.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
 	<section class="content">
 		<section class="container">
 			{% block content %}{% endblock %}
