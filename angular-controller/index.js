@@ -1,12 +1,11 @@
 'use strict';
 
 var util = require('util'),
-	inflections = require('underscore.inflections'),
 	yeoman = require('yeoman-generator');
 
 
 var ControllerGenerator = yeoman.generators.NamedBase.extend({
-	askForModuleName: function() {
+	askForModuleName: function () {
 		var done = this.async();
 
 		var prompts = [{
@@ -15,20 +14,21 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 			default: 'core'
 		}];
 
-		this.prompt(prompts, function(props) {
+		this.prompt(prompts, function (props) {
 			this.moduleName = props.moduleName;
 			this.slugifiedModuleName = this._.slugify(this.moduleName);
 			
-			this.slugifiedName = this._.slugify(this._.humanize(this.name));
-			this.classifiedName = this._.classify(this.slugifiedName);
-			this.humanizedName = this._.humanize(this.slugifiedName);
+			this.slugifiedControllerName = this._.slugify(this._.humanize(this.name));
+			this.classifiedControllerName = this._.classify(this.slugifiedControllerName);
+			this.humanizedControllerName = this._.humanize(this.slugifiedControllerName);
 
 			done();
 		}.bind(this));
 	},
 
-	renderControllerFile: function() {
-		this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedName + '.js')
+	renderControllerFiles: function () {
+		this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.js');
+		this.template('_tests.spec.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + '.spec.js');
 	}
 });
 

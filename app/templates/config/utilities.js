@@ -9,6 +9,7 @@ var fs = require('fs');
 var _walk = function(root, includeRegex, excludeRegex, removePath) {
 	var output = [];
 	var directories = [];
+	includeRegex = includeRegex || /(.*)\.(js|coffee)$/;
 
 	// First read through files 
 	fs.readdirSync(root).forEach(function(file) {

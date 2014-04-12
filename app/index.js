@@ -42,6 +42,11 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		}, {
 			name: 'appAuthor',
 			message: 'What is your company/author name?'
+		}, {
+			type: 'confirm',
+			name: 'addArticleExample',
+			message: 'Would you like to generate the article example CRUD module?',
+			default: true
 		}];
 
 		this.prompt(prompts, function(props) {
@@ -49,6 +54,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appDescription = props.appDescription;
 			this.appKeywords = props.appKeywords;
 			this.appAuthor = props.appAuthor;
+			this.addArticleExample = props.addArticleExample;
 
 			this.slugifiedAppName = this._.slugify(this.appName);
 			this.humanizedAppName = this._.humanize(this.appName);
@@ -95,12 +101,20 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	},
 
 	copyApplicationFolder: function() {
-		// Copy applicaion folder
+		// Copy application folder
 		this.mkdir('app');
-		this.directory('app/controllers');
-		this.directory('app/models');
-		this.directory('app/routes');
-		this.directory('app/tests');
+		this.mkdir('app/controllers');
+		this.mkdir('app/models');
+		this.mkdir('app/routes');
+		this.mkdir('app/tests');
+
+		// Copy base files
+		this.copy('app/controllers/core.js');
+		this.copy('app/controllers/users.js');
+		this.copy('app/models/user.js');
+		this.copy('app/routes/core.js');
+		this.copy('app/routes/users.js');
+		this.copy('app/tests/users.js');
 
 		// Create public folders
 		this.mkdir('public');
@@ -113,13 +127,12 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('public/js/application.js');
 
 		// Copy public folder modules
-		this.directory('public/modules/articles');
 		this.directory('public/modules/users');
 
 		// Copy core module files
 		this.directory('public/modules/core/config');
-		this.directory('public/modules/core/controllers');
 		this.directory('public/modules/core/tests');
+		this.copy('public/modules/core/controllers/home.js');
 		this.copy('public/modules/core/views/home.html');
 		this.copy('public/modules/core/core.js');
 
@@ -148,6 +161,20 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('travis.yml', '.travis.yml');
 	},
 
+	renderArticleExample: function() {
+		// Copy example files if desired
+		if (this.addArticleExample) {
+			// Copy Express files
+			this.copy('app/controllers/articles.js');
+			this.copy('app/models/article.js');
+			this.copy('app/routes/articles.js');
+			this.copy('app/tests/articles.js');
+
+			// Copy AngularJS files
+		 	this.directory('public/modules/articles'); 
+		}
+	},
+
 	renderApplicationViewsFiles: function() {
 		this.copy('app/views/404.html');
 		this.copy('app/views/500.html');
@@ -170,6 +197,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 	renderCoreModuleFiles: function() {
 		this.template('public/modules/core/views/_header.html', 'public/modules/core/views/header.html');
+		this.template('public/modules/core/controllers/_header.js', 'public/modules/core/controllers/header.js');
 	},
 
 	renderApplicationDependenciesFiles: function() {
