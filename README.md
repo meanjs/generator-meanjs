@@ -129,7 +129,7 @@ The AngularJS Controller sub-generator will create a new AngularJS controller in
 $ yo meanjs:angular-controller <controller-name>
 ```
 
-The sub-generator will ask you for the module name under which you would like to create your new controller, and will create a new AngularJS controller file in that module **controllers** folder.
+The sub-generator will ask you for the module name under which you would like to create your new controller, and will create a new AngularJS controller file in that module **controllers** folder and a test file in the **tests** folder.
 
 
 **Don’t forget!** This time you pass the controller name as an argument. 
@@ -226,7 +226,7 @@ Often you will find the need to just create a single Express model. The Express 
 $ yo meanjs:express-model <model-name>
 ```
 
-This will create a new empty model in the **app/models** folder.
+This will create a new empty model in the **app/models** folder and a test file in the **app/tests** folder.
 
 
 **Note:** It is recommended you avoid naming your model in plural form and use a singular form instead. i.e article and not articles
