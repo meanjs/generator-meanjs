@@ -42,6 +42,11 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		}, {
 			name: 'appAuthor',
 			message: 'What is your company/author name?'
+		}, {
+			type: 'confirm',
+			name: 'appExample',
+			message: 'Would you like to generate the example app?',
+			default: true
 		}];
 
 		this.prompt(prompts, function(props) {
@@ -53,6 +58,8 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.slugifiedAppName = this._.slugify(this.appName);
 			this.humanizedAppName = this._.humanize(this.appName);
 			this.capitalizedAppAuthor = this._.capitalize(this.appAuthor);
+
+			this.appExample = props.appExample;
 			
 			done();
 		}.bind(this));
@@ -95,12 +102,28 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	},
 
 	copyApplicationFolder: function() {
-		// Copy applicaion folder
+		// Copy application folder
 		this.mkdir('app');
-		this.directory('app/controllers');
-		this.directory('app/models');
-		this.directory('app/routes');
-		this.directory('app/tests');
+		this.mkdir('app/controllers');
+		this.mkdir('app/models');
+		this.mkdir('app/routes');
+		this.mkdir('app/tests');
+
+		// Copy base files
+		this.copy('app/controllers/core.js');
+		this.copy('app/controllers/users.js');
+		this.copy('app/models/user.js');
+		this.copy('app/routes/core.js');
+		this.copy('app/routes/users.js');
+		this.copy('app/tests/users.js');
+
+		// Copy example files if desired
+		if (this.appExample) {
+			this.copy('app/controllers/articles.js');
+			this.copy('app/models/article.js');
+			this.copy('app/routes/articles.js');
+			this.copy('app/tests/articles.js');
+		}
 
 		// Create public folders
 		this.mkdir('public');
@@ -113,7 +136,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('public/js/application.js');
 
 		// Copy public folder modules
-		this.directory('public/modules/articles');
+		if (this.appExample) { this.directory('public/modules/articles'); }
 		this.directory('public/modules/users');
 
 		// Copy core module files
