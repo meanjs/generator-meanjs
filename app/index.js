@@ -152,6 +152,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('server.js');
 		this.copy('Procfile');
 		this.copy('README.md');
+		this.copy('LICENSE.md');
 
 		// Copy project hidden files
 		this.copy('bowerrc', '.bowerrc');
