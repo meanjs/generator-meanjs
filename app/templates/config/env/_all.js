@@ -3,6 +3,9 @@
 var path = require('path'),
 	rootPath = path.normalize(__dirname + '/../..');
 
+var port = process.env.PORT || 3000;
+var appUrl = process.env.APP_URL || ('http://localhost:' + port);
+
 module.exports = {
 	app: {
 		title: '<%= appName %>',
@@ -10,8 +13,9 @@ module.exports = {
 		keywords: '<%= appKeywords %>'
 	},
 	root: rootPath,
-	port: process.env.PORT || 3000,
+	port: port,
+	appUrl: appUrl,
 	templateEngine: 'swig',
-	sessionSecret: '<%= slugifiedAppName %>',
+	sessionSecret: process.env.SESSION_SECRET || '<%= slugifiedAppName %>',
 	sessionCollection: 'sessions'
 };
