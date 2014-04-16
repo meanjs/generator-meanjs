@@ -1,14 +1,20 @@
 'use strict';
 
-module.exports = function(app) {
-	var users = require('../../app/controllers/users');
-	var <%= camelizedPluralName %> = require('../../app/controllers/<%= slugifiedPluralName %>');
+/**
+ * Module dependencies.
+ */
+var users = require('../../app/controllers/users');
+var <%= camelizedPluralName %> = require('../../app/controllers/<%= slugifiedPluralName %>');
 
-	// <%= humanizedPluralName %> Routes
-	app.get('/<%= slugifiedPluralName %>', <%= camelizedPluralName %>.list);
-	app.post('/<%= slugifiedPluralName %>', users.requiresLogin, <%= camelizedPluralName %>.create);
-	app.get('/<%= slugifiedPluralName %>/:<%= camelizedSingularName %>Id', <%= camelizedPluralName %>.read);
-	app.put('/<%= slugifiedPluralName %>/:<%= camelizedSingularName %>Id', users.requiresLogin, <%= camelizedPluralName %>.hasAuthorization, <%= camelizedPluralName %>.update);
+module.exports = function(app) {
+	// <%= humanizedPluralName %> Routes, using express 4.x syntax
+	app.route('/<%= slugifiedPluralName %>')
+		.get(<%= camelizedPluralName %>.list)
+		.post(users.requiresLogin, <%= camelizedPluralName %>.create);
+
+	app.route('/<%= slugifiedPluralName %>/:<%= camelizedSingularName %>Id')
+		.get(<%= camelizedPluralName %>.read)
+		.put('/<%= slugifiedPluralName %>/:<%= camelizedSingularName %>Id', users.requiresLogin, <%= camelizedPluralName %>.hasAuthorization, <%= camelizedPluralName %>.update);
 	app.del('/<%= slugifiedPluralName %>/:<%= camelizedSingularName %>Id', users.requiresLogin, <%= camelizedPluralName %>.hasAuthorization, <%= camelizedPluralName %>.delete);
 
 	// Finish by binding the <%= humanizedSingularName %> middleware
