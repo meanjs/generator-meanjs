@@ -34,6 +34,8 @@ module.exports = function(db) {
 	// Passing the request url to environment locals
 	app.use(function(req, res, next) {
 		res.locals.url = req.protocol + ':// ' + req.headers.host + req.url;
+		// Store hostname without port to host environment local
+		res.locals.host = (req.headers.host.match(/:/g)) ? req.headers.host.slice(0, req.headers.host.indexOf(':')) : req.headers.host;
 		next();
 	});
 
