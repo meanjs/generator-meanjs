@@ -4,20 +4,21 @@
  * Module dependencies.
  */
 var should = require('should'),
-	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
+	mongoose = require('mongoose'),<% if (usePassport) { %>
+	User = mongoose.model('User'),<% } %>
 	Article = mongoose.model('Article');
 
 /**
  * Globals
  */
-var user, article;
+var article;
+<% if (usePassport) { %>var user;<% } %>
 
 /**
  * Unit tests
  */
 describe('Article Model Unit Tests:', function() {
-	beforeEach(function(done) {
+	beforeEach(function(done) {<% if (usePassport) { %>
 		user = new User({
 			firstName: 'Full',
 			lastName: 'Name',
@@ -27,15 +28,15 @@ describe('Article Model Unit Tests:', function() {
 			password: 'password'
 		});
 
-		user.save(function() {
+		user.save(function() {<% } %>
 			article = new Article({
 				title: 'Article Title',
-				content: 'Article Content',
-				user: user
+				content: 'Article Content'<% if (usePassport) { %>,
+				user: user<% } %>
 			});
 
 			done();
-		});
+<% if (usePassport) { %>		});<% } %>
 	});
 
 	describe('Method Save', function() {
@@ -57,8 +58,8 @@ describe('Article Model Unit Tests:', function() {
 	});
 
 	afterEach(function(done) {
-		Article.remove().exec();
-		User.remove().exec();
+		Article.remove().exec();<% if (usePassport) { %>
+		User.remove().exec();<% } %>
 		done();
 	});
 });

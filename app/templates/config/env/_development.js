@@ -4,7 +4,7 @@ module.exports = {
 	db: 'mongodb://localhost/<%= slugifiedAppName %>-dev',
 	app: {
 		title: '<%= appName %> - Development Environment'
-	},
+	}<% if (usePassport) { %>,
 	facebook: {
 		clientID: 'APP_ID',
 		clientSecret: 'APP_SECRET',
@@ -24,5 +24,5 @@ module.exports = {
 		clientID: 'APP_ID',
 		clientSecret: 'APP_SECRET',
 		callbackURL: 'http://localhost:3000/auth/linkedin/callback'
-	}
+	}<% } %>
 };

@@ -4,20 +4,21 @@
  * Module dependencies.
  */
 var should = require('should'),
-	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
+	mongoose = require('mongoose'),<% if (usePassport) { %>}
+	User = mongoose.model('User'),<% } %>
 	<%= classifiedModelName %> = mongoose.model('<%= classifiedModelName %>');
 
 /**
  * Globals
  */
-var user, <%= camelizedModelName %>;
+var <%= camelizedModelName %>;
+<% if (usePassport) { %>var user;<% } %>
 
 /**
  * Unit tests
  */
 describe('<%= humanizedModelName %> Model Unit Tests:', function() {
-	beforeEach(function(done) {
+	beforeEach(function(done) {<% if (usePassport) { %>
 		user = new User({
 			firstName: 'Full',
 			lastName: 'Name',
@@ -27,19 +28,19 @@ describe('<%= humanizedModelName %> Model Unit Tests:', function() {
 			password: 'password'
 		});
 
-		user.save(function() { 
+		user.save(function() { <% } %>
 			<%= camelizedModelName %> = new <%= classifiedModelName %> ({
 				// Add model fields
 				// ...
 			});
 
 			done();
-		});
+<% if (usePassport) { %>});<% } %>
 	});
 
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
-			return <%=camelizedModelName %> .save(function(err) {
+			return <%=camelizedModelName %>.save(function(err) {
 				should.not.exist(err);
 				done();
 			});
@@ -47,8 +48,8 @@ describe('<%= humanizedModelName %> Model Unit Tests:', function() {
 	});
 
 	afterEach(function(done) { 
-		<%= classifiedModelName %> .remove().exec();
-		User.remove().exec();
+		<%= classifiedModelName %>.remove().exec();
+<% if (usePassport) { %>User.remove().exec();<% } %>
 		done();
 	});
 });

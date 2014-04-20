@@ -4,20 +4,21 @@
  * Module dependencies.
  */
 var should = require('should'),
-	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
+	mongoose = require('mongoose'),<% if (usePassport) { %>
+	User = mongoose.model('User'),<% } %>
 	<%= classifiedSingularName %> = mongoose.model('<%= classifiedSingularName %>');
 
 /**
  * Globals
  */
-var user, <%= camelizedSingularName %> ;
+var <%= camelizedSingularName %> ;
+<% if (usePassport) { %>var user;<% } %>
 
 /**
  * Unit tests
  */
 describe('<%= humanizedSingularName %> Model Unit Tests:', function() {
-	beforeEach(function(done) {
+	beforeEach(function(done) {<% if (usePassport) { %>
 		user = new User({
 			firstName: 'Full',
 			lastName: 'Name',
@@ -27,14 +28,14 @@ describe('<%= humanizedSingularName %> Model Unit Tests:', function() {
 			password: 'password'
 		});
 
-		user.save(function() { 
+		user.save(function() { <% } %>
 			<%= camelizedSingularName %> = new <%= classifiedSingularName %> ({
-				name: '<%= humanizedSingularName %> Name',
-				user: user
+				name: '<%= humanizedSingularName %> Name'<% if (usePassport) { %>,
+				user: user<% } %>
 			});
 
 			done();
-		});
+		<% if (usePassport) { %>});<% } %>
 	});
 
 	describe('Method Save', function() {
@@ -58,7 +59,7 @@ describe('<%= humanizedSingularName %> Model Unit Tests:', function() {
 	afterEach(function(done) { 
 		<%= classifiedSingularName %> .remove().exec();
 
-		User.remove().exec();
+<% if (usePassport) { %>		User.remove().exec();<% } %>
 		done();
 	});
 });

@@ -47,6 +47,11 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			name: 'addArticleExample',
 			message: 'Would you like to generate the article example CRUD module?',
 			default: true
+		}, {
+			type: 'confirm',
+			name: 'usePassport',
+			message: 'Would you like to include user authentication with passport?',
+			default: true
 		}];
 
 		this.prompt(prompts, function(props) {
@@ -55,6 +60,9 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appKeywords = props.appKeywords;
 			this.appAuthor = props.appAuthor;
 			this.addArticleExample = props.addArticleExample;
+
+			this.usePassport = props.usePassport;
+			this.config.set({'usePassport': this.usePassport});
 
 			this.slugifiedAppName = this._.slugify(this.appName);
 			this.humanizedAppName = this._.humanize(this.appName);
@@ -109,12 +117,14 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.mkdir('app/tests');
 
 		// Copy base files
-		this.copy('app/controllers/core.js');
-		this.copy('app/controllers/users.js');
-		this.copy('app/models/user.js');
+		this.template('app/controllers/_core.js', 'app/controllers/core.js');
 		this.copy('app/routes/core.js');
-		this.copy('app/routes/users.js');
-		this.copy('app/tests/users.js');
+		if (this.usePassport) {
+			this.copy('app/controllers/users.js');
+			this.copy('app/models/user.js');
+			this.copy('app/routes/users.js');
+			this.copy('app/tests/users.js');
+		}
 
 		// Create public folders
 		this.mkdir('public');
@@ -125,14 +135,12 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.directory('public/css');
 		this.directory('public/img');
 		this.copy('public/js/application.js');
-
-		// Copy public folder modules
-		this.directory('public/modules/users');
-
+		if (this.usePassport) {
+			// Copy public folder modules
+			this.directory('public/modules/users');
+		}
 		// Copy core module files
 		this.directory('public/modules/core/config');
-		this.directory('public/modules/core/tests');
-		this.copy('public/modules/core/controllers/home.js');
 		this.copy('public/modules/core/views/home.html');
 		this.copy('public/modules/core/core.js');
 
@@ -141,15 +149,17 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.mkdir('config/env');
 
 		// Copy config folder content
-		this.directory('config/strategies')
+		if (this.usePassport) {
+			this.directory('config/strategies');
+			this.copy('config/passport.js');
+		}
+		this.template('config/_express.js', 'config/express.js');
 		this.copy('config/config.js');
-		this.copy('config/express.js');
-		this.copy('config/passport.js');
 		this.copy('config/utilities.js');
 
 		// Copy project files
 		this.copy('gruntfile.js');
-		this.copy('server.js');
+		this.template('_server.js', 'server.js');
 		this.copy('Procfile');
 		this.copy('README.md');
 		this.copy('LICENSE.md');
@@ -166,13 +176,20 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		// Copy example files if desired
 		if (this.addArticleExample) {
 			// Copy Express files
-			this.copy('app/controllers/articles.js');
-			this.copy('app/models/article.js');
-			this.copy('app/routes/articles.js');
-			this.copy('app/tests/articles.js');
+			this.template('app/controllers/_articles.js', 'app/controllers/articles.js');
+			this.template('app/models/_article.js','app/models/article.js');
+			this.template('app/routes/_articles.js', 'app/routes/articles.js');
+			this.template('app/tests/_articles.js', 'app/tests/articles.js');
 
 			// Copy AngularJS files
-		 	this.directory('public/modules/articles'); 
+			this.directory('public/modules/articles/config');
+			this.directory('public/modules/articles/services');
+			this.directory('public/modules/articles/tests');
+			this.directory('public/modules/articles/views');
+			this.copy('public/modules/articles/articles.js');
+
+			this.mkdir('public/modules/articles/controllers');
+			this.template('public/modules/articles/controllers/_articles.js', 'public/modules/articles/controllers/articles.js');
 		}
 	},
 
@@ -197,8 +214,11 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	},
 
 	renderCoreModuleFiles: function() {
+		this.template('public/modules/core/controllers/_home.js', 'public/modules/core/controllers/home.js');
 		this.template('public/modules/core/views/_header.html', 'public/modules/core/views/header.html');
 		this.template('public/modules/core/controllers/_header.js', 'public/modules/core/controllers/header.js');
+		this.template('public/modules/core/tests/_home.spec.js', 'public/modules/core/tests/home.spec.js');
+		this.template('public/modules/core/tests/_header.spec.js', 'public/modules/core/tests/header.spec.js');
 	},
 
 	renderApplicationDependenciesFiles: function() {

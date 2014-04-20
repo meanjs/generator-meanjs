@@ -15,10 +15,10 @@ var db = mongoose.connect(config.db);
 
 // Init the express application
 var app = require('./config/express')(db);
-
+<% if (usePassport) {%>
 // Bootstrap passport config
 require('./config/passport')();
-
+<%}%>
 // Start the app by listening on <port>
 app.listen(config.port);
 
