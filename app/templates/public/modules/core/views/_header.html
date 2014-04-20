@@ -9,8 +9,8 @@
 		<a href="/#!/" class="navbar-brand"><%= appName %></a>
 	</div>
 	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-		<ul class="nav navbar-nav" <% if (usePassport) { data-ng-show="authentication.user" } %>>
-			<li data-ng-repeat="item in menu" <% if (usePassport) { data-ng-show="authentication.user" } %>
+		<ul class="nav navbar-nav" <% if (usePassport) { %>data-ng-show="authentication.user" <% } %>>
+			<li data-ng-repeat="item in menu" <% if (usePassport) { %>data-ng-show="authentication.user"<% } %>
 			 ui-route="{{item.uiRoute}}" ng-class="{active: $uiRoute}">
 				<a href="/#!/{{item.link}}">{{item.title}}</a>
 			</li>
