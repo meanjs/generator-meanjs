@@ -8,6 +8,30 @@ var mongoose = require('mongoose'),
 	_ = require('lodash');
 
 /**
+ * Get the error message from error object
+ */
+var getErrorMessage = function(err) {
+	var message = '';
+
+	if (err.code) {
+		switch (err.code) {
+			case 11000:
+			case 11001:
+				message = '<%= humanizedSingularName %> already exists';
+				break;
+			default:
+				message = 'Something went wrong';
+		}
+	} else {
+		for (var errName in err.errors) {
+			if (err.errors[errName].message) message = err.errors[errName].message;
+		}
+	}
+
+	return message;
+};
+
+/**
  * Create a <%= humanizedSingularName %>
  */
 exports.create = function(req, res) {
@@ -16,9 +40,8 @@ exports.create = function(req, res) {
 
 	<%= camelizedSingularName %>.save(function(err) {
 		if (err) {
-			return res.send('users/signup', {
-				errors: err.errors,
-				<%= camelizedSingularName %>: <%= camelizedSingularName %>
+			return res.send(400, {
+				message: getErrorMessage(err)
 			});
 		} else {
 			res.jsonp(<%= camelizedSingularName %>);
@@ -43,8 +66,8 @@ exports.update = function(req, res) {
 
 	<%= camelizedSingularName %>.save(function(err) {
 		if (err) {
-			res.render('error', {
-				status: 500
+			return res.send(400, {
+				message: getErrorMessage(err)
 			});
 		} else {
 			res.jsonp(<%= camelizedSingularName %>);
@@ -60,8 +83,8 @@ exports.delete = function(req, res) {
 
 	<%= camelizedSingularName %>.remove(function(err) {
 		if (err) {
-			res.render('error', {
-				status: 500
+			return res.send(400, {
+				message: getErrorMessage(err)
 			});
 		} else {
 			res.jsonp(<%= camelizedSingularName %>);
@@ -75,8 +98,8 @@ exports.delete = function(req, res) {
 exports.list = function(req, res) {
 	<%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
 		if (err) {
-			res.render('error', {
-				status: 500
+			return res.send(400, {
+				message: getErrorMessage(err)
 			});
 		} else {
 			res.jsonp(<%= camelizedPluralName %>);

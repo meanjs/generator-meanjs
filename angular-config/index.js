@@ -27,7 +27,7 @@ var ConfigGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderConfigFile: function() {
-		this.template('_config.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedName + '.js')
+		this.template('_config.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedName + '.client.config.js')
 	}
 });
 

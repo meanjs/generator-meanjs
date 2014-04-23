@@ -27,8 +27,8 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderControllerFiles: function () {
-		this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.js');
-		this.template('_tests.spec.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + '.spec.js');
+		this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.client.controller.js');
+		this.template('_tests.spec.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + '.client.controller.test.js');
 	}
 });
 

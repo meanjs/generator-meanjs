@@ -16,14 +16,14 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 
 		this.slugifiedPluralModelName = inflections.pluralize(this.slugifiedModelName);
 
-		var modelFilePath = process.cwd() + '/app/models/' + this.slugifiedModelName + '.js';
+		var modelFilePath = process.cwd() + '/app/models/' + this.slugifiedModelName + '.server.model.js';
 
 		// If model file exists we create a test for it otherwise we will first create a model
 		if (!fs.existsSync(modelFilePath)) {
-			this.template('_model.js', 'app/models/' + this.slugifiedModelName + '.js')
+			this.template('_model.js', 'app/models/' + this.slugifiedModelName + '.server.model.js')
 		}
 
-		this.template('_tests.js', 'app/tests/' + this.slugifiedPluralModelName + '.js')
+		this.template('_tests.js', 'app/tests/' + this.slugifiedPluralModelName + '.server.model.test.js')
 	}
 });
 

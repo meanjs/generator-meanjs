@@ -86,7 +86,7 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 
 	renderRoute: function() {
 		if (this.addRoute) {
-			var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/routes.js';
+			var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js';
 			
 			// If routes file exists we add a new state otherwise we render a new one
 			if (fs.existsSync(routesFilePath)) {
@@ -99,13 +99,13 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 				// Save route file
 				this.writeFileFromString(routesFileContent, routesFilePath);
 			} else {
-				this.template('_routes.js', 'public/modules/' + this.slugifiedModuleName + '/views/routes.js')
+				this.template('_routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + 'client.routes.js')
 			}
 		}
 	},
 
 	renderViewFile: function() {
-		this.template('_view.html', 'public/modules/' + this.slugifiedModuleName + '/views/' + this.slugifiedName + '.html')
+		this.template('_view.html', 'public/modules/' + this.slugifiedModuleName + '/views/' + this.slugifiedName + 'client.view.html')
 	}
 });
 

@@ -28,14 +28,14 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderTestFile: function() {
-		var controllerFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.js';
+		var controllerFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + 'client.controller.js';
 		
 		// If controller file exists we create a test for it otherwise we will first create a controller
 		if (!fs.existsSync(controllerFilePath)) {
-			this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.js')
+			this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + 'client.controller.js')
 		}
 
-		this.template('_tests.spec.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + '.spec.js')
+		this.template('_tests.spec.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + 'client.controller.test.js')
 	}
 });
 

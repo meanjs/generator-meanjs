@@ -15,7 +15,9 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
             // Redirect after save
             <%= camelizedSingularName %>.$save(function(response) {
                 $location.path('<%= slugifiedPluralName %>/' + response._id);
-            });
+            }, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
 
             // Clear form fields
             this.name = '';
@@ -44,7 +46,9 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 
             <%= camelizedSingularName %>.$update(function() {
                 $location.path('<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>._id);
-            });
+            }, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
         };
 
         // Find a list of <%= humanizedPluralName %>

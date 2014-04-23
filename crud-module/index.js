@@ -68,25 +68,25 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 		if (this.addFiltersFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/filters');
 
 		// Render express module files
-		this.template('express-module/_controller.js', 'app/controllers/' + this.slugifiedPluralName + '.js');
-		this.template('express-module/_model.js', 'app/models/' + this.slugifiedSingularName + '.js');
-		this.template('express-module/_routes.js', 'app/routes/' + this.slugifiedPluralName + '.js');
-		this.template('express-module/_tests.js', 'app/tests/' + this.slugifiedPluralName + '.js');
+		this.template('express-module/_controller.js', 'app/controllers/' + this.slugifiedPluralName + '.server.controller.js');
+		this.template('express-module/_model.js', 'app/models/' + this.slugifiedSingularName + '.server.model.js');
+		this.template('express-module/_routes.js', 'app/routes/' + this.slugifiedPluralName + '.server.routes.js');
+		this.template('express-module/_tests.js', 'app/tests/' + this.slugifiedPluralName + '.server.model.test.js');
 
 		// Render angular module files
-		this.template('angular-module/config/_routes.js', 'public/modules/' + this.slugifiedPluralName + '/config/routes.js');
-		this.template('angular-module/controllers/_controller.js', 'public/modules/' + this.slugifiedPluralName + '/controllers/' + this.slugifiedPluralName + '.js');
-		this.template('angular-module/services/_service.js', 'public/modules/' + this.slugifiedPluralName + '/services/' + this.slugifiedPluralName + '.js');
-		this.template('angular-module/tests/_tests.spec.js', 'public/modules/' + this.slugifiedPluralName + '/tests/' + this.slugifiedPluralName + '.spec.js');
+		this.template('angular-module/config/_routes.js', 'public/modules/' + this.slugifiedPluralName + '/config/' + this.slugifiedPluralName + '.client.routes.js');
+		this.template('angular-module/controllers/_controller.js', 'public/modules/' + this.slugifiedPluralName + '/controllers/' + this.slugifiedPluralName + '.client.controller.js');
+		this.template('angular-module/services/_service.js', 'public/modules/' + this.slugifiedPluralName + '/services/' + this.slugifiedPluralName + '.client.service.js');
+		this.template('angular-module/tests/_tests.spec.js', 'public/modules/' + this.slugifiedPluralName + '/tests/' + this.slugifiedPluralName + '.client.controller.test.js');
 
 		// Render angular module views
-		this.template('angular-module/views/_create.html', 'public/modules/' + this.slugifiedPluralName + '/views/create.html');
-		this.template('angular-module/views/_edit.html', 'public/modules/' + this.slugifiedPluralName + '/views/edit.html');
-		this.template('angular-module/views/_list.html', 'public/modules/' + this.slugifiedPluralName + '/views/list.html');
-		this.template('angular-module/views/_view.html', 'public/modules/' + this.slugifiedPluralName + '/views/view.html');
+		this.template('angular-module/views/_create.html', 'public/modules/' + this.slugifiedPluralName + '/views/create.' + this.slugifiedSingularName + '.client.view.html');
+		this.template('angular-module/views/_edit.html', 'public/modules/' + this.slugifiedPluralName + '/views/edit.' + this.slugifiedSingularName + '.client.view.html');
+		this.template('angular-module/views/_list.html', 'public/modules/' + this.slugifiedPluralName + '/views/list.' + this.slugifiedPluralName + '.client.view.html');
+		this.template('angular-module/views/_view.html', 'public/modules/' + this.slugifiedPluralName + '/views/view' + this.slugifiedSingularName + '.client.view.html');
 
 		// Render angular module definition
-		this.template('angular-module/_module.js', 'public/modules/' + this.slugifiedPluralName + '/' + this.slugifiedPluralName + '.js');
+		this.template('angular-module/_module.js', 'public/modules/' + this.slugifiedPluralName + '/' + this.slugifiedPluralName + '.client.module.js');
 	}
 });
 
