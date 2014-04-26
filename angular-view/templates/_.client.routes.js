@@ -7,7 +7,7 @@ angular.module('<%= slugifiedModuleName %>').config(['$stateProvider',
 		$stateProvider.
 		state('<%= slugifiedName %>', {
 			url: '/<%= slugifiedRoutePath %>',
-			templateUrl: 'modules/<%= slugifiedModuleName %>/views/<%= slugifiedName %>.html'
+			templateUrl: 'modules/<%= slugifiedModuleName %>/views/<%= slugifiedName %>.client.view.html'
 		});
 	}
 ]);

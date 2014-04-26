@@ -15,9 +15,9 @@ var ModelGenerator = yeoman.generators.NamedBase.extend({
         this.slugifiedPluralModelName = inflections.pluralize(this.slugifiedModelName);
 
         // We create the model file
-        this.template('_model.js', 'app/models/' + this.slugifiedModelName + '.server.model.js');
+        this.template('_.server.model.js', 'app/models/' + this.slugifiedModelName + '.server.model.js');
         // We create the test file for the models
-        this.template('_tests.js', 'app/tests/' + this.slugifiedPluralModelName + '.server.model.test.js');
+        this.template('_.server.model.test.js', 'app/tests/' + this.slugifiedModelName + '.server.model.test.js');
       }
 });
 

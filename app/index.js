@@ -107,34 +107,35 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.mkdir('app/models');
 		this.mkdir('app/routes');
 		this.mkdir('app/tests');
+		this.directory('app/views');
 
 		// Copy base files
-		this.copy('app/controllers/core.js');
-		this.copy('app/controllers/users.js');
-		this.copy('app/models/user.js');
-		this.copy('app/routes/core.js');
-		this.copy('app/routes/users.js');
-		this.copy('app/tests/users.js');
+		this.copy('app/controllers/core.server.controller.js');
+		this.copy('app/controllers/users.server.controller.js');
+		this.copy('app/models/user.server.model.js');
+		this.copy('app/routes/core.server.routes.js');
+		this.copy('app/routes/users.server.routes.js');
+		this.copy('app/tests/user.server.model.test.js');
 
 		// Create public folders
 		this.mkdir('public');
-		this.mkdir('public/js');
 		this.mkdir('public/modules');
 
 		// Copy public folder content
-		this.directory('public/css');
-		this.directory('public/img');
-		this.copy('public/js/application.js');
+		this.copy('public/application.js');
 
 		// Copy public folder modules
 		this.directory('public/modules/users');
 
 		// Copy core module files
 		this.directory('public/modules/core/config');
+		this.directory('public/modules/core/controllers');
+		this.directory('public/modules/core/css');
+		this.directory('public/modules/core/img');
+		this.directory('public/modules/core/services');
 		this.directory('public/modules/core/tests');
-		this.copy('public/modules/core/controllers/home.js');
-		this.copy('public/modules/core/views/home.html');
-		this.copy('public/modules/core/core.js');
+		this.copy('public/modules/core/views/home.client.view.html');
+		this.copy('public/modules/core/core.client.module.js');
 
 		// Copy config folder
 		this.mkdir('config');
@@ -145,9 +146,9 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('config/config.js');
 		this.copy('config/express.js');
 		this.copy('config/passport.js');
-		this.copy('config/utilities.js');
 
 		// Copy project files
+		this.copy('karma.conf.js');
 		this.copy('gruntfile.js');
 		this.copy('server.js');
 		this.copy('Procfile');
@@ -156,6 +157,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 		// Copy project hidden files
 		this.copy('bowerrc', '.bowerrc');
+		this.copy('csslintrc', '.csslintrc');
 		this.copy('jshintrc', '.jshintrc');
 		this.copy('gitignore', '.gitignore');
 		this.copy('slugignore', '.slugignore');
@@ -166,22 +168,14 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		// Copy example files if desired
 		if (this.addArticleExample) {
 			// Copy Express files
-			this.copy('app/controllers/articles.js');
-			this.copy('app/models/article.js');
-			this.copy('app/routes/articles.js');
-			this.copy('app/tests/articles.js');
+			this.copy('app/controllers/articles.server.controller.js');
+			this.copy('app/models/article.server.model.js');
+			this.copy('app/routes/articles.server.routes.js');
+			this.copy('app/tests/article.server.model.test.js');
 
 			// Copy AngularJS files
 		 	this.directory('public/modules/articles'); 
 		}
-	},
-
-	renderApplicationViewsFiles: function() {
-		this.copy('app/views/404.html');
-		this.copy('app/views/500.html');
-		this.copy('app/views/index.html');
-
-		this.template('app/views/_layout.html', 'app/views/layout.html');
 	},
 
 	renderApplicationEnvironmentConfigFiles: function() {
@@ -193,21 +187,16 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	},
 
 	renderAngularApplicationConfigFile: function() {
-		this.template('public/js/_config.js', 'public/js/config.js');
+		this.template('public/_config.js', 'public/config.js');
 	},
 
 	renderCoreModuleFiles: function() {
-		this.template('public/modules/core/views/_header.html', 'public/modules/core/views/header.html');
-		this.template('public/modules/core/controllers/_header.js', 'public/modules/core/controllers/header.js');
+		this.template('public/modules/core/views/_header.client.view.html', 'public/modules/core/views/header.client.view.html');
 	},
 
 	renderApplicationDependenciesFiles: function() {
 		this.template('_package.json', 'package.json');
 		this.template('_bower.json', 'bower.json');
-	},
-
-	renderApplicationKarmaFile: function() {
-		this.template('_karma.conf.js', 'karma.conf.js');
 	}
 });
 

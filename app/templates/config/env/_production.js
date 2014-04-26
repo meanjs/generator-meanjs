@@ -2,24 +2,39 @@
 
 module.exports = {
 	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/<%= slugifiedAppName %>',
+	assets: {
+		lib: [
+			'public/lib/angular/angular.js',
+			'public/lib/angular-resource/angular-resource.js', <% if (angularCookies) { %>
+			'public/lib/angular-cookies/angular-cookies.js',  <% } if (angularAnimate) { %>
+			'public/lib/angular-animate/angular-animate.js', <% } if (angularTouch) { %>
+			'public/lib/angular-touch/angular-touch.js', <% } if (angularSanitize) { %>
+			'public/lib/angular-sanitize/angular-sanitize.js', <% } %>
+			'public/lib/angular-ui-router/release/angular-ui-router.js',
+			'public/lib/angular-ui-utils/ui-utils.js',
+			'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
+		],
+		css: 'public/dist/application.min.css',
+		js: 'public/dist/application.min.js'
+	},
 	facebook: {
-		clientID: 'APP_ID',
-		clientSecret: 'APP_SECRET',
-		callbackURL: 'http://localhost:3000/auth/facebook/callback'
+		clientID: process.env.FACEBOOK_ID || 'APP_ID',
+		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		callbackPath: '/auth/facebook/callback'
 	},
 	twitter: {
-		clientID: 'CONSUMER_KEY',
-		clientSecret: 'CONSUMER_SECRET',
-		callbackURL: 'http://localhost:3000/auth/twitter/callback'
+		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
+		clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
+		callbackPath: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: 'APP_ID',
-		clientSecret: 'APP_SECRET',
-		callbackURL: 'http://localhost:3000/auth/google/callback'
+		clientID: process.env.GOOGLE_ID || 'APP_ID',
+		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+		callbackPath: '/auth/google/callback'
 	},
 	linkedin: {
-		clientID: 'APP_ID',
-		clientSecret: 'APP_SECRET',
-		callbackURL: 'http://localhost:3000/auth/linkedin/callback'
+		clientID: process.env.LINKEDIN_ID || 'APP_ID',
+		clientSecret: process.env.LINKEDIN_SECRET || 'APP_SECRET',
+		callbackPath: '/auth/linkedin/callback'
 	}
 };

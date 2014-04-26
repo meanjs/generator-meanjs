@@ -1,6 +1,7 @@
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
 [![Build Status](https://travis-ci.org/meanjs/mean.png?branch=master)](https://travis-ci.org/meanjs/mean)
+[![Dependencies Status](https://david-dm.org/meanjs/mean.png)](https://david-dm.org/meanjs/mean)
 
 MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components. 
 
@@ -28,8 +29,28 @@ $ npm install -g bower
 $ sudo npm install -g grunt-cli
 ```
 
+## Downloading MEAN.JS
+There are several ways you can get the MEAN.JS boilerplate: 
+
+### Yo Generator 
+The recommended way would be to use the [Official Yo Generator](http://meanjs.org/generator.html) which will generate the latest stable copy of the MEAN.JS boilerplate and supplies multiple sub-generators to ease your daily development cycles.
+
+### Cloning The GitHub Repository
+You can also use Git to directly clone the MEAN.JS repository:
+```
+$ git clone https://github.com/meanjs/mean.git meanjs
+```
+This will clone the latest version of the MEAN.JS repository to a **meanjs** folder.
+
+### Downloading The Repository Zip File
+Another way to use the MEAN.JS boilerplate is to download a zip copy from the [master branch on github](https://github.com/meanjs/mean/archive/master.zip). You can also do this using `wget` command:
+```
+$ wget https://github.com/meanjs/mean/archive/master.zip -O meanjs.zip; unzip meanjs.zip; rm meanjs.zip
+```
+Don't forget to rename **mean-master** after your project name.
+
 ## Quick Install
-Once you've installed all the prerequisites, you're just a few steps away from starting to develop you MEAN application.
+Once you've downloaded the boilerplate and installed all the prerequisites, you're just a few steps away from starting to develop you MEAN application.
 
 The first thing you should do is install the Node.js dependencies. The boilerplate comes pre-bundled with a package.json file that contains the list of modules you need to start your application, to learn more about the modules installed visit the NPM & Package.json section.
 

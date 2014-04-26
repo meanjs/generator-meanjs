@@ -86,7 +86,7 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 		if (this.addViewsFolder) this.mkdir('public/modules/' + this.slugifiedName + '/views');
 
 		// Render angular module definition
-		this.template('_module.js', 'public/modules/' + this.slugifiedName + '/' + this.slugifiedName + 'client.module.js');
+		this.template('_.client.module.js', 'public/modules/' + this.slugifiedName + '/' + this.slugifiedName + '.client.module.js');
 	}
 });
 

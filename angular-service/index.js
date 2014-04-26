@@ -1,18 +1,34 @@
 'use strict';
 
 var util = require('util'),
+	fs = require('fs'),
 	yeoman = require('yeoman-generator');
 
 
 var ServiceGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
+		var modulesFolder = process.cwd() + '/public/modules/';
 		var done = this.async();
 
-		var prompts = [{
+        var prompts = [{
+			type: 'list',
 			name: 'moduleName',
+			default: 'core',
 			message: 'Which module does this service belongs to?',
-			default: 'core'
+			choices: []
 		}];
+
+		// Add module choices
+        fs.readdirSync(modulesFolder).forEach(function(folder) {
+            var stat = fs.statSync(modulesFolder + '/' + folder);
+
+            if (stat.isDirectory()) {
+                prompts[0].choices.push({
+                	value: folder,
+                	name: folder
+                });
+            }
+        });
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
@@ -27,7 +43,7 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderServiceFile: function() {
-		this.template('_service.js', 'public/modules/' + this.slugifiedModuleName + '/services/' + this.slugifiedName + 'client.service.js')
+		this.template('_.client.service.js', 'public/modules/' + this.slugifiedModuleName + '/services/' + this.slugifiedName + '.client.service.js')
 	}
 });
 
