@@ -11,21 +11,25 @@ module.exports = {
 	sessionSecret: 'MEAN',
 	sessionCollection: 'sessions',
 	assets: {
+		lib: {
+			css: [
+				'public/lib/bootstrap/dist/css/bootstrap.css',
+				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+			],
+			js: [
+				'public/lib/angular/angular.js',
+				'public/lib/angular-resource/angular-resource.js', <% if (angularCookies) { %>
+				'public/lib/angular-cookies/angular-cookies.js',  <% } if (angularAnimate) { %>
+				'public/lib/angular-animate/angular-animate.js', <% } if (angularTouch) { %>
+				'public/lib/angular-touch/angular-touch.js', <% } if (angularSanitize) { %>
+				'public/lib/angular-sanitize/angular-sanitize.js', <% } %>
+				'public/lib/angular-ui-router/release/angular-ui-router.js',
+				'public/lib/angular-ui-utils/ui-utils.js',
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
+			]
+		},
 		css: [
-			'public/lib/bootstrap/dist/css/bootstrap.css',
-			'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			'public/modules/**/css/*.css'
-		],
-		lib: [
-			'public/lib/angular/angular.js',
-			'public/lib/angular-resource/angular-resource.js', <% if (angularCookies) { %>
-			'public/lib/angular-cookies/angular-cookies.js',  <% } if (angularAnimate) { %>
-			'public/lib/angular-animate/angular-animate.js', <% } if (angularTouch) { %>
-			'public/lib/angular-touch/angular-touch.js', <% } if (angularSanitize) { %>
-			'public/lib/angular-sanitize/angular-sanitize.js', <% } %>
-			'public/lib/angular-ui-router/release/angular-ui-router.js',
-			'public/lib/angular-ui-utils/ui-utils.js',
-			'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
 		],
 		js: [
 			'public/config.js',
