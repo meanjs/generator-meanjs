@@ -12,7 +12,6 @@
 		"test": "grunt test",
 		"postinstall": "bower install --config.interactive=false"
 	},
-	
 	"dependencies": {
 		"express": "~4.1.0",
 		"express-session": "~1.0.2",

@@ -183,7 +183,6 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.template('config/env/_development.js', 'config/env/development.js');
 		this.template('config/env/_production.js', 'config/env/production.js');
 		this.template('config/env/_test.js', 'config/env/test.js');
-		this.template('config/env/_travis.js', 'config/env/travis.js');
 	},
 
 	renderAngularApplicationConfigFile: function() {
