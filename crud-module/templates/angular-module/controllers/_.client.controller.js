@@ -53,17 +53,13 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 
         // Find a list of <%= humanizedPluralName %>
         $scope.find = function() {
-            <%= classifiedPluralName %>.query(function(<%= camelizedPluralName %>) {
-                $scope.<%= camelizedPluralName %> = <%= camelizedPluralName %>;
-            });
+            $scope.<%= camelizedPluralName %> = <%= classifiedPluralName %>.query();
         };
 
         // Find existing <%= humanizedSingularName %>
         $scope.findOne = function() {
-            <%= classifiedPluralName %>.get({
+            $scope.<%= camelizedSingularName %> = <%= classifiedPluralName %>.get({
                 <%= camelizedSingularName %>Id: $stateParams.<%= camelizedSingularName %>Id
-            }, function(<%= camelizedSingularName %>) {
-                $scope.<%= camelizedSingularName %> = <%= camelizedSingularName %>;
             });
         };
     }

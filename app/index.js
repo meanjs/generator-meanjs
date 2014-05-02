@@ -144,6 +144,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		// Copy config folder content
 		this.directory('config/strategies')
 		this.copy('config/config.js');
+		this.copy('config/init.js');
 		this.copy('config/express.js');
 		this.copy('config/passport.js');
 
