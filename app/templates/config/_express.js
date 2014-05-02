@@ -3,8 +3,8 @@
 /**
  * Module dependencies.
  */
-var express = require('express'),
-	passport = require('passport'),
+var express = require('express'),<% if (usePassport) { %>
+	passport = require('passport'),<% } %>
 	mongoStore = require('connect-mongo')(express),
 	flash = require('connect-flash'),
 	config = require('./config'),
@@ -25,8 +25,8 @@ module.exports = function(db) {
 	app.locals({
 		title: config.app.title,
 		description: config.app.description,
-		keywords: config.app.keywords,
-		facebookAppId: config.facebook.clientID,
+		keywords: config.app.keywords,<% if (usePassport) { %>
+		facebookAppId: config.facebook.clientID,<% } %>
 		modulesJSFiles: utilities.walk('./public/modules', /(.*)\.(js)/, /(.*)\.(spec.js)/, './public'),
 		modulesCSSFiles: utilities.walk('./public/modules', /(.*)\.(css)/, null, './public')
 	});
@@ -90,11 +90,11 @@ module.exports = function(db) {
 			collection: config.sessionCollection
 		})
 	}));
-
+	<% if (usePassport) { %>
 	// use passport session
 	app.use(passport.initialize());
 	app.use(passport.session());
-
+	<% } %>
 	// connect flash for flash messages
 	app.use(flash());
 

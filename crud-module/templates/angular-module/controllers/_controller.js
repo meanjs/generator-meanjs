@@ -1,9 +1,12 @@
 'use strict';
 
-// <%= humanizedPluralName %> controller
+// <%= humanizedPluralName %> controller<% if (usePassport) { %>
 angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$stateParams', '$location', 'Authentication', '<%= classifiedPluralName %>',
     function($scope, $stateParams, $location, Authentication, <%= classifiedPluralName %>) {
-        $scope.authentication = Authentication;
+        $scope.authentication = Authentication;<% } else { %>
+angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$stateParams', '$location', '<%= classifiedPluralName %>',
+    function($scope, $stateParams, $location, <%= classifiedPluralName %>) {
+<% } %>
 
         // Create new <%= humanizedSingularName %>
         $scope.create = function() {

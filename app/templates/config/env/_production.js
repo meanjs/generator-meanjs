@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/<%= slugifiedAppName %>',
+	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/<%= slugifiedAppName %>'
+<% if (usePassport) { %>,
 	facebook: {
 		clientID: 'APP_ID',
 		clientSecret: 'APP_SECRET',
@@ -21,5 +22,5 @@ module.exports = {
 		clientID: 'APP_ID',
 		clientSecret: 'APP_SECRET',
 		callbackURL: 'http://localhost:3000/auth/linkedin/callback'
-	}
+	}<% } %>
 };

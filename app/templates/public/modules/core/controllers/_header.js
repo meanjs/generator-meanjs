@@ -1,8 +1,12 @@
 'use strict';
 
+<% if (usePassport) { %>
 angular.module('core').controller('HeaderController', ['$scope', 'Authentication',
 	function($scope, Authentication) {
-		$scope.authentication = Authentication;
+		$scope.authentication = Authentication;<% } else { %>
+angular.module('core').controller('HeaderController', ['$scope',
+	function($scope) {
+		<% } %>
 		$scope.isCollapsed = false;
 
 		$scope.menu = [<% if(addArticleExample) { %>{

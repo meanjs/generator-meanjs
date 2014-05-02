@@ -24,6 +24,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 
 			done();
 		}.bind(this));
+		
 	},
 
 	renderControllerFiles: function () {

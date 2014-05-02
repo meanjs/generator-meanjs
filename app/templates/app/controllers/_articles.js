@@ -11,14 +11,16 @@ var mongoose = require('mongoose'),
  * Create a article
  */
 exports.create = function(req, res) {
-	var article = new Article(req.body);
-	article.user = req.user;
+	var article = new Article(req.body);<% if (usePassport) { %>
+	article.user = req.user;<% } %>
 
 	article.save(function(err) {
-		if (err) {
+		if (err) {<% if (usePassport) { %>
 			return res.send('users/signup', {
 				errors: err.errors,
-				article: article
+				article: article<% } else { %>
+			res.render('error', {
+				status: 500<% } %>
 			});
 		} else {
 			res.jsonp(article);
@@ -73,7 +75,7 @@ exports.delete = function(req, res) {
  * List of Articles
  */
 exports.list = function(req, res) {
-	Article.find().sort('-created').populate('user', 'displayName').exec(function(err, articles) {
+	Article.find().sort('-created').populate(<% if (usePassport) { %>'user',<% } %> 'displayName').exec(function(err, articles) {
 		if (err) {
 			res.render('error', {
 				status: 500
@@ -88,14 +90,14 @@ exports.list = function(req, res) {
  * Article middleware
  */
 exports.articleByID = function(req, res, next, id) {
-	Article.findById(id).populate('user', 'displayName').exec(function(err, article) {
+	Article.findById(id).populate(<% if (usePassport) { %>'user',<% } %> 'displayName').exec(function(err, article) {
 		if (err) return next(err);
 		if (!article) return next(new Error('Failed to load article ' + id));
 		req.article = article;
 		next();
 	});
 };
-
+<% if (usePassport) { %>
 /**
  * Article authorization middleware
  */
@@ -104,4 +106,4 @@ exports.hasAuthorization = function(req, res, next) {
 		return res.send(403, 'User is not authorized');
 	}
 	next();
-};
+};<% } %>
