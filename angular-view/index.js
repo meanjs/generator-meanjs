@@ -114,11 +114,7 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 				// Save route file
 				this.writeFileFromString(routesFileContent, routesFilePath);
 			} else {
-<<<<<<< HEAD
-				this.template('_routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/routes.js')
-=======
 				this.template('_.client.routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js')
->>>>>>> 0.1.0
 			}
 		}
 	},
