@@ -12,7 +12,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 		this.humanizedPluralName = inflections.pluralize(this._.humanize(this.slugifiedName));
 		this.humanizedSingularName = inflections.singularize(this._.humanize(this.slugifiedName));
 
-		this.template('_controller.js', 'app/controllers/' + this.slugifiedName + '.js')
+		this.template('_.server.controller.js', 'app/controllers/' + this.slugifiedName + '.server.controller.js')
 	}
 });
 
