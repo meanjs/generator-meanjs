@@ -6,13 +6,28 @@ var util = require('util'),
 
 var ViewGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
+		var modulesFolder = process.cwd() + '/public/modules/';
 		var done = this.async();
 
-		var prompts = [{
+        var prompts = [{
+			type: 'list',
 			name: 'moduleName',
+			default: 'core',
 			message: 'Which module does this view belongs to?',
-			default: 'core'
+			choices: []
 		}];
+
+		// Add module choices
+        fs.readdirSync(modulesFolder).forEach(function(folder) {
+            var stat = fs.statSync(modulesFolder + '/' + folder);
+
+            if (stat.isDirectory()) {
+                prompts[0].choices.push({
+                	value: folder,
+                	name: folder
+                });
+            }
+        });
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
@@ -86,7 +101,7 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 
 	renderRoute: function() {
 		if (this.addRoute) {
-			var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/routes.js';
+			var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js';
 			
 			// If routes file exists we add a new state otherwise we render a new one
 			if (fs.existsSync(routesFilePath)) {
@@ -94,18 +109,18 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 				var routesFileContent = this.readFileAsString(routesFilePath);
 
 				// Append the new state
-				routesFileContent = routesFileContent.replace('$stateProvider.', this.engine(this.read('_route.js'), this));
+				routesFileContent = routesFileContent.replace('$stateProvider.', this.engine(this.read('_.client.route.js'), this));
 				
 				// Save route file
 				this.writeFileFromString(routesFileContent, routesFilePath);
 			} else {
-				this.template('_routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/routes.js')
+				this.template('_.client.routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js')
 			}
 		}
 	},
 
 	renderViewFile: function() {
-		this.template('_view.html', 'public/modules/' + this.slugifiedModuleName + '/views/' + this.slugifiedName + '.html')
+		this.template('_.client.view.html', 'public/modules/' + this.slugifiedModuleName + '/views/' + this.slugifiedName + '.client.view.html')
 	}
 });
 

@@ -1,18 +1,34 @@
 'use strict';
 
 var util = require('util'),
+	fs = require('fs'),
 	yeoman = require('yeoman-generator');
 
 
 var ControllerGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function () {
-		var done = this.async();
+        var modulesFolder = process.cwd() + '/public/modules/';
+        var done = this.async();
 
-		var prompts = [{
+        var prompts = [{
+			type: 'list',
 			name: 'moduleName',
+			default: 'core',
 			message: 'Which module does this controller belongs to?',
-			default: 'core'
+			choices: []
 		}];
+
+		// Add module choices
+        fs.readdirSync(modulesFolder).forEach(function(folder) {
+            var stat = fs.statSync(modulesFolder + '/' + folder);
+
+            if (stat.isDirectory()) {
+                prompts[0].choices.push({
+                	value: folder,
+                	name: folder
+                });
+            }
+        });
 
 		this.prompt(prompts, function (props) {
 			this.moduleName = props.moduleName;
@@ -27,8 +43,8 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderControllerFiles: function () {
-		this.template('_controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.js');
-		this.template('_tests.spec.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + '.spec.js');
+		this.template('_.client.controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.client.controller.js');
+		this.template('_.client.controller.test.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + '.client.controller.test.js');
 	}
 });
 
