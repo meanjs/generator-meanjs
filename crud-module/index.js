@@ -19,6 +19,8 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 
         this.humanizedPluralName = this._.humanize(this.slugifiedPluralName);
         this.humanizedSingularName = this._.humanize(this.slugifiedSingularName);
+
+        this.usePassport = this.config.get('usePassport');
     },
 
     askForModuleFolders: function() {
