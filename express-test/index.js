@@ -16,6 +16,8 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 
 		this.slugifiedPluralModelName = inflections.pluralize(this.slugifiedModelName);
 
+        this.usePassport = this.config.get('usePassport');
+
 		var modelFilePath = process.cwd() + '/app/models/' + this.slugifiedModelName + '.server.model.js';
 
 		// If model file exists we create a test for it otherwise we will first create a model

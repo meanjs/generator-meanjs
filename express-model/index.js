@@ -14,6 +14,8 @@ var ModelGenerator = yeoman.generators.NamedBase.extend({
 
         this.slugifiedPluralModelName = inflections.pluralize(this.slugifiedModelName);
 
+        this.usePassport = this.config.get('usePassport');
+
         // We create the model file
         this.template('_.server.model.js', 'app/models/' + this.slugifiedModelName + '.server.model.js');
         // We create the test file for the models
