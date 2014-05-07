@@ -25,13 +25,13 @@
 		"helmet": "~0.2.1",
 		"consolidate": "~0.10.0",
 		"swig": "~1.3.2",
-		"mongoose": "~3.8.8",
+		"mongoose": "~3.8.8",<% if (usePassport) { %>
 		"passport": "~0.2.0",
 		"passport-local": "~1.0.0",
 		"passport-facebook": "~1.0.2",
 		"passport-twitter": "~1.0.2",
 		"passport-linkedin": "~0.1.3",
-		"passport-google-oauth": "~0.1.5",
+		"passport-google-oauth": "~0.1.5",<% } %>
 		"lodash": "~2.4.1",
 		"forever": "~0.11.0",
 		"bower": "~1.3.1",
