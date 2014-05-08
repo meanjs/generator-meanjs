@@ -47,6 +47,11 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			name: 'addArticleExample',
 			message: 'Would you like to generate the article example CRUD module?',
 			default: true
+		}, {
+			type: 'confirm',
+			name: 'usePassport',
+			message: 'Would you like to include user authentication with passport?',
+			default: true
 		}];
 
 		this.prompt(prompts, function(props) {
@@ -55,6 +60,9 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appKeywords = props.appKeywords;
 			this.appAuthor = props.appAuthor;
 			this.addArticleExample = props.addArticleExample;
+
+			this.usePassport = props.usePassport;
+			this.config.set({'usePassport': this.usePassport});
 
 			this.slugifiedAppName = this._.slugify(this.appName);
 			this.humanizedAppName = this._.humanize(this.appName);
@@ -107,15 +115,22 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.mkdir('app/models');
 		this.mkdir('app/routes');
 		this.mkdir('app/tests');
-		this.directory('app/views');
+		this.mkdir('app/views');
+
+		this.copy('app/views/404.server.view.html');
+		this.copy('app/views/500.server.view.html');
+		this.copy('app/views/index.server.view.html');
+		this.template('app/views/_layout.server.view.html', 'app/views/layout.server.view.html');
 
 		// Copy base files
-		this.copy('app/controllers/core.server.controller.js');
-		this.copy('app/controllers/users.server.controller.js');
-		this.copy('app/models/user.server.model.js');
+		this.template('app/controllers/_core.server.controller.js', 'app/controllers/core.server.controller.js');
 		this.copy('app/routes/core.server.routes.js');
-		this.copy('app/routes/users.server.routes.js');
-		this.copy('app/tests/user.server.model.test.js');
+		if (this.usePassport) {
+			this.copy('app/controllers/users.server.controller.js');
+			this.copy('app/models/user.server.model.js');
+			this.copy('app/routes/users.server.routes.js');
+			this.copy('app/tests/user.server.model.test.js');
+		}
 
 		// Create public folders
 		this.mkdir('public');
@@ -125,7 +140,9 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('public/application.js');
 
 		// Copy public folder modules
-		this.directory('public/modules/users');
+		if (this.usePassport) {
+			this.directory('public/modules/users');
+		}
 
 		// Copy core module files
 		this.directory('public/modules/core/config');
@@ -142,16 +159,18 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.mkdir('config/env');
 
 		// Copy config folder content
-		this.directory('config/strategies')
+		if (this.usePassport) {
+			this.directory('config/strategies');
+			this.copy('config/passport.js');
+		}
+		this.template('config/_express.js', 'config/express.js');
 		this.copy('config/config.js');
 		this.copy('config/init.js');
-		this.copy('config/express.js');
-		this.copy('config/passport.js');
 
 		// Copy project files
 		this.copy('karma.conf.js');
 		this.copy('gruntfile.js');
-		this.copy('server.js');
+		this.template('_server.js', 'server.js');
 		this.copy('Procfile');
 		this.copy('README.md');
 		this.copy('LICENSE.md');
@@ -169,13 +188,26 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		// Copy example files if desired
 		if (this.addArticleExample) {
 			// Copy Express files
-			this.copy('app/controllers/articles.server.controller.js');
-			this.copy('app/models/article.server.model.js');
-			this.copy('app/routes/articles.server.routes.js');
-			this.copy('app/tests/article.server.model.test.js');
+			this.template('app/controllers/_articles.server.controller.js', 'app/controllers/articles.server.controller.js');
+			this.template('app/models/_article.server.model.js','app/models/article.server.model.js');
+			this.template('app/routes/_articles.server.routes.js', 'app/routes/articles.server.routes.js');
+			this.template('app/tests/_article.server.model.test.js', 'app/tests/article.server.model.test.js');
 
 			// Copy AngularJS files
-		 	this.directory('public/modules/articles'); 
+			this.directory('public/modules/articles/config');
+			this.directory('public/modules/articles/services');
+			this.directory('public/modules/articles/tests');
+
+			this.mkdir('public/modules/articles/views');
+			this.copy('public/modules/articles/views/create-article.client.view.html');
+			this.copy('public/modules/articles/views/edit-article.client.view.html');
+			this.copy('public/modules/articles/views/list-articles.client.view.html');
+			this.template('public/modules/articles/views/_view-article.client.view.html', 'public/modules/articles/views/view-article.client.view.html');
+
+			this.copy('public/modules/articles/articles.client.module.js');
+
+			this.mkdir('public/modules/articles/controllers');
+			this.template('public/modules/articles/controllers/_articles.client.controller.js', 'public/modules/articles/controllers/articles.client.controller.js');
 		}
 	},
 
