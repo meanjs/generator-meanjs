@@ -24,11 +24,11 @@ var ArticleSchema = new Schema({
 		type: String,
 		default: '',
 		trim: true
-	},
+<% if (usePassport) { %>	},
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
-	}
+<% } %>	}
 });
 
 mongoose.model('Article', ArticleSchema);

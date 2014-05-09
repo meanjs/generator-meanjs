@@ -5,20 +5,20 @@
  */
 var should = require('should'),
 	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
-	Article = mongoose.model('Article');
+<% if (usePassport)	{ %>User = mongoose.model('User'),
+<% } %>	Article = mongoose.model('Article');
 
 /**
  * Globals
  */
-var user, article;
+var <% if (usePassport)	{ %>user, <% } %>article;
 
 /**
  * Unit tests
  */
 describe('Article Model Unit Tests:', function() {
 	beforeEach(function(done) {
-		user = new User({
+<% if (usePassport)	{ %>		user = new User({
 			firstName: 'Full',
 			lastName: 'Name',
 			displayName: 'Full Name',
@@ -28,16 +28,16 @@ describe('Article Model Unit Tests:', function() {
 		});
 
 		user.save(function() {
-			article = new Article({
+<% } %>			article = new Article({
 				title: 'Article Title',
-				content: 'Article Content',
-				user: user
+				content: 'Article Content'<% if (usePassport)	{ %>,
+				user: user<% } %>
 			});
 
 			done();
 		});
-	});
-
+<% if (usePassport)	{ %>	});
+<% } %>
 	describe('Method Save', function() {
 		it('should be able to save without problems', function(done) {
 			return article.save(function(err) {
@@ -58,7 +58,7 @@ describe('Article Model Unit Tests:', function() {
 
 	afterEach(function(done) {
 		Article.remove().exec();
-		User.remove().exec();
-		done();
+<% if (usePassport)	{ %>		User.remove().exec();
+<% } %>		done();
 	});
 });

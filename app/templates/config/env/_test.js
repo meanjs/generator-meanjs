@@ -5,7 +5,7 @@ module.exports = {
 	port: 3001,
 	app: {
 		title: '<%= appName %> - Test Environment'
-	},
+<% if (usePassport) { %>	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
 		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
@@ -25,5 +25,5 @@ module.exports = {
 		clientID: process.env.LINKEDIN_ID || 'APP_ID',
 		clientSecret: process.env.LINKEDIN_SECRET || 'APP_SECRET',
 		callbackURL: 'http://localhost:3000/auth/linkedin/callback'
-	}
+<% } %>	}
 };

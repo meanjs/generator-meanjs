@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $stateParams, $location, Authentication, Articles) {
-		$scope.authentication = Authentication;
-
+angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location'<% if (usePassport) { %>, 'Authentication'<% } %>, 'Articles',
+	function($scope, $stateParams, $location<% if (usePassport) { %>, Authentication<% } %>, Articles) {
+<% if (usePassport) { %>		$scope.authentication = Authentication;
+<% } %>
 		$scope.create = function() {
 			var article = new Articles({
 				title: this.title,

@@ -13,7 +13,7 @@
 	<!-- Semantic META -->
 	<meta name="keywords" content="{{keywords}}">
 	<meta name="description" content="{{description}}">
-
+<% if (usePassport) { %>
 	<!-- Facebook META -->
 	<meta property="fb:app_id" content="{{facebookAppId}}">
 	<meta property="og:site_name" content="{{title}}">
@@ -28,7 +28,7 @@
 	<meta name="twitter:description" content="{{description}}">
 	<meta name="twitter:url" content="{{url}}">
 	<meta name="twitter:image" content="/img/brand/logo.png">
-
+<% } %>
 	<!-- Fav Icon -->
 	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
@@ -49,12 +49,12 @@
 			{% block content %}{% endblock %}
 		</section>
 	</section>
-
+<% if (usePassport) { %>
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};
 	</script>
-
+<% } %>
 	<!--Application JavaScript Files-->
 	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
 	{% endfor %} 
