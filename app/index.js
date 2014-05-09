@@ -146,13 +146,16 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 		// Copy core module files
 		this.directory('public/modules/core/config');
-		this.directory('public/modules/core/controllers');
 		this.directory('public/modules/core/css');
 		this.directory('public/modules/core/img');
-		this.directory('public/modules/core/services');
+		this.mkdir('public/modules/core/services');
+		this.template('public/modules/core/services/_menus.client.service.js', 'public/modules/core/services/menus.client.service.js');
 		this.directory('public/modules/core/tests');
 		this.copy('public/modules/core/views/home.client.view.html');
 		this.copy('public/modules/core/core.client.module.js');
+		this.mkdir('public/modules/core/controllers');
+		this.template('public/modules/core/controllers/_home.client.controller.js', 'public/modules/core/controllers/home.client.controller.js');
+		this.template('public/modules/core/controllers/_header.client.controller.js', 'public/modules/core/controllers/header.client.controller.js');
 
 		// Copy config folder
 		this.mkdir('config');
