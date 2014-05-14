@@ -33,7 +33,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 		this.prompt(prompts, function (props) {
 			this.moduleName = props.moduleName;
 			this.slugifiedModuleName = this._.slugify(this.moduleName);
-			
+
 			this.slugifiedControllerName = this._.slugify(this._.humanize(this.name));
 			this.classifiedControllerName = this._.classify(this.slugifiedControllerName);
 			this.humanizedControllerName = this._.humanize(this.slugifiedControllerName);
