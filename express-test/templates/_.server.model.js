@@ -4,13 +4,13 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
 /**
  * <%= classifiedModelName %> Schema
  */
-var <%= classifiedModelName %>Schema = new Schema({
-	
+var <%= classifiedModelName %> Schema = new Schema({
+
 });
 
-mongoose.model('<%= classifiedModelName %>', <%= classifiedModelName %>Schema);
+mongoose.model('<%= classifiedModelName %>', <%= classifiedModelName %> Schema);

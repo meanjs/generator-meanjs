@@ -12,21 +12,21 @@ var ConfigGenerator = yeoman.generators.NamedBase.extend({
         var done = this.async();
 
         var prompts = [{
-			type: 'list',
-			name: 'moduleName',
-			default: 'core',
-			message: 'Which module does this configuration file belongs to?',
-			choices: []
-		}];
+            type: 'list',
+            name: 'moduleName',
+            default: 'core',
+            message: 'Which module does this configuration file belongs to?',
+            choices: []
+        }];
 
-		// Add module choices
+        // Add module choices
         fs.readdirSync(modulesFolder).forEach(function(folder) {
             var stat = fs.statSync(modulesFolder + '/' + folder);
 
             if (stat.isDirectory()) {
                 prompts[0].choices.push({
-                	value: folder,
-                	name: folder
+                    value: folder,
+                    name: folder
                 });
             }
         });

@@ -1,127 +1,127 @@
 'use strict';
 var util = require('util'),
-	fs = require('fs'),
-	yeoman = require('yeoman-generator');
+    fs = require('fs'),
+    yeoman = require('yeoman-generator');
 
 
 var ViewGenerator = yeoman.generators.NamedBase.extend({
-	askForModuleName: function() {
-		var modulesFolder = process.cwd() + '/public/modules/';
-		var done = this.async();
+    askForModuleName: function() {
+        var modulesFolder = process.cwd() + '/public/modules/';
+        var done = this.async();
 
         var prompts = [{
-			type: 'list',
-			name: 'moduleName',
-			default: 'core',
-			message: 'Which module does this view belongs to?',
-			choices: []
-		}];
+            type: 'list',
+            name: 'moduleName',
+            default: 'core',
+            message: 'Which module does this view belongs to?',
+            choices: []
+        }];
 
-		// Add module choices
+        // Add module choices
         fs.readdirSync(modulesFolder).forEach(function(folder) {
             var stat = fs.statSync(modulesFolder + '/' + folder);
 
             if (stat.isDirectory()) {
                 prompts[0].choices.push({
-                	value: folder,
-                	name: folder
+                    value: folder,
+                    name: folder
                 });
             }
         });
 
-		this.prompt(prompts, function(props) {
-			this.moduleName = props.moduleName;
-			this.controllerName = props.controllerName;
+        this.prompt(prompts, function(props) {
+            this.moduleName = props.moduleName;
+            this.controllerName = props.controllerName;
 
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
-			this.humanizedModuleName = this._.humanize(this.moduleName);
-			
-			this.slugifiedName = this._.slugify(this._.humanize(this.name));
-			this.classifiedName = this._.classify(this.slugifiedName);
-			this.humanizedName = this._.humanize(this.slugifiedName);
+            this.slugifiedModuleName = this._.slugify(this.moduleName);
+            this.humanizedModuleName = this._.humanize(this.moduleName);
 
-			done();
-		}.bind(this));
-	},
+            this.slugifiedName = this._.slugify(this._.humanize(this.name));
+            this.classifiedName = this._.classify(this.slugifiedName);
+            this.humanizedName = this._.humanize(this.slugifiedName);
 
-	askForControllerName: function() {
-		var done = this.async();
+            done();
+        }.bind(this));
+    },
 
-		var prompts = [{
-			name: 'controllerName',
-			message: 'What is the name of the controller this view will use?',
-			default: this.classifiedName
-		}];
+    askForControllerName: function() {
+        var done = this.async();
 
-		this.prompt(prompts, function(props) {
-			this.controllerName = props.controllerName;
-			
-			this.slugifiedControllerName = this._.slugify(this.controllerName);
-			this.classifiedControllerName = this._.classify(this.slugifiedControllerName);
+        var prompts = [{
+            name: 'controllerName',
+            message: 'What is the name of the controller this view will use?',
+            default: this.classifiedName
+        }];
 
-			done();
-		}.bind(this));
-	},
+        this.prompt(prompts, function(props) {
+            this.controllerName = props.controllerName;
 
-	askToAddRoute: function() {
-		var done = this.async();
+            this.slugifiedControllerName = this._.slugify(this.controllerName);
+            this.classifiedControllerName = this._.classify(this.slugifiedControllerName);
 
-		var prompts = [{
-			type: 'confirm',
-			name: 'addRoute',
-			message: 'Would you like to add a route for this view?',
-			default: true
-		}];
+            done();
+        }.bind(this));
+    },
 
-		this.prompt(prompts, function(props) {
-			this.addRoute = props.addRoute;
+    askToAddRoute: function() {
+        var done = this.async();
 
-			done();
-		}.bind(this));
-	},
+        var prompts = [{
+            type: 'confirm',
+            name: 'addRoute',
+            message: 'Would you like to add a route for this view?',
+            default: true
+        }];
 
-	askForRouteDetails: function() {
-		if (this.addRoute) {
-			var done = this.async();
+        this.prompt(prompts, function(props) {
+            this.addRoute = props.addRoute;
 
-			var prompts = [{
-				name: 'routePath',
-				message: 'What is your view route path?',
-				default: this.slugifiedName
-			}];
+            done();
+        }.bind(this));
+    },
 
-			this.prompt(prompts, function(props) {
-				this.routePath = props.routePath;
-				this.slugifiedRoutePath = this._.slugify(this.routePath);
+    askForRouteDetails: function() {
+        if (this.addRoute) {
+            var done = this.async();
 
-				done();
-			}.bind(this));
-		}
-	},
+            var prompts = [{
+                name: 'routePath',
+                message: 'What is your view route path?',
+                default: this.slugifiedName
+            }];
 
-	renderRoute: function() {
-		if (this.addRoute) {
-			var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js';
-			
-			// If routes file exists we add a new state otherwise we render a new one
-			if (fs.existsSync(routesFilePath)) {
-				// Read the source routes file content
-				var routesFileContent = this.readFileAsString(routesFilePath);
+            this.prompt(prompts, function(props) {
+                this.routePath = props.routePath;
+                this.slugifiedRoutePath = this._.slugify(this.routePath);
 
-				// Append the new state
-				routesFileContent = routesFileContent.replace('$stateProvider.', this.engine(this.read('_.client.route.js'), this));
-				
-				// Save route file
-				this.writeFileFromString(routesFileContent, routesFilePath);
-			} else {
-				this.template('_.client.routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js')
-			}
-		}
-	},
+                done();
+            }.bind(this));
+        }
+    },
 
-	renderViewFile: function() {
-		this.template('_.client.view.html', 'public/modules/' + this.slugifiedModuleName + '/views/' + this.slugifiedName + '.client.view.html')
-	}
+    renderRoute: function() {
+        if (this.addRoute) {
+            var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js';
+
+            // If routes file exists we add a new state otherwise we render a new one
+            if (fs.existsSync(routesFilePath)) {
+                // Read the source routes file content
+                var routesFileContent = this.readFileAsString(routesFilePath);
+
+                // Append the new state
+                routesFileContent = routesFileContent.replace('$stateProvider.', this.engine(this.read('_.client.route.js'), this));
+
+                // Save route file
+                this.writeFileFromString(routesFileContent, routesFilePath);
+            } else {
+                this.template('_.client.routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js')
+            }
+        }
+    },
+
+    renderViewFile: function() {
+        this.template('_.client.view.html', 'public/modules/' + this.slugifiedModuleName + '/views/' + this.slugifiedName + '.client.view.html')
+    }
 });
 
 module.exports = ViewGenerator;
