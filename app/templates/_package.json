@@ -1,8 +1,8 @@
 {
 	"name": "<%= slugifiedAppName %>",
 	"description": "<%= appDescription %>",
-	"version": "0.0.1", <% if (appAuthor) { %>
-	"author": "<%= capitalizedAppAuthor %>", <% } %>
+	"version": "0.0.1",<% if (appAuthor) { %>
+	"author": "<%= capitalizedAppAuthor %>",<% } %>
 	"engines": {
 		"node": "0.10.x",
 		"npm": "1.4.x"
