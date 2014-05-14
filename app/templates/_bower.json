@@ -5,14 +5,14 @@
 	"dependencies": {
 		"bootstrap": "~3",
 		"angular": "~1.2",
-		"angular-resource": "~1.2", 
-		"angular-mocks": "~1.2", <% if (angularCookies) { %>
-		"angular-cookies": "~1.2",  <% } if (angularAnimate) { %>
-		"angular-animate": "~1.2", <% } if (angularTouch) { %>
-		"angular-touch": "~1.2", <% } if (angularSanitize) { %>
-		"angular-sanitize": "~1.2", <% } %>
+		"angular-resource": "~1.2",
+		"angular-mocks": "~1.2",<% if (angularCookies) { %>
+		"angular-cookies": "~1.2",<% } if (angularAnimate) { %>
+		"angular-animate": "~1.2",<% } if (angularTouch) { %>
+		"angular-touch": "~1.2",<% } if (angularSanitize) { %>
+		"angular-sanitize": "~1.2",<% } %>
 		"angular-bootstrap": "~0.10.0",
 		"angular-ui-utils": "~0.1.1",
-		"angular-ui-router": "~0.2.10" 
+		"angular-ui-router": "~0.2.10"
 	}
 }
