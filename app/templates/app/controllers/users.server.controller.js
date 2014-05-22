@@ -36,7 +36,6 @@ var getErrorMessage = function(err) {
  * Signup
  */
 exports.signup = function(req, res) {
-<<<<<<< HEAD
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
 
@@ -68,39 +67,6 @@ exports.signup = function(req, res) {
 			});
 		}
 	});
-=======
-    // For security measurement we remove the roles from the req.body object
-    delete req.body.roles;
-
-    // Init Variables
-    var user = new User(req.body);
-    var message = null;
-
-    // Add missing user fields
-    user.provider = 'local';
-    user.displayName = user.firstName + ' ' + user.lastName;
-
-    // Then save the user 
-    user.save(function(err) {
-        if (err) {
-            return res.send(400, {
-                message: getErrorMessage(err)
-            });
-        } else {
-            // Remove sensitive data before login
-            user.password = undefined;
-            user.salt = undefined;
-
-            req.login(user, function(err) {
-                if (err) {
-                    res.send(400, err);
-                } else {
-                    res.jsonp(user);
-                }
-            });
-        }
-    });
->>>>>>> pr/21
 };
 
 /**
@@ -383,7 +349,6 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
  * Remove OAuth provider
  */
 exports.removeOAuthProvider = function(req, res, next) {
-<<<<<<< HEAD
 	var user = req.user;
 	var provider = req.param('provider');
 
@@ -412,34 +377,4 @@ exports.removeOAuthProvider = function(req, res, next) {
 			}
 		});
 	}
-=======
-    var user = req.user;
-    var provider = req.param('provider');
-
-    if (user && provider) {
-        // Delete the additional provider
-        if (user.additionalProvidersData[provider]) {
-            delete user.additionalProvidersData[provider];
-
-            // Then tell mongoose that we've updated the additionalProvidersData field
-            user.markModified('additionalProvidersData');
-        }
-
-        user.save(function(err) {
-            if (err) {
-                return res.send(400, {
-                    message: getErrorMessage(err)
-                });
-            } else {
-                req.login(user, function(err) {
-                    if (err) {
-                        res.send(400, err);
-                    } else {
-                        res.jsonp(user);
-                    }
-                });
-            }
-        });
-    }
->>>>>>> pr/21
 };

@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('<%= slugifiedModuleName %>').factory('<%= classifiedName %>', [
-<<<<<<< HEAD
 	function() {
 		// <%= humanizedName %> service logic
 		// ...
@@ -13,18 +12,4 @@ angular.module('<%= slugifiedModuleName %>').factory('<%= classifiedName %>', [
 			}
 		};
 	}
-=======
-
-    function() {
-        // <%= humanizedName %> service logic 
-        // ...
-
-        // Public API
-        return {
-            someMethod: function() {
-                return true;
-            }
-        };
-    }
->>>>>>> pr/21
 ]);

@@ -30,7 +30,6 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
             }
         });
 
-<<<<<<< HEAD
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
 			this.slugifiedModuleName = this._.slugify(this._.humanize(this.moduleName));
@@ -46,23 +45,6 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
 	renderServiceFile: function() {
 		this.template('_.client.service.js', 'public/modules/' + this.slugifiedModuleName + '/services/' + this.slugifiedName + '.client.service.js')
 	}
-=======
-        this.prompt(prompts, function(props) {
-            this.moduleName = props.moduleName;
-            this.slugifiedModuleName = this._.slugify(this._.humanize(this.moduleName));
-
-            this.slugifiedName = this._.slugify(this.name);
-            this.classifiedName = this._.classify(this.slugifiedName);
-            this.humanizedName = this._.humanize(this.slugifiedName);
-
-            done();
-        }.bind(this));
-    },
-
-    renderServiceFile: function() {
-        this.template('_.client.service.js', 'public/modules/' + this.slugifiedModuleName + '/services/' + this.slugifiedName + '.client.service.js')
-    }
->>>>>>> pr/21
 });
 
 module.exports = ServiceGenerator;
