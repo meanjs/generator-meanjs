@@ -38,7 +38,7 @@ var getErrorMessage = function(err) {
 exports.signup = function(req, res) {
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
-	
+
 	// Init Variables
 	var user = new User(req.body);
 	var message = null;
@@ -47,7 +47,7 @@ exports.signup = function(req, res) {
 	user.provider = 'local';
 	user.displayName = user.firstName + ' ' + user.lastName;
 
-	// Then save the user 
+	// Then save the user
 	user.save(function(err) {
 		if (err) {
 			return res.send(400, {

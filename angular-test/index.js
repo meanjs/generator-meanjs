@@ -44,7 +44,7 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 
 	renderTestFile: function() {
 		var controllerFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.client.controller.js';
-		
+
 		// If controller file exists we create a test for it otherwise we will first create a controller
 		if (!fs.existsSync(controllerFilePath)) {
 			this.template('_.client.controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.client.controller.js')
