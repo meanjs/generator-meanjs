@@ -4,7 +4,7 @@
 	// <%= humanizedControllerName %> Controller Spec
 	describe('<%= humanizedControllerName %> Controller Tests', function() {
 		// Initialize global variables
-		var <%= classifiedControllerName %> Controller,
+		var <%= classifiedControllerName %>Controller,
 			scope,
 			$httpBackend,
 			$stateParams,
@@ -45,7 +45,7 @@
 			$location = _$location_;
 
 			// Initialize the <%= humanizedControllerName %> controller.
-			<%= classifiedControllerName %> Controller = $controller('<%= classifiedControllerName %>Controller', {
+			<%= classifiedControllerName %>Controller = $controller('<%= classifiedControllerName %>Controller', {
 				$scope: scope
 			});
 		}));
