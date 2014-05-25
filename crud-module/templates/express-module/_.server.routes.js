@@ -8,11 +8,11 @@ module.exports = function(app) {
 	app.route('/<%= slugifiedPluralName %>')
 		.get(<%= camelizedPluralName %>.list)
 		.post(users.requiresLogin, <%= camelizedPluralName %>.create);
-	
+
 	app.route('/<%= slugifiedPluralName %>/:<%= camelizedSingularName %>Id')
 		.get(<%= camelizedPluralName %>.read)
 		.put(users.requiresLogin, <%= camelizedPluralName %>.hasAuthorization, <%= camelizedPluralName %>.update)
-	    .delete(users.requiresLogin, <%= camelizedPluralName %>.hasAuthorization, <%= camelizedPluralName %>.delete);
+		.delete(users.requiresLogin, <%= camelizedPluralName %>.hasAuthorization, <%= camelizedPluralName %>.delete);
 
 	// Finish by binding the <%= humanizedSingularName %> middleware
 	app.param('<%= camelizedSingularName %>Id', <%= camelizedPluralName %>.<%= camelizedSingularName %>ByID);

@@ -59,7 +59,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.slugifiedAppName = this._.slugify(this.appName);
 			this.humanizedAppName = this._.humanize(this.appName);
 			this.capitalizedAppAuthor = this._.capitalize(this.appAuthor);
-			
+
 			done();
 		}.bind(this));
 	},
@@ -123,6 +123,8 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 		// Copy public folder content
 		this.copy('public/application.js');
+		this.copy('public/humans.txt');
+		this.copy('public/robots.txt');
 
 		// Copy public folder modules
 		this.directory('public/modules/users');
@@ -175,7 +177,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.copy('app/tests/article.server.model.test.js');
 
 			// Copy AngularJS files
-		 	this.directory('public/modules/articles'); 
+			this.directory('public/modules/articles');
 		}
 	},
 

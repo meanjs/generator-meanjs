@@ -60,9 +60,9 @@ exports.read = function(req, res) {
  * Update a <%= humanizedSingularName %>
  */
 exports.update = function(req, res) {
-	var <%= camelizedSingularName %> = req.<%= camelizedSingularName %>;
+	var <%= camelizedSingularName %> = req.<%= camelizedSingularName %> ;
 
-	<%= camelizedSingularName %> = _.extend(<%= camelizedSingularName %>, req.body);
+	<%= camelizedSingularName %> = _.extend(<%= camelizedSingularName %> , req.body);
 
 	<%= camelizedSingularName %>.save(function(err) {
 		if (err) {
@@ -79,7 +79,7 @@ exports.update = function(req, res) {
  * Delete an <%= humanizedSingularName %>
  */
 exports.delete = function(req, res) {
-	var <%= camelizedSingularName %> = req.<%= camelizedSingularName %>;
+	var <%= camelizedSingularName %> = req.<%= camelizedSingularName %> ;
 
 	<%= camelizedSingularName %>.remove(function(err) {
 		if (err) {
@@ -95,8 +95,7 @@ exports.delete = function(req, res) {
 /**
  * List of <%= humanizedPluralName %>
  */
-exports.list = function(req, res) {
-	<%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
+exports.list = function(req, res) { <%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
 		if (err) {
 			return res.send(400, {
 				message: getErrorMessage(err)
@@ -110,11 +109,10 @@ exports.list = function(req, res) {
 /**
  * <%= humanizedSingularName %> middleware
  */
-exports.<%= camelizedSingularName %>ByID = function(req, res, next, id) {
-	<%= classifiedSingularName %>.findById(id).populate('user', 'displayName').exec(function(err, <%= camelizedSingularName %>) {
+exports.<%= camelizedSingularName %>ByID = function(req, res, next, id) { <%= classifiedSingularName %>.findById(id).populate('user', 'displayName').exec(function(err, <%= camelizedSingularName %>) {
 		if (err) return next(err);
-		if (!<%= camelizedSingularName %>) return next(new Error('Failed to load <%= humanizedSingularName %> ' + id));
-		req.<%= camelizedSingularName %> = <%= camelizedSingularName %>;
+		if (! <%= camelizedSingularName %>) return next(new Error('Failed to load <%= humanizedSingularName %> ' + id));
+		req.<%= camelizedSingularName %> = <%= camelizedSingularName %> ;
 		next();
 	});
 };

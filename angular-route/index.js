@@ -6,10 +6,10 @@ var util = require('util'),
 
 var ViewGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
-        var modulesFolder = process.cwd() + '/public/modules/';
+		var modulesFolder = process.cwd() + '/public/modules/';
 		var done = this.async();
 
-        var prompts = [{
+		var prompts = [{
 			type: 'list',
 			name: 'moduleName',
 			default: 'core',
@@ -18,16 +18,16 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 		}];
 
 		// Add module choices
-        fs.readdirSync(modulesFolder).forEach(function(folder) {
-            var stat = fs.statSync(modulesFolder + '/' + folder);
+		fs.readdirSync(modulesFolder).forEach(function(folder) {
+			var stat = fs.statSync(modulesFolder + '/' + folder);
 
-            if (stat.isDirectory()) {
-                prompts[0].choices.push({
-                	value: folder,
-                	name: folder
-                });
-            }
-        });
+			if (stat.isDirectory()) {
+				prompts[0].choices.push({
+					value: folder,
+					name: folder
+				});
+			}
+		});
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
@@ -67,20 +67,20 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 			this.controllerName = props.controllerName;
 
 			this.slugifiedRoutePath = this._.slugify(this.routePath);
-			
+
 			this.slugifiedViewName = this._.slugify(this.viewName);
 			this.humanizedViewName = this._.humanize(this.viewName);
 
 			this.slugifiedControllerName = this._.slugify(this._.humanize(this.controllerName));
 			this.classifiedControllerName = this._.classify(this.slugifiedControllerName);
 			this.humanizedControllerName = this._.humanize(this.slugifiedControllerName);
-			
+
 			done();
 		}.bind(this));
 	},
 
 	renderRoute: function() {
-		var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName +  '.client.routes.js';
+		var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js';
 
 		// If routes file exists we add a new state otherwise we render a new one
 		if (fs.existsSync(routesFilePath)) {

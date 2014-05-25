@@ -1,6 +1,6 @@
 <section data-ng-controller="<%= classifiedPluralName %>Controller" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1>{{<%= camelizedSingularName %>.name}}</h1>
+		<h1 data-ng-bind="<%= camelizedSingularName %>.name"></h1>
 	</div>
 	<div class="pull-right" data-ng-show="authentication.user._id == <%= camelizedSingularName %>.user._id">
 		<a class="btn btn-primary" href="/#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}/edit">
@@ -11,6 +11,11 @@
 		</a>
 	</div>
 	<small>
-		<em class="text-muted">Posted on {{<%= camelizedSingularName %>.created | date:'mediumDate'}} by {{<%= camelizedSingularName %>.user.displayName}}</em>
+		<em class="text-muted">
+			Posted on
+			<span data-ng-bind="<%= camelizedSingularName %>.created | date:'mediumDate'"></span>
+			by
+			<span data-ng-bind="<%= camelizedSingularName %>.user.displayName"></span>
+		</em>
 	</small>
 </section>
