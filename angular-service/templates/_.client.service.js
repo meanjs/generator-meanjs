@@ -2,7 +2,7 @@
 
 angular.module('<%= slugifiedModuleName %>').factory('<%= classifiedName %>', [
 	function() {
-		// <%= humanizedName %> service logic 
+		// <%= humanizedName %> service logic
 		// ...
 
 		// Public API

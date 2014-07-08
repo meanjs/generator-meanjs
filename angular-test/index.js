@@ -10,7 +10,7 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 		var modulesFolder = process.cwd() + '/public/modules/';
 		var done = this.async();
 
-        var prompts = [{
+		var prompts = [{
 			type: 'list',
 			name: 'moduleName',
 			default: 'core',
@@ -19,16 +19,16 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 		}];
 
 		// Add module choices
-        fs.readdirSync(modulesFolder).forEach(function(folder) {
-            var stat = fs.statSync(modulesFolder + '/' + folder);
+		fs.readdirSync(modulesFolder).forEach(function(folder) {
+			var stat = fs.statSync(modulesFolder + '/' + folder);
 
-            if (stat.isDirectory()) {
-                prompts[0].choices.push({
-                	value: folder,
-                	name: folder
-                });
-            }
-        });
+			if (stat.isDirectory()) {
+				prompts[0].choices.push({
+					value: folder,
+					name: folder
+				});
+			}
+		});
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
@@ -44,7 +44,12 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 
 	renderTestFile: function() {
 		var controllerFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.client.controller.js';
-		
+
+		// If controller file exists we create a test for it otherwise we will first create a controller
+		if (!fs.existsSync(controllerFilePath)) {
+			this.template('_.client.controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.client.controller.js')
+		}
+
 		// If controller file exists we create a test for it otherwise we will first create a controller
 		if (!fs.existsSync(controllerFilePath)) {
 			this.template('_.client.controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.client.controller.js')

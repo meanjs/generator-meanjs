@@ -10,11 +10,11 @@ module.exports = {
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
-				'public/lib/angular-resource/angular-resource.min.js', <% if (angularCookies) { %>
-				'public/lib/angular-cookies/angular-cookies.min.js',  <% } if (angularAnimate) { %>
-				'public/lib/angular-animate/angular-animate.min.js', <% } if (angularTouch) { %>
-				'public/lib/angular-touch/angular-touch.min.js', <% } if (angularSanitize) { %>
-				'public/lib/angular-sanitize/angular-sanitize.min.js', <% } %>
+				'public/lib/angular-resource/angular-resource.js', <% if (angularCookies) { %>
+				'public/lib/angular-cookies/angular-cookies.js', <% } if (angularAnimate) { %>
+				'public/lib/angular-animate/angular-animate.js', <% } if (angularTouch) { %>
+				'public/lib/angular-touch/angular-touch.js', <% } if (angularSanitize) { %>
+				'public/lib/angular-sanitize/angular-sanitize.js', <% } %>
 				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
 				'public/lib/angular-ui-utils/ui-utils.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js'
@@ -26,21 +26,21 @@ module.exports = {
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
 		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
-		callbackPath: '/auth/facebook/callback'
+		callbackURL: 'http://localhost:3000/auth/facebook/callback'
 	},
 	twitter: {
 		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
 		clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
-		callbackPath: '/auth/twitter/callback'
+		callbackURL: 'http://localhost:3000/auth/twitter/callback'
 	},
 	google: {
 		clientID: process.env.GOOGLE_ID || 'APP_ID',
 		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
-		callbackPath: '/auth/google/callback'
+		callbackURL: 'http://localhost:3000/auth/google/callback'
 	},
 	linkedin: {
 		clientID: process.env.LINKEDIN_ID || 'APP_ID',
 		clientSecret: process.env.LINKEDIN_SECRET || 'APP_SECRET',
-		callbackPath: '/auth/linkedin/callback'
+		callbackURL: 'http://localhost:3000/auth/linkedin/callback'
 	}
 };
