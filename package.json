@@ -29,17 +29,17 @@
     "angular"
   ],
   "dependencies": {
-    "yeoman-generator": "~0.16.0",
+    "yeoman-generator": "^0.16.0",
     "chalk": "~0.4.0",
     "underscore.inflections": "~0.2.1"
   },
   "devDependencies": {
-    "mocha": "*",
-    "temp": "^0.8.0",
+    "assert": "^1.1.1",
     "async": "~0.2.9",
-    "path": "^0.4.9",
     "fs-extra": "~0.8.1",
-    "assert": "^1.1.1"
+    "mocha": "*",
+    "path": "^0.4.9",
+    "temp": "^0.8.0"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
