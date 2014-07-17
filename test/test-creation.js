@@ -115,7 +115,6 @@ describe('meanjs generator without sample app', function() {
 
         assert.file(expected);
     });
-
 });
 
 describe('meanjs generator with sample app', function() {
@@ -213,6 +212,111 @@ describe('meanjs generator with sample app', function() {
         ];
 
         assert.file(expected);
+    });
+});
+
+describe('express sub-generator tests', function(){
+    after(function(){
+        temp.cleanup();
+    });
+
+    /**
+     * express-controller tests
+     */
+    describe('express-controller', function(){
+
+        /**
+         * Generate an express controller through the sub-generator
+         */
+        beforeEach(function(done){
+            runGenerator('express-controller',
+                'foo',
+                this,
+                '', done);
+        });
+
+        it('should generate an express controller file', function(){
+            assert.file('app/controllers/foo.server.controller.js');
+        });
+    });
+
+    /**
+     * express-model tests
+     */
+    describe('express-model', function(){
+
+        /**
+         * Generate an express controller through the sub-generator
+         */
+        beforeEach(function(done){
+            runGenerator('express-model',
+                'foo',
+                this,
+                '', done);
+        });
+
+        it('should generate an express model and an associated test file', function(){
+            assert.file('app/models/foo.server.model.js');
+            assert.file('app/tests/foo.server.model.test.js');
+        });
+    });
+
+    /**
+     * express-route tests
+     */
+    describe('express-route', function(){
+
+        /**
+         * Generate an express route through the sub-generator
+         */
+        beforeEach(function(done){
+            runGenerator('express-route',
+                'foo',
+                this,
+                '', done);
+        });
+
+        it('should generate an express route file', function(){
+            assert.file('app/routes/foo.server.routes.js');
+        });
+    });
+
+    /**
+     * express-test tests
+     */
+    describe('express-test', function(){
+
+
+        /**
+         * Generate an express test through the sub-generator
+         */
+        it('should generate only the test file as a model already exists', function(){
+
+            runGenerator('express-model',
+                'foo',
+                this,
+                '', function(){
+                    assert.file('app/models/foo.server.model.js');
+                    runGenerator('express-test',
+                        'foo',
+                        this,
+                        '', function(){
+                        assert.file('app/tests/foo.server.model.test.js');
+                        });
+                    });
+
+        it('should generate test and model file', function(){
+            runGenerator('express-test',
+                        'foo',
+                        this,
+                        '', function(){
+                        assert.file('app/models/foo.server.model.js');
+                        assert.file('app/tests/foo.server.model.test.js');
+                        });
+            });
+
+        });
+
     });
 });
 

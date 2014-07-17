@@ -1,9 +1,9 @@
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
-[![Build Status] (https://travis-ci.org/keshavos/generator-meanjs.svg?branch=master)] (https://travis-ci.org/keshavos/generator-meanjs)
+[![Build Status](https://travis-ci.org/keshavos/generator-meanjs.svg?branch=master)](https://travis-ci.org/keshavos/generator-meanjs)
 
-MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components. 
-## Overview		
+MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
+## Overview
 
 One of the most frequently asked features from MEAN users is a way to scaffold their applications. As we looked for a way to help the community build and deploy production level MEAN applications, we decided to go with a [Yeoman](http://yeoman.io/index.html) generator. Yeoman generators provides a powerful, easy to maintain, and open solution for scaffolding applications.
 
@@ -134,7 +134,7 @@ $ yo meanjs:angular-controller <controller-name>
 The sub-generator will ask you for the module name under which you would like to create your new controller, and will create a new AngularJS controller file in that module **controllers** folder and a test file in the **tests** folder.
 
 
-**Don’t forget!** This time you pass the controller name as an argument. 
+**Don’t forget!** This time you pass the controller name as an argument.
 
 
 
@@ -215,7 +215,7 @@ $ yo meanjs:angular-test <controller-name>
 This will create a test file for your controller, and if the sub-generator doesn’t find the specified controller file, it will create one for you.
 
 
-**Don’t forget!** You're suppose to pass the controller name as an argument. 
+**Don’t forget!** You're suppose to pass the controller name as an argument.
 
 
 
@@ -272,7 +272,7 @@ $ yo meanjs:express-test <model-name>
 This will create a test file for your Express model, and if the sub-generator doesn’t find the specified model, it will create one for you.
 
 
-**Don’t forget!** You're suppose to pass the model name as an argument. 
+**Don’t forget!** You're suppose to pass the model name as an argument.
 
 ## License
 
