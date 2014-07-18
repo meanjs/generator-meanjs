@@ -19,16 +19,19 @@ var DirectiveGenerator = yeoman.generators.NamedBase.extend({
 		}];
 
 		// Add module choices
-		fs.readdirSync(modulesFolder).forEach(function(folder) {
-			var stat = fs.statSync(modulesFolder + '/' + folder);
+        if (fs.existsSync(modulesFolder)) {
 
-			if (stat.isDirectory()) {
-				prompts[0].choices.push({
-					value: folder,
-					name: folder
-				});
-			}
-		});
+            fs.readdirSync(modulesFolder).forEach(function(folder) {
+                var stat = fs.statSync(modulesFolder + '/' + folder);
+
+                if (stat.isDirectory()) {
+                    prompts[0].choices.push({
+                        value: folder,
+                        name: folder
+                    });
+                }
+            });
+        }
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
