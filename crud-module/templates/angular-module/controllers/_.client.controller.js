@@ -15,12 +15,12 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 			// Redirect after save
 			<%= camelizedSingularName %>.$save(function(response) {
 				$location.path('<%= slugifiedPluralName %>/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-
-			// Clear form fields
-			this.name = '';
 		};
 
 		// Remove existing <%= humanizedSingularName %>

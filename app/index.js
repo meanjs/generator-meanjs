@@ -112,6 +112,8 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		// Copy base files
 		this.copy('app/controllers/core.server.controller.js');
 		this.copy('app/controllers/users.server.controller.js');
+		this.copy('app/controllers/errors.server.controller.js');
+		this.directory('app/controllers/users');
 		this.copy('app/models/user.server.model.js');
 		this.copy('app/routes/core.server.routes.js');
 		this.copy('app/routes/users.server.routes.js');
@@ -155,12 +157,15 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('gruntfile.js');
 		this.copy('server.js');
 		this.copy('Procfile');
+		this.copy('fig.yml');
+		this.copy('Dockerfile');
 		this.copy('README.md');
 		this.copy('LICENSE.md');
 
 		// Copy project hidden files
 		this.copy('bowerrc', '.bowerrc');
 		this.copy('csslintrc', '.csslintrc');
+		this.copy('editorconfig', '.editorconfig');
 		this.copy('jshintrc', '.jshintrc');
 		this.copy('gitignore', '.gitignore');
 		this.copy('slugignore', '.slugignore');

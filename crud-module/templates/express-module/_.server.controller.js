@@ -4,32 +4,9 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+	errorHandler = require('./errors'),
 	<%= classifiedSingularName %> = mongoose.model('<%= classifiedSingularName %>'),
 	_ = require('lodash');
-
-/**
- * Get the error message from error object
- */
-var getErrorMessage = function(err) {
-	var message = '';
-
-	if (err.code) {
-		switch (err.code) {
-			case 11000:
-			case 11001:
-				message = '<%= humanizedSingularName %> already exists';
-				break;
-			default:
-				message = 'Something went wrong';
-		}
-	} else {
-		for (var errName in err.errors) {
-			if (err.errors[errName].message) message = err.errors[errName].message;
-		}
-	}
-
-	return message;
-};
 
 /**
  * Create a <%= humanizedSingularName %>
@@ -40,8 +17,8 @@ exports.create = function(req, res) {
 
 	<%= camelizedSingularName %>.save(function(err) {
 		if (err) {
-			return res.send(400, {
-				message: getErrorMessage(err)
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
 			res.jsonp(<%= camelizedSingularName %>);
@@ -66,8 +43,8 @@ exports.update = function(req, res) {
 
 	<%= camelizedSingularName %>.save(function(err) {
 		if (err) {
-			return res.send(400, {
-				message: getErrorMessage(err)
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
 			res.jsonp(<%= camelizedSingularName %>);
@@ -83,8 +60,8 @@ exports.delete = function(req, res) {
 
 	<%= camelizedSingularName %>.remove(function(err) {
 		if (err) {
-			return res.send(400, {
-				message: getErrorMessage(err)
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
 			res.jsonp(<%= camelizedSingularName %>);
@@ -97,8 +74,8 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) { <%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
 		if (err) {
-			return res.send(400, {
-				message: getErrorMessage(err)
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
 			res.jsonp(<%= camelizedPluralName %>);
@@ -122,7 +99,7 @@ exports.<%= camelizedSingularName %>ByID = function(req, res, next, id) { <%= cl
  */
 exports.hasAuthorization = function(req, res, next) {
 	if (req.<%= camelizedSingularName %>.user.id !== req.user.id) {
-		return res.send(403, 'User is not authorized');
+		return res.status(403).send('User is not authorized');
 	}
 	next();
 };

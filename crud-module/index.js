@@ -70,7 +70,7 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 
 			var prompts = [{
 				name: 'menuId',
-				message: 'What is your menu identifier?',
+				message: 'What is your menu identifier(Leave it empty and press ENTER for the default "topbar" menu)?',
 				default: 'topbar'
 			}];
 
