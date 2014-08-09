@@ -7,14 +7,31 @@ module.exports = function(grunt) {
 		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
 		clientViews: ['public/modules/**/views/**/*.html'],
 		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
-		clientCSS: ['public/modules/**/*.css'],
+		clientCSS: ['public/modules/**/*.css', 'public/lib/bootstrap/dist/sasstocss/bootstrap.css'],
 		mochaTests: ['app/tests/**/*.js']
 	};
 
 	// Project Configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+        compass: {
+            dist: {
+                options: {
+                    sassDir: 'sass/bootstrap/stylesheets',
+                    cssDir: 'public/lib/bootstrap/dist/sasstocss',
+                    outputStyle: 'compressed',
+                    watch: false
+                }
+            }
+        },
 		watch: {
+            sassFiles: {
+                files: 'sass/bootstrap/stylesheets/**/**/*.scss',
+                tasks: ['compass', 'cssmin'],
+                options: {
+                    livereload: true
+                }
+            },
 			serverViews: {
 				files: watchFiles.serverViews,
 				options: {
@@ -43,7 +60,7 @@ module.exports = function(grunt) {
 			},
 			clientCSS: {
 				files: watchFiles.clientCSS,
-				tasks: ['csslint'],
+				tasks: ['csslint', 'cssmin'],
 				options: {
 					livereload: true
 				}
@@ -113,8 +130,8 @@ module.exports = function(grunt) {
             }
         },
 		concurrent: {
-			default: ['nodemon', 'watch'],
-			debug: ['nodemon', 'watch', 'node-inspector'],
+			default: ['nodemon', 'watch', 'compass'],
+			debug: ['nodemon', 'watch', 'node-inspector', 'compass'],
 			options: {
 				logConcurrentOutput: true
 			}
@@ -162,8 +179,10 @@ module.exports = function(grunt) {
 	// Lint task(s).
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
+    grunt.registerTask('compass-watch', ['compass']);
+
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngmin', 'uglify', 'cssmin', 'compass']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

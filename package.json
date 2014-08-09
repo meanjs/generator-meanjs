@@ -1,13 +1,11 @@
 {
-	"name": "generator-meanjs",
-	"version": "0.1.9",
+	"name": "generator-my-meanjs",
+	"version": "0.0.1",
 	"description": "MEAN.JS Official Yeoman Generator",
 	"main": "app/index.js",
-	"repository": "meanjs/generator-meanjs",
 	"author": {
-		"name": "MEAN.JS Team",
-		"email": "support@meanjs.org",
-		"url": "https://github.com/meanjs"
+		"name": "Antoine lUCAS",
+		"email": "cooluhuru@gmail.com"
 	},
 	"engines": {
 		"node": ">=0.10.0"
@@ -29,7 +27,7 @@
 		"angular"
 	],
 	"dependencies": {
-		"yeoman-generator": "~0.17.1",
+		"yeoman-generator": "~0.17.2",
 		"chalk": "~0.5.1",
 		"underscore.inflections": "~0.2.1"
 	},
@@ -38,7 +36,8 @@
 		"async": "~0.9.0",
 		"fs-extra": "~0.10.0",
 		"mocha": "~1.21.3",
-		"temp": "~0.8.0"
+		"temp": "~0.8.0",
+        "grunt-contrib-compass": "latest"
 	},
 	"peerDependencies": {
 		"yo": ">=1.0.0"

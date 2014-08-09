@@ -2,13 +2,17 @@
 var util = require('util'),
 	path = require('path'),
 	yeoman = require('yeoman-generator'),
-	chalk = require('chalk');
+	chalk = require('chalk'),
+    exec = require('child_process').exec,
+    child;
 
 
 var MeanGenerator = yeoman.generators.Base.extend({
 	init: function() {
 		// read the local package file
 		this.pkg = yeoman.file.readJSON(path.join(__dirname, '../package.json'));
+
+
 
 		// invoke npm install on finish
 		this.on('end', function() {
@@ -22,6 +26,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 		// replace it with a short and sweet description of your generator
 		console.log(chalk.magenta('You\'re using the official MEAN.JS generator.'));
+
 	},
 
 	askForApplicationDetails: function() {
@@ -204,7 +209,29 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	renderApplicationDependenciesFiles: function() {
 		this.template('_package.json', 'package.json');
 		this.template('_bower.json', 'bower.json');
-	}
+        this.bowerInstall('','',function(){
+            var child2 = exec('wget https://github.com/twbs/bootstrap-sass/archive/v3.2.0.tar.gz && tar -xvf v3.2.0.tar.gz && mkdir sass && mkdir public/lib/bootstrap/dist/sassstocss && cp -Rf  bootstrap-sass-3.2.0/assets  sass/bootstrap', function(error, stdout, stderr){
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                }
+                var child3 = exec('rm -Rf bootstrap-sass-3.2.0 && rm v3.2.0.tar.gz', function(error, stdout, stderr){
+                    console.log('stdout: ' + stdout);
+                    console.log('stderr: ' + stderr);
+                    if (error !== null) {
+                        console.log('exec error: ' + error);
+                    }
+
+                });
+            });
+        });
+
+
+
+	},
+
+
 });
 
 module.exports = MeanGenerator;
