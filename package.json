@@ -31,7 +31,8 @@
     "dependencies": {
         "yeoman-generator": "~0.17.1",
         "chalk": "~0.5.1",
-        "underscore.inflections": "~0.2.1"
+        "underscore.inflections": "~0.2.1",
+        "generator-mocha" : "latest",
     },
     "devDependencies": {
         "assert": "~1.1.1",
