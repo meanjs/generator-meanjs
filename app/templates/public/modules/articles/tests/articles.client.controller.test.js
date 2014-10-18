@@ -71,7 +71,7 @@
 			expect(scope.articles).toEqualData(sampleArticles);
 		}));
 
-		it('$scope.findOne() should create an array with one article object fetched from XHR using a articleId URL parameter', inject(function(Articles) {
+		it('$scope.findOne() should create an array with one article object fetched from XHR using an articleId URL parameter', inject(function(Articles) {
 			// Define a sample article object
 			var sampleArticle = new Articles({
 				title: 'An Article about MEAN',

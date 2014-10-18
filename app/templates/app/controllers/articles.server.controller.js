@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 	_ = require('lodash');
 
 /**
- * Create a article
+ * Create an article
  */
 exports.create = function(req, res) {
 	var article = new Article(req.body);
@@ -34,7 +34,7 @@ exports.read = function(req, res) {
 };
 
 /**
- * Update a article
+ * Update an article
  */
 exports.update = function(req, res) {
 	var article = req.article;
