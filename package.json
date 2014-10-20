@@ -3,7 +3,7 @@
     "version": "0.1.9",
     "description": "SCSS generator",
     "main": "app/index.js",
-    "repository": "meanjs/generator-meanjs",
+    "repository": "meanjs/generator-meanjs-scss",
     "author": {
         "name": "MEAN.JS Team",
         "email": "support@meanjs.org",
@@ -32,7 +32,7 @@
         "yeoman-generator": "~0.17.1",
         "chalk": "~0.5.1",
         "underscore.inflections": "~0.2.1",
-        "generator-mocha" : "latest",
+        "generator-mocha" : "latest"
     },
     "devDependencies": {
         "assert": "~1.1.1",
