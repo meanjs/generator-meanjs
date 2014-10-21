@@ -8,6 +8,7 @@ module.exports = function(grunt) {
 		clientViews: ['public/modules/**/views/**/*.html'],
 		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
 		clientCSS: ['public/modules/**/*.css'],
+        clientSCSS: ['public/modules/**/*.scss'],
 		mochaTests: ['app/tests/**/*.js']
 	};
 
@@ -47,8 +48,27 @@ module.exports = function(grunt) {
 				options: {
 					livereload: true
 				}
-			}
+			},
+            compassSCSS: {
+                files: watchFiles.clientSCSS,
+                tasks: ['compass:dev'],
+                options: {
+                    livereload: true
+                }
+            }
 		},
+        compass: {
+            dev: {
+                options: {
+                    sassPath: '.',
+                    cssPath: '.',
+                    outputStyle : 'nested',
+                    relativeAssets : false,
+                    httpPath: '/',
+                    generatedImagesPath: '/public/images'
+                }
+            }
+        },
 		jshint: {
 			all: {
 				src: watchFiles.clientJS.concat(watchFiles.serverJS),
