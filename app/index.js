@@ -146,6 +146,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.mkdir('config/env');
 
 		// Copy config folder content
+		this.directory('config/sslcert')
 		this.directory('config/strategies')
 		this.copy('config/config.js');
 		this.copy('config/init.js');
@@ -191,6 +192,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.template('config/env/_development.js', 'config/env/development.js');
 		this.template('config/env/_production.js', 'config/env/production.js');
 		this.template('config/env/_test.js', 'config/env/test.js');
+		this.template('config/env/_secure.js', 'config/env/secure.js');
 	},
 
 	renderAngularApplicationConfigFile: function() {
