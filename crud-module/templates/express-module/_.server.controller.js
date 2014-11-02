@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	errorHandler = require('./errors'),
+	errorHandler = require('./errors.server.controller'),
 	<%= classifiedSingularName %> = mongoose.model('<%= classifiedSingularName %>'),
 	_ = require('lodash');
 
