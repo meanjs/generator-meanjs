@@ -1,7 +1,11 @@
 'use strict';
 
 module.exports = function(app) {
-	// Root routing
+	/**
+	 * Module dependencies.
+	 */
 	var core = require('../../app/controllers/core');
+
+	// Core Routes
 	app.route('/').get(core.index);
 };

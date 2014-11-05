@@ -43,6 +43,10 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			name: 'appAuthor',
 			message: 'What is your company/author name?'
 		}, {
+			name: 'html5Mode',
+			message: 'Enable HTML5 mode?',
+			default: false
+		}, {
 			type: 'confirm',
 			name: 'addArticleExample',
 			message: 'Would you like to generate the article example CRUD module?',
@@ -54,6 +58,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appDescription = props.appDescription;
 			this.appKeywords = props.appKeywords;
 			this.appAuthor = props.appAuthor;
+			this.html5Mode = props.html5Mode;
 			this.addArticleExample = props.addArticleExample;
 
 			this.slugifiedAppName = this._.slugify(this.appName);
