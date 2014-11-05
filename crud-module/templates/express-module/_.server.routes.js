@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = function(app) {
-	var users = require('../../app/controllers/users');
-	var <%= camelizedPluralName %> = require('../../app/controllers/<%= slugifiedPluralName %>');
+	var users = require('../../app/controllers/users.server.controller');
+	var <%= camelizedPluralName %> = require('../../app/controllers/<%= slugifiedPluralName %>.server.controller');
 
 	// <%= humanizedPluralName %> Routes
 	app.route('/<%= slugifiedPluralName %>')
