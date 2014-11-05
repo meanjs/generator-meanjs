@@ -1,6 +1,6 @@
 {
 	"name": "generator-meanjs",
-	"version": "0.1.11",
+	"version": "0.1.12",
 	"description": "MEAN.JS Official Yeoman Generator",
 	"main": "app/index.js",
 	"repository": "meanjs/generator-meanjs",
