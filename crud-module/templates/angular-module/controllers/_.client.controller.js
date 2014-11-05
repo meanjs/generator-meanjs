@@ -2,7 +2,7 @@
 
 // <%= humanizedPluralName %> controller
 angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$stateParams', '$location', 'Authentication', '<%= classifiedPluralName %>',
-	function($scope, $stateParams, $location, Authentication, <%= classifiedPluralName %> ) {
+	function($scope, $stateParams, $location, Authentication, <%= classifiedPluralName %>) {
 		$scope.authentication = Authentication;
 
 		// Create new <%= humanizedSingularName %>
@@ -24,11 +24,12 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 		};
 
 		// Remove existing <%= humanizedSingularName %>
-		$scope.remove = function( <%= camelizedSingularName %> ) {
-			if ( <%= camelizedSingularName %> ) { <%= camelizedSingularName %>.$remove();
+		$scope.remove = function(<%= camelizedSingularName %>) {
+			if ( <%= camelizedSingularName %> ) { 
+				<%= camelizedSingularName %>.$remove();
 
-				for (var i in $scope.<%= camelizedPluralName %> ) {
-					if ($scope.<%= camelizedPluralName %> [i] === <%= camelizedSingularName %> ) {
+				for (var i in $scope.<%= camelizedPluralName %>) {
+					if ($scope.<%= camelizedPluralName %> [i] === <%= camelizedSingularName %>) {
 						$scope.<%= camelizedPluralName %>.splice(i, 1);
 					}
 				}
@@ -41,7 +42,7 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 
 		// Update existing <%= humanizedSingularName %>
 		$scope.update = function() {
-			var <%= camelizedSingularName %> = $scope.<%= camelizedSingularName %> ;
+			var <%= camelizedSingularName %> = $scope.<%= camelizedSingularName %>;
 
 			<%= camelizedSingularName %>.$update(function() {
 				$location.path('<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>._id);
