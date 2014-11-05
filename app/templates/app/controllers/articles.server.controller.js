@@ -4,12 +4,12 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	errorHandler = require('./errors'),
+	errorHandler = require('./errors.server.controller'),
 	Article = mongoose.model('Article'),
 	_ = require('lodash');
 
 /**
- * Create an article
+ * Create a article
  */
 exports.create = function(req, res) {
 	var article = new Article(req.body);
@@ -21,7 +21,7 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(article);
+			res.json(article);
 		}
 	});
 };
@@ -30,11 +30,11 @@ exports.create = function(req, res) {
  * Show the current article
  */
 exports.read = function(req, res) {
-	res.jsonp(req.article);
+	res.json(req.article);
 };
 
 /**
- * Update an article
+ * Update a article
  */
 exports.update = function(req, res) {
 	var article = req.article;
@@ -47,7 +47,7 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(article);
+			res.json(article);
 		}
 	});
 };
@@ -64,7 +64,7 @@ exports.delete = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(article);
+			res.json(article);
 		}
 	});
 };
@@ -79,7 +79,7 @@ exports.list = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(articles);
+			res.json(articles);
 		}
 	});
 };
