@@ -78,7 +78,7 @@ describe('meanjs generator', function() {
 		"public/modules/core/config/core.client.routes.js",
 		"public/modules/core/controllers/header.client.controller.js",
 		"public/modules/core/controllers/home.client.controller.js",
-		"public/modules/core/css/core.css",
+		"public/modules/core/css/core.scss",
 		"public/modules/core/img/brand/favicon.ico",
 		"public/modules/core/img/brand/logo.png",
 		"public/modules/core/img/loaders/loader.gif",
@@ -104,6 +104,8 @@ describe('meanjs generator', function() {
 		"package.json",
 		"bower.json"
 	];
+
+    var expectedCompassFile = "public/modules/core/css/core.css";
 
 	var expectedArticlesFiles = [
 		// Should create controllers
@@ -164,12 +166,31 @@ describe('meanjs generator', function() {
 					'addArticleExample': false
 				}, done
 			);
+
 		});
 
 		it('should create expected files when sample article module is not added ', function() {
 			assert.file(expectedProjectFiles);
 		});
-	});
+
+        it('should compile core.scss into core.css ', function() {
+            exec('grunt compass' ,
+                function (error, stdout, stderr) {
+                    assert(error, null);
+                    assert.file(expectedCompassFile);
+                    if (error !== null) {
+                        console.log('stdout: ' + stdout);
+                        console.log('stderr: ' + stderr);
+                        console.log('exec error: ' + error);
+                    }
+                });
+
+
+        });
+
+
+
+    });
 
 	describe('Application generator with sample module', function() {
 		beforeEach(function(done) {
