@@ -1,25 +1,30 @@
 'use strict';
 
-//Setting up route
-angular.module('<%= slugifiedPluralName %>').config(['$stateProvider',
+// Setting up route
+angular.module('<%= camelizedPluralName %>').config(['$stateProvider',
 	function($stateProvider) {
-		// <%= humanizedPluralName %> state routing
+		// Articles state routing
 		$stateProvider.
-		state('list<%= classifiedPluralName %>', {
-			url: '/<%= slugifiedPluralName %>',
-			templateUrl: 'modules/<%= slugifiedPluralName %>/views/list-<%= slugifiedPluralName %>.client.view.html'
+		state('<%= camelizedPluralName %>', {
+			abstract: true,
+			url: '/<%= camelizedPluralName %>',
+			template: '<ui-view/>'
 		}).
-		state('create<%= classifiedSingularName %>', {
-			url: '/<%= slugifiedPluralName %>/create',
-			templateUrl: 'modules/<%= slugifiedPluralName %>/views/create-<%= slugifiedSingularName %>.client.view.html'
+		state('<%= camelizedPluralName %>.list', {
+			url: '',
+			templateUrl: 'modules/<%= camelizedPluralName %>/views/list-<%= camelizedPluralName %>.client.view.html'
 		}).
-		state('view<%= classifiedSingularName %>', {
-			url: '/<%= slugifiedPluralName %>/:<%= camelizedSingularName %>Id',
-			templateUrl: 'modules/<%= slugifiedPluralName %>/views/view-<%= slugifiedSingularName %>.client.view.html'
+		state('<%= camelizedPluralName %>.create', {
+			url: '/create',
+			templateUrl: 'modules/<%= camelizedPluralName %>/views/create-article.client.view.html'
 		}).
-		state('edit<%= classifiedSingularName %>', {
-			url: '/<%= slugifiedPluralName %>/:<%= camelizedSingularName %>Id/edit',
-			templateUrl: 'modules/<%= slugifiedPluralName %>/views/edit-<%= slugifiedSingularName %>.client.view.html'
+		state('<%= camelizedPluralName %>.view', {
+			url: '/:articleId',
+			templateUrl: 'modules/<%= camelizedPluralName %>/views/view-article.client.view.html'
+		}).
+		state('<%= camelizedPluralName %>.edit', {
+			url: '/:articleId/edit',
+			templateUrl: 'modules/<%= camelizedPluralName %>/views/edit-article.client.view.html'
 		});
 	}
 ]);

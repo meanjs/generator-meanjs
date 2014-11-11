@@ -1,11 +1,25 @@
 'use strict';
 
-// Configuring the Articles module
-angular.module('<%= slugifiedPluralName %>').run(['Menus',
+// Configuring the <%= humanizedSingularName %> module
+angular.module('<%= camelizedPluralName %>').run(['Menus',
 	function(Menus) {
-		// Set top bar menu items
-		Menus.addMenuItem('<%= menuId %>', '<%= humanizedPluralName %>', '<%= slugifiedPluralName %>', 'dropdown', '/<%= slugifiedPluralName %>(/create)?');
-		Menus.addSubMenuItem('<%= menuId %>', '<%= slugifiedPluralName %>', 'List <%= humanizedPluralName %>', '<%= slugifiedPluralName %>');
-		Menus.addSubMenuItem('<%= menuId %>', '<%= slugifiedPluralName %>', 'New <%= humanizedSingularName %>', '<%= slugifiedPluralName %>/create');
+		// Add the <%= camelizedPluralName %> dropdown item
+		Menus.addMenuItem('topbar', {
+			title: '<%= humanizedSingularName %>',
+			state: '<%= camelizedPluralName %>',
+			type: 'dropdown'
+		});
+
+		// Add the dropdown list item
+		Menus.addSubMenuItem('topbar', '<%= camelizedPluralName %>', {
+			title: 'List <%= humanizedSingularName %>',
+			state: '<%= camelizedPluralName %>.list'
+		});
+
+		// Add the dropdown create item
+		Menus.addSubMenuItem('topbar', '<%= camelizedPluralName %>', {
+			title: 'Create <%= humanizedSingularName %>',
+			state: '<%= camelizedPluralName %>.create'
+		});
 	}
 ]);

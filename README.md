@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/meanjs/generator-meanjs.svg?branch=master)](https://travis-ci.org/meanjs/generator-meanjs)
 [![Dependencies Status](https://david-dm.org/meanjs/generator-meanjs.svg)](https://david-dm.org/meanjs/generator-meanjs)
 
+#This branch is under heavy development, and is broken. 
+
 MEAN.JS is a full-stack JavaScript open-source solution, which provides a solid starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. The idea is to solve the common issues with connecting those frameworks, build a robust framework to support daily development needs, and help developers use better practices while working with popular JavaScript components.
 ## Overview
 
@@ -278,4 +280,3 @@ This will create a test file for your Express model, and if the sub-generator do
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
-
