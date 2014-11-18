@@ -2,21 +2,29 @@
 
 var should = require('should'),
 	request = require('supertest'),
-	app = require('../../server'),
+	path = require('path'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
 	<%= classifiedSingularName %> = mongoose.model('<%= classifiedSingularName %>'),
-	agent = request.agent(app);
+	express = require(path.resolve('./config/lib/express'));
 
 /**
  * Globals
  */
-var credentials, user, <%= camelizedSingularName %>;
+var app, agent, credentials, user, <%= camelizedSingularName %>;
 
 /**
  * <%= humanizedSingularName %> routes tests
  */
 describe('<%= humanizedSingularName %> CRUD tests', function() {
+	before(function(done) {
+		// Get application
+		app = express.init(mongoose);
+		agent = request.agent(app);
+
+		done();
+	});
+
 	beforeEach(function(done) {
 		// Create user credentials
 		credentials = {
@@ -46,7 +54,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 	});
 
 	it('should be able to save <%= humanizedSingularName %> instance if logged in', function(done) {
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -57,7 +65,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new <%= humanizedSingularName %>
-				agent.post('/<%= slugifiedPluralName %>')
+				agent.post('/api/<%= slugifiedPluralName %>')
 					.send(<%= camelizedSingularName %>)
 					.expect(200)
 					.end(function(<%= camelizedSingularName %>SaveErr, <%= camelizedSingularName %>SaveRes) {
@@ -65,7 +73,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 						if (<%= camelizedSingularName %>SaveErr) done(<%= camelizedSingularName %>SaveErr);
 
 						// Get a list of <%= humanizedPluralName %>
-						agent.get('/<%= slugifiedPluralName %>')
+						agent.get('/api/<%= slugifiedPluralName %>')
 							.end(function(<%= camelizedPluralName %>GetErr, <%= camelizedPluralName %>GetRes) {
 								// Handle <%= humanizedSingularName %> save error
 								if (<%= camelizedPluralName %>GetErr) done(<%= camelizedPluralName %>GetErr);
@@ -85,9 +93,9 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 	});
 
 	it('should not be able to save <%= humanizedSingularName %> instance if not logged in', function(done) {
-		agent.post('/<%= slugifiedPluralName %>')
+		agent.post('/api/<%= slugifiedPluralName %>')
 			.send(<%= camelizedSingularName %>)
-			.expect(401)
+			.expect(403)
 			.end(function(<%= camelizedSingularName %>SaveErr, <%= camelizedSingularName %>SaveRes) {
 				// Call the assertion callback
 				done(<%= camelizedSingularName %>SaveErr);
@@ -98,7 +106,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 		// Invalidate name field
 		<%= camelizedSingularName %>.name = '';
 
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -109,7 +117,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new <%= humanizedSingularName %>
-				agent.post('/<%= slugifiedPluralName %>')
+				agent.post('/api/<%= slugifiedPluralName %>')
 					.send(<%= camelizedSingularName %>)
 					.expect(400)
 					.end(function(<%= camelizedSingularName %>SaveErr, <%= camelizedSingularName %>SaveRes) {
@@ -123,7 +131,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 	});
 
 	it('should be able to update <%= humanizedSingularName %> instance if signed in', function(done) {
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -134,7 +142,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new <%= humanizedSingularName %>
-				agent.post('/<%= slugifiedPluralName %>')
+				agent.post('/api/<%= slugifiedPluralName %>')
 					.send(<%= camelizedSingularName %>)
 					.expect(200)
 					.end(function(<%= camelizedSingularName %>SaveErr, <%= camelizedSingularName %>SaveRes) {
@@ -145,7 +153,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 						<%= camelizedSingularName %>.name = 'WHY YOU GOTTA BE SO MEAN?';
 
 						// Update existing <%= humanizedSingularName %>
-						agent.put('/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>SaveRes.body._id)
+						agent.put('/api/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>SaveRes.body._id)
 							.send(<%= camelizedSingularName %>)
 							.expect(200)
 							.end(function(<%= camelizedSingularName %>UpdateErr, <%= camelizedSingularName %>UpdateRes) {
@@ -170,7 +178,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 		// Save the <%= humanizedSingularName %>
 		<%= camelizedSingularName %>Obj.save(function() {
 			// Request <%= humanizedPluralName %>
-			request(app).get('/<%= slugifiedPluralName %>')
+			request(app).get('/api/<%= slugifiedPluralName %>')
 				.end(function(req, res) {
 					// Set assertion
 					res.body.should.be.an.Array.with.lengthOf(1);
@@ -189,7 +197,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 
 		// Save the <%= humanizedSingularName %>
 		<%= camelizedSingularName %>Obj.save(function() {
-			request(app).get('/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>Obj._id)
+			request(app).get('/api/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>Obj._id)
 				.end(function(req, res) {
 					// Set assertion
 					res.body.should.be.an.Object.with.property('name', <%= camelizedSingularName %>.name);
@@ -201,7 +209,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 	});
 
 	it('should be able to delete <%= humanizedSingularName %> instance if signed in', function(done) {
-		agent.post('/auth/signin')
+		agent.post('/api/auth/signin')
 			.send(credentials)
 			.expect(200)
 			.end(function(signinErr, signinRes) {
@@ -212,7 +220,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 				var userId = user.id;
 
 				// Save a new <%= humanizedSingularName %>
-				agent.post('/<%= slugifiedPluralName %>')
+				agent.post('/api/<%= slugifiedPluralName %>')
 					.send(<%= camelizedSingularName %>)
 					.expect(200)
 					.end(function(<%= camelizedSingularName %>SaveErr, <%= camelizedSingularName %>SaveRes) {
@@ -220,7 +228,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 						if (<%= camelizedSingularName %>SaveErr) done(<%= camelizedSingularName %>SaveErr);
 
 						// Delete existing <%= humanizedSingularName %>
-						agent.delete('/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>SaveRes.body._id)
+						agent.delete('/api/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>SaveRes.body._id)
 							.send(<%= camelizedSingularName %>)
 							.expect(200)
 							.end(function(<%= camelizedSingularName %>DeleteErr, <%= camelizedSingularName %>DeleteRes) {
@@ -247,11 +255,11 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 		// Save the <%= humanizedSingularName %>
 		<%= camelizedSingularName %>Obj.save(function() {
 			// Try deleting <%= humanizedSingularName %>
-			request(app).delete('/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>Obj._id)
-			.expect(401)
+			request(app).delete('/api/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>Obj._id)
+			.expect(403)
 			.end(function(<%= camelizedSingularName %>DeleteErr, <%= camelizedSingularName %>DeleteRes) {
 				// Set message assertion
-				(<%= camelizedSingularName %>DeleteRes.body.message).should.match('User is not logged in');
+				(<%= camelizedSingularName %>DeleteRes.body.message).should.match('User is not authorized');
 
 				// Handle <%= humanizedSingularName %> error error
 				done(<%= camelizedSingularName %>DeleteErr);

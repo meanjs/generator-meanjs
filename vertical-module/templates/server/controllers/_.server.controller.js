@@ -3,10 +3,11 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	errorHandler = require('./errors.server.controller'),
+var _ = require('lodash'),
+	path = require('path'),
+	mongoose = require('mongoose'),
 	<%= classifiedSingularName %> = mongoose.model('<%= classifiedSingularName %>'),
-	_ = require('lodash');
+	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
  * Create a <%= humanizedSingularName %>
@@ -72,8 +73,7 @@ exports.delete = function(req, res) {
 /**
  * List of <%= humanizedPluralName %>
  */
-exports.list = function(req, res) { 
-	<%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
+exports.list = function(req, res) { <%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -87,21 +87,10 @@ exports.list = function(req, res) {
 /**
  * <%= humanizedSingularName %> middleware
  */
-exports.<%= camelizedSingularName %>ByID = function(req, res, next, id) { 
-	<%= classifiedSingularName %>.findById(id).populate('user', 'displayName').exec(function(err, <%= camelizedSingularName %>) {
+exports.<%= camelizedSingularName %>ByID = function(req, res, next, id) { <%= classifiedSingularName %>.findById(id).populate('user', 'displayName').exec(function(err, <%= camelizedSingularName %>) {
 		if (err) return next(err);
 		if (! <%= camelizedSingularName %>) return next(new Error('Failed to load <%= humanizedSingularName %> ' + id));
 		req.<%= camelizedSingularName %> = <%= camelizedSingularName %> ;
 		next();
 	});
-};
-
-/**
- * <%= humanizedSingularName %> authorization middleware
- */
-exports.hasAuthorization = function(req, res, next) {
-	if (req.<%= camelizedSingularName %>.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
-	}
-	next();
 };

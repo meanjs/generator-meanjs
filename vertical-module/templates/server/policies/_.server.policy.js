@@ -5,8 +5,6 @@
  */
 var acl = require('acl');
 
-//TODO: Resolve which type of backend user wants to use
-
 // Using the memory backend
 acl = new acl(new acl.memoryBackend());
 
@@ -43,9 +41,6 @@ exports.invokeRolesPolicies = function() {
 		}]
 	}]);
 };
-
-
-
 
 /**
  * Check If Articles Policy Allows
