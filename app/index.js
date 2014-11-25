@@ -182,10 +182,10 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.template('config/env/_secure.js', 'config/env/secure.js');
 	},
 
-    // TODO: right now a file is being copied in. it needs to be made into a template and then this needs to render it
-	/*renderCoreModuleFiles: function() {
-		this.template('modules/core/server/views/_header.client.view.html', 'public/modules/core/views/header.client.view.html');
-	},*/
+    renderCoreModuleFiles: function() {
+		this.template('modules/core/client/views/_header.client.view.html',   
+                      'modules/core/client/views/header.client.view.html');
+	},
 
 	renderApplicationDependenciesFiles: function() {
 		this.template('root-assets/_package.json', 'package.json');
