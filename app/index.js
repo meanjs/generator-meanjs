@@ -109,7 +109,9 @@ var MeanGenerator = yeoman.generators.Base.extend({
         this.mkdir('modules/core');
         this.directory('modules/core/server');
         this.mkdir(    'modules/core/client');
+        this.copy(     'modules/core/client/core.client.module.js');
         this.mkdir(    'modules/core/client/app');
+        this.template( 'modules/core/client/app/_config.js', 'modules/core/client/app/config.js');
         this.copy(     'modules/core/client/app/init.js');
         this.directory('modules/core/client/config');
         this.directory('modules/core/client/controllers');
@@ -125,20 +127,21 @@ var MeanGenerator = yeoman.generators.Base.extend({
         // Copy config folder
         this.mkdir('config');
         this.directory('config/lib');
-        this.directory('config/env');
         this.directory('config/assets');
         this.copy('config/config.js');
         
 		// Copy project files
-		this.copy('root-assets/karma.conf.js');
-		this.copy('root-assets/gruntfile.js');
-		this.copy('root-assets/server.js');
-		this.copy('root-assets/Procfile');
-		this.copy('root-assets/fig.yml');
-		this.copy('root-assets/Dockerfile');
-		this.copy('root-assets/generate-ssl-certs.sh');
-		this.copy('root-assets/README.md');
-		this.copy('root-assets/LICENSE.md');
+		this.copy('root-assets/karma.conf.js', 'karma.conf.js');
+		this.copy('root-assets/gruntfile.js', 'gruntfile.js');
+		this.copy('root-assets/gulpfile.js', 'gulpfile.js');
+		this.copy('root-assets/server.js', 'server.js');
+		this.copy('root-assets/Procfile', 'Procfile');
+		this.copy('root-assets/fig.yml', 'fig.yml');
+		this.copy('root-assets/Dockerfile', 'Dockerfile');
+		this.copy('root-assets/generate-ssl-certs.sh', 'generate-ssl-certs.sh');
+		this.copy('root-assets/README.md', 'README.md');
+		this.copy('root-assets/LICENSE.md', 'LICENSE.md');
+        this.copy('root-assets/protractor.conf.js', 'protractor.conf.js');
         
 		// Copy project hidden files
 		this.copy('root-assets/bowerrc', '.bowerrc');
@@ -148,6 +151,12 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		this.copy('root-assets/gitignore', '.gitignore');
 		this.copy('root-assets/slugignore', '.slugignore');
 		this.copy('root-assets/travis.yml', '.travis.yml');
+        
+        // Create the public dir
+        this.mkdir('public');
+        this.mkdir('public/dist');
+        this.copy('public/humans.txt');
+        this.copy('public/robots.txt');
 	},
 
 	renderArticleExample: function() {
