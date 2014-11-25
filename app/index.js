@@ -129,32 +129,33 @@ var MeanGenerator = yeoman.generators.Base.extend({
         
 		// Copy config folder content
 		this.directory('config/strategies');
-        this.directory('config/lib');
+        //this.directory('config/lib');
 		this.copy('config/config.js');
 		this.copy('config/passport.js');
+        this.copy('config/logger.js');
         
 		// Copy project files
-		//this.copy('karma.conf.js');
-		//this.copy('gruntfile.js');
-		//this.copy('server.js');
-		//this.copy('Procfile');
-		//this.copy('fig.yml');
-		//this.copy('Dockerfile');
-		//this.copy('generate-ssl-certs.sh');
-		//this.copy('README.md');
-		//this.copy('LICENSE.md');
+		this.copy('root-assets/karma.conf.js');
+		this.copy('root-assets/gruntfile.js');
+		this.copy('root-assets/server.js');
+		this.copy('root-assets/Procfile');
+		this.copy('root-assets/fig.yml');
+		this.copy('root-assets/Dockerfile');
+		this.copy('root-assets/generate-ssl-certs.sh');
+		this.copy('root-assets/README.md');
+		this.copy('root-assets/LICENSE.md');
         
 		// Copy project hidden files
-		//this.copy('bowerrc', '.bowerrc');
-		//this.copy('csslintrc', '.csslintrc');
-		//this.copy('editorconfig', '.editorconfig');
-		//this.copy('jshintrc', '.jshintrc');
-		//this.copy('gitignore', '.gitignore');
-		//this.copy('slugignore', '.slugignore');
-		//this.copy('travis.yml', '.travis.yml');
+		this.copy('root-assets/bowerrc', '.bowerrc');
+		this.copy('root-assets/csslintrc', '.csslintrc');
+		this.copy('root-assets/editorconfig', '.editorconfig');
+		this.copy('root-assets/jshintrc', '.jshintrc');
+		this.copy('root-assets/gitignore', '.gitignore');
+		this.copy('root-assets/slugignore', '.slugignore');
+		this.copy('root-assets/travis.yml', '.travis.yml');
 	},
 
-	/*renderArticleExample: function() {
+	renderArticleExample: function() {
 		// Copy example files if desired
 		if (this.addArticleExample) {
 			// Copy Express files
@@ -170,19 +171,16 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	},
 
 	renderApplicationEnvironmentConfigFiles: function() {
-		this.template('config/env/_all.js', 'config/env/all.js');
+		this.template('config/env/_default.js', 'config/env/default.js');
 		this.template('config/env/_development.js', 'config/env/development.js');
 		this.template('config/env/_production.js', 'config/env/production.js');
 		this.template('config/env/_test.js', 'config/env/test.js');
 		this.template('config/env/_secure.js', 'config/env/secure.js');
 	},
 
-	renderAngularApplicationConfigFile: function() {
-		this.template('public/_config.js', 'public/config.js');
-	},
-
-	renderCoreModuleFiles: function() {
-		this.template('public/modules/core/views/_header.client.view.html', 'public/modules/core/views/header.client.view.html');
+    // TODO: right now a file is being copied in. it needs to be made into a template and then this needs to render it
+	/*renderCoreModuleFiles: function() {
+		this.template('modules/core/server/views/_header.client.view.html', 'public/modules/core/views/header.client.view.html');
 	},*/
 
 	renderApplicationDependenciesFiles: function() {
