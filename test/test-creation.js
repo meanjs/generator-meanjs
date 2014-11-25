@@ -19,14 +19,18 @@ describe('meanjs generator', function() {
 		"app/views/templates/reset-password-confirm-email.server.view.html",
 		"app/views/templates/reset-password-email.server.view.html",
 		// Should create controllers
-		"app/controllers/core.server.controller.js",
-		"app/controllers/users.server.controller.js",
-		"app/controllers/errors.server.controller.js",
+		"modules/core/server/controllers/core.server.controller.js",
+        "modules/core/server/controllers/errors.server.controller.js",
+		"modules/users/server/controllers/users.server.controller.js",
+        "modules/users/server/controllers/users.authentication.controller.js",
+        "modules/users/server/controllers/users.authorization.controller.js",
+        "modules/users/server/controllers/users.password.controller.js",
+        "modules/users/server/controllers/users.profile.controller.js",
 		// Should create models
-		"app/models/user.server.model.js",
+		"modules/users/server/models/user.server.model.js",
 		// Should create routes
-		"app/routes/core.server.routes.js",
-		"app/routes/users.server.routes.js",
+		"modules/core/server/routes/core.server.routes.js",
+		"modules/users/server/routes/users.server.routes.js",
 		// Should create tests
 		"app/tests/user.server.model.test.js",
 		// Should create config files

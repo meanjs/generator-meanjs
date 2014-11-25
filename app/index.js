@@ -22,7 +22,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 
 		// replace it with a short and sweet description of your generator
-		console.log(chalk.magenta('You\'re using the official MEAN.JS generator.'));
+		console.log(chalk.magenta('You\'re using the official MEAN.JS 0.4 generator.'));
 	},
 
 	askForApplicationDetails: function() {
@@ -102,80 +102,59 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	},
 
 	copyApplicationFolder: function() {
-		// Copy application folder
-		this.mkdir('app');
-		this.mkdir('app/controllers');
-		this.mkdir('app/models');
-		this.mkdir('app/routes');
-		this.mkdir('app/tests');
-		this.directory('app/views');
-
-		// Copy base files
-		this.copy('app/controllers/core.server.controller.js');
-		this.copy('app/controllers/users.server.controller.js');
-		this.copy('app/controllers/errors.server.controller.js');
-		this.directory('app/controllers/users');
-		this.copy('app/models/user.server.model.js');
-		this.copy('app/routes/core.server.routes.js');
-		this.copy('app/routes/users.server.routes.js');
-		this.copy('app/tests/user.server.model.test.js');
-
-		// Create public folders
-		this.mkdir('public');
-		this.mkdir('public/modules');
-
-		// Copy public folder content
-		this.copy('public/application.js');
-		this.copy('public/humans.txt');
-		this.copy('public/robots.txt');
-
-		// Copy public folder modules
-		this.directory('public/modules/users');
-
-		// Copy core module files
-		this.directory('public/modules/core/config');
-		this.directory('public/modules/core/controllers');
-		this.directory('public/modules/core/css');
-		this.directory('public/modules/core/img');
-		this.directory('public/modules/core/services');
-		this.directory('public/modules/core/tests');
-		this.copy('public/modules/core/views/home.client.view.html');
-		this.copy('public/modules/core/core.client.module.js');
-
-		// Copy config folder
-		this.mkdir('config');
-		this.mkdir('config/env');
-		this.mkdir('config/sslcerts');
-
+		// Vertical Modules
+		this.mkdir('modules');
+        
+        // Copy core module
+        this.mkdir('modules/core');
+        this.directory('modules/core/server');
+        this.mkdir(    'modules/core/client');
+        this.mkdir(    'modules/core/client/app');
+        this.copy(     'modules/core/client/app/init.js');
+        this.directory('modules/core/client/config');
+        this.directory('modules/core/client/controllers');
+        this.directory('modules/core/client/css');
+        this.directory('modules/core/client/img');
+        this.directory('modules/core/client/services');
+        this.directory('modules/core/client/views');
+        this.directory('modules/core/tests');
+        
+        // Copy user module
+        this.directory('modules/users');
+        
+        // Copy config folder
+        this.mkdir('config');
+        this.mkdir('config/env');
+        this.mkdir('config/sslcerts'); // TODO: Should this be here still? I don't know anything about this feature.
+        
 		// Copy config folder content
 		this.directory('config/strategies');
+        this.directory('config/lib');
 		this.copy('config/config.js');
-		this.copy('config/init.js');
-		this.copy('config/express.js');
 		this.copy('config/passport.js');
-
+        
 		// Copy project files
-		this.copy('karma.conf.js');
-		this.copy('gruntfile.js');
-		this.copy('server.js');
-		this.copy('Procfile');
-		this.copy('fig.yml');
-		this.copy('Dockerfile');
-		this.copy('generate-ssl-certs.sh');
-		this.copy('README.md');
-		this.copy('LICENSE.md');
-
+		//this.copy('karma.conf.js');
+		//this.copy('gruntfile.js');
+		//this.copy('server.js');
+		//this.copy('Procfile');
+		//this.copy('fig.yml');
+		//this.copy('Dockerfile');
+		//this.copy('generate-ssl-certs.sh');
+		//this.copy('README.md');
+		//this.copy('LICENSE.md');
+        
 		// Copy project hidden files
-		this.copy('bowerrc', '.bowerrc');
-		this.copy('csslintrc', '.csslintrc');
-		this.copy('editorconfig', '.editorconfig');
-		this.copy('jshintrc', '.jshintrc');
-		this.copy('gitignore', '.gitignore');
-		this.copy('slugignore', '.slugignore');
-		this.copy('travis.yml', '.travis.yml');
+		//this.copy('bowerrc', '.bowerrc');
+		//this.copy('csslintrc', '.csslintrc');
+		//this.copy('editorconfig', '.editorconfig');
+		//this.copy('jshintrc', '.jshintrc');
+		//this.copy('gitignore', '.gitignore');
+		//this.copy('slugignore', '.slugignore');
+		//this.copy('travis.yml', '.travis.yml');
 	},
 
-	renderArticleExample: function() {
+	/*renderArticleExample: function() {
 		// Copy example files if desired
 		if (this.addArticleExample) {
 			// Copy Express files
@@ -204,11 +183,11 @@ var MeanGenerator = yeoman.generators.Base.extend({
 
 	renderCoreModuleFiles: function() {
 		this.template('public/modules/core/views/_header.client.view.html', 'public/modules/core/views/header.client.view.html');
-	},
+	},*/
 
 	renderApplicationDependenciesFiles: function() {
-		this.template('_package.json', 'package.json');
-		this.template('_bower.json', 'bower.json');
+		this.template('root-assets/_package.json', 'package.json');
+		this.template('root-assets/_bower.json', 'bower.json');
 	}
 });
 
