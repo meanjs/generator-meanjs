@@ -124,15 +124,10 @@ var MeanGenerator = yeoman.generators.Base.extend({
         
         // Copy config folder
         this.mkdir('config');
-        this.mkdir('config/env');
-        this.mkdir('config/sslcerts'); // TODO: Should this be here still? I don't know anything about this feature.
-        
-		// Copy config folder content
-		this.directory('config/strategies');
-        //this.directory('config/lib');
-		this.copy('config/config.js');
-		this.copy('config/passport.js');
-        this.copy('config/logger.js');
+        this.directory('config/lib');
+        this.directory('config/env');
+        this.directory('config/assets');
+        this.copy('config/config.js');
         
 		// Copy project files
 		this.copy('root-assets/karma.conf.js');
