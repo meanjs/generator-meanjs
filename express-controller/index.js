@@ -2,8 +2,6 @@
 var util = require('util'),
 	inflections = require('underscore.inflections'),
 	yeoman = require('yeoman-generator'),
-	fs = require('fs'),
-	path = require('path'),
 	modulesHelper = require('../utilities/modules.helper');
 
 

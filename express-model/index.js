@@ -1,7 +1,8 @@
 'use strict';
 var util = require('util'),
 	inflections = require('underscore.inflections'),
-	yeoman = require('yeoman-generator');
+	yeoman = require('yeoman-generator'),
+	modulesHelper = require('../utilities/modules.helper');
 
 
 var ModelGenerator = yeoman.generators.NamedBase.extend({
@@ -14,11 +15,33 @@ var ModelGenerator = yeoman.generators.NamedBase.extend({
 
 		this.slugifiedPluralModelName = inflections.pluralize(this.slugifiedModelName);
 
+		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices('./modules');
+	},
+	askForModule: function() {
+		var done = this.async();
+		
+		var prompts = [{
+			type: 'list',
+			name: 'moduleChoice',
+			message: 'Which module would you like to add this controller to?',
+			choices: this.availableModuleChoices
+		}];
+		
+		this.prompt(prompts, function(props) {
+			this.moduleChoice = props.moduleChoice || this.slugifiedControllerName;
+			
+			console.log(this.moduleChoice);
+			done();
+		}.bind(this));
+	},
+	renderTemplates: function() {
 		// We create the model file
-		this.template('_.server.model.js', 'modules/' + this.slugifiedModelName + '/server/models/' + this.slugifiedModelName + '.server.model.js');
+		this.template('_.server.model.js', 
+					  'modules/' + this.moduleChoice + '/server/models/' + this.slugifiedModelName + '.server.model.js');
+		
 		// We create the test file for the models
 		this.template('_.server.model.test.js', 
-					  'modules/' + this.slugifiedModelName + '/server/tests/' + this.slugifiedModelName + '.server.model.test.js');
+					  'modules/' + this.moduleChoice + '/server/tests/' + this.slugifiedModelName + '.server.model.test.js');
 	}
 });
 
