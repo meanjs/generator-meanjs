@@ -1,6 +1,5 @@
 'use strict';
-var util = require('util'),
-	inflections = require('underscore.inflections'),
+var inflections = require('underscore.inflections'),
 	yeoman = require('yeoman-generator'),
 	modulesHelper = require('../utilities/modules.helper');
 
@@ -27,8 +26,6 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 		
 		this.prompt(prompts, function(props) {
 			this.moduleChoice = props.moduleChoice || this.slugifiedControllerName;
-			
-			console.log(this.moduleChoice);
 			done();
 		}.bind(this));
 	},

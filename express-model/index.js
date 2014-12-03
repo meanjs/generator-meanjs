@@ -1,6 +1,5 @@
 'use strict';
-var util = require('util'),
-	inflections = require('underscore.inflections'),
+var inflections = require('underscore.inflections'),
 	yeoman = require('yeoman-generator'),
 	modulesHelper = require('../utilities/modules.helper');
 
@@ -23,14 +22,12 @@ var ModelGenerator = yeoman.generators.NamedBase.extend({
 		var prompts = [{
 			type: 'list',
 			name: 'moduleChoice',
-			message: 'Which module would you like to add this controller to?',
+			message: 'Which module would you like to add this model to?',
 			choices: this.availableModuleChoices
 		}];
 		
 		this.prompt(prompts, function(props) {
-			this.moduleChoice = props.moduleChoice || this.slugifiedControllerName;
-			
-			console.log(this.moduleChoice);
+			this.moduleChoice = props.moduleChoice || this.slugifiedModelName;
 			done();
 		}.bind(this));
 	},
