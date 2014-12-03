@@ -7,6 +7,8 @@ var RouteGenerator = yeoman.generators.NamedBase.extend({
 		this.slugifiedRouteName = this._.slugify(this._.humanize(this.name));
 
 		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices('./modules');
+		if (this.availableModuleChoices == null)
+			return;
 	},
 	askForModule: function() {
 		var done = this.async();

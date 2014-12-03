@@ -15,6 +15,8 @@ var ModelGenerator = yeoman.generators.NamedBase.extend({
 		this.slugifiedPluralModelName = inflections.pluralize(this.slugifiedModelName);
 
 		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices('./modules');
+		if (this.availableModuleChoices == null)
+			return;
 	},
 	askForModule: function() {
 		var done = this.async();
