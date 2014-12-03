@@ -1,18 +1,44 @@
 'use strict';
 var util = require('util'),
 	inflections = require('underscore.inflections'),
-	yeoman = require('yeoman-generator');
+	yeoman = require('yeoman-generator'),
+	fs = require('fs'),
+	path = require('path'),
+	modulesHelper = require('../utilities/modules.helper');
 
 
 var ControllerGenerator = yeoman.generators.NamedBase.extend({
-	createControllerFile: function() {
-		this.slugifiedName = this._.slugify(this._.humanize(this.name));
+	init: function() {
+		this.slugifiedControllerName = this._.slugify(this._.humanize(this.name));
 
-		this.humanizedName = this._.humanize(this.slugifiedName);
-		this.humanizedPluralName = inflections.pluralize(this._.humanize(this.slugifiedName));
-		this.humanizedSingularName = inflections.singularize(this._.humanize(this.slugifiedName));
+		this.humanizedName = this._.humanize(this.slugifiedControllerName);
+		this.humanizedPluralName = inflections.pluralize(this._.humanize(this.slugifiedControllerName));
+		this.humanizedSingularName = inflections.singularize(this._.humanize(this.slugifiedControllerName));
+		
+		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices('./modules');
 
-		this.template('_.server.controller.js', 'modules/' + this.slugifiedName +'/server/controllers/' + this.slugifiedName + '.server.controller.js')
+		
+	},
+	askForModule: function() {
+		var done = this.async();
+		
+		var prompts = [{
+			type: 'list',
+			name: 'moduleChoice',
+			message: 'Which module would you like to add this controller to?',
+			choices: this.availableModuleChoices
+		}];
+		
+		this.prompt(prompts, function(props) {
+			this.moduleChoice = props.moduleChoice || this.slugifiedControllerName;
+			
+			console.log(this.moduleChoice);
+			done();
+		}.bind(this));
+	},
+	renderTemplate: function() {
+		this.template('_.server.controller.js', 
+					  'modules/' + this.moduleChoice +'/server/controllers/' + this.slugifiedControllerName + '.server.controller.js')
 	}
 });
 
