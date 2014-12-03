@@ -16,8 +16,6 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 		this.humanizedSingularName = inflections.singularize(this._.humanize(this.slugifiedControllerName));
 		
 		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices('./modules');
-
-		
 	},
 	askForModule: function() {
 		var done = this.async();
