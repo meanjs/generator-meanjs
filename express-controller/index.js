@@ -31,7 +31,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 	},
 	renderTemplate: function() {
 		this.template('_.server.controller.js', 
-					  'modules/' + this.moduleChoice +'/server/controllers/' + this.slugifiedControllerName + '.server.controller.js')
+					  'modules/' + this.moduleChoice +'/server/controllers/' + this.slugifiedControllerName + '.server.controller.js');
 	}
 });
 

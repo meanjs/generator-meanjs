@@ -24,7 +24,7 @@ var RouteGenerator = yeoman.generators.NamedBase.extend({
 		}.bind(this));
 	},
 	renderTemplate: function() {
-		this.template('_.server.routes.js', 'modules/' + this.moduleChoice + '/server/routes/' + this.slugifiedRouteName + '.server.routes.js')
+		this.template('_.server.routes.js', 'modules/' + this.moduleChoice + '/server/routes/' + this.slugifiedRouteName + '.server.routes.js');
 	}
 });
 
