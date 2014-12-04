@@ -1,12 +1,21 @@
 'use strict';
 var util = require('util'),
 	fs = require('fs'),
-	yeoman = require('yeoman-generator');
+	yeoman = require('yeoman-generator'),
+	modulesHelper = require('../utilities/modules.helper');
 
 
 var ViewGenerator = yeoman.generators.NamedBase.extend({
-	askForModuleName: function() {
-		var modulesFolder = process.cwd() + '/public/modules/';
+	init: function() {
+		this.slugifiedViewName = this._.slugify(this._.humanize(this.name));
+		this.classifiedName = this._.classify(this.slugifiedViewName);
+		this.humanizedName = this._.humanize(this.slugifiedViewName);
+
+		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedViewName);
+		if (this.availableModuleChoices == null)
+			this.env.error('No modules found!');
+	},
+	askForModule: function() {
 		var done = this.async();
 
 		var prompts = [{
@@ -14,34 +23,14 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 			name: 'moduleName',
 			default: 'core',
 			message: 'Which module does this view belongs to?',
-			choices: []
+			choices: this.availableModuleChoices
 		}];
-
-		// Add module choices
-        if (fs.existsSync(modulesFolder)) {
-
-            fs.readdirSync(modulesFolder).forEach(function(folder) {
-                var stat = fs.statSync(modulesFolder + '/' + folder);
-
-                if (stat.isDirectory()) {
-                    prompts[0].choices.push({
-                        value: folder,
-                        name: folder
-                    });
-                }
-            });
-        }
-
+		
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
-			this.controllerName = props.controllerName;
 
 			this.slugifiedModuleName = this._.slugify(this.moduleName);
 			this.humanizedModuleName = this._.humanize(this.moduleName);
-
-			this.slugifiedName = this._.slugify(this._.humanize(this.name));
-			this.classifiedName = this._.classify(this.slugifiedName);
-			this.humanizedName = this._.humanize(this.slugifiedName);
 
 			done();
 		}.bind(this));
@@ -90,7 +79,7 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 			var prompts = [{
 				name: 'routePath',
 				message: 'What is your view route path?',
-				default: this.slugifiedName
+				default: this.slugifiedViewName
 			}];
 
 			this.prompt(prompts, function(props) {
@@ -104,7 +93,8 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 
 	renderRoute: function() {
 		if (this.addRoute) {
-			var routesFilePath = process.cwd() + '/public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js';
+			var routesFilePath = 'modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + '.client.routes.js';
+			
 
 			// If routes file exists we add a new state otherwise we render a new one
 			if (fs.existsSync(routesFilePath)) {
@@ -117,13 +107,14 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 				// Save route file
 				this.writeFileFromString(routesFileContent, routesFilePath);
 			} else {
-				this.template('_.client.routes.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedModuleName + '.client.routes.js')
+				this.template('_.client.routes.js', routesFilePath)
 			}
 		}
 	},
 
 	renderViewFile: function() {
-		this.template('_.client.view.html', 'public/modules/' + this.slugifiedModuleName + '/views/' + this.slugifiedName + '.client.view.html')
+		this.template('_.client.view.html', 
+					  'modules/' + this.slugifiedModuleName + '/client/views/' + this.slugifiedViewName + '.client.view.html')
 	}
 });
 
