@@ -15,7 +15,7 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 		if (this.availableModuleChoices == null)
 			this.env.error('No modules found!');
 	},
-	askForModule: function() {
+	askForModuleName: function() {
 		var done = this.async();
 
 		var prompts = [{
