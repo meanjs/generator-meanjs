@@ -12,7 +12,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 		this.humanizedPluralName = inflections.pluralize(this._.humanize(this.slugifiedControllerName));
 		this.humanizedSingularName = inflections.singularize(this._.humanize(this.slugifiedControllerName));
 		
-		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices('./modules');
+		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedControllerName);
 		if (this.availableModuleChoices == null)
 			return;
 	},
