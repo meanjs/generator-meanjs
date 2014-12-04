@@ -8,7 +8,7 @@ var RouteGenerator = yeoman.generators.NamedBase.extend({
 
 		this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedRouteName);
 		if (this.availableModuleChoices == null)
-			return;
+			this.env.error('No modules found!');
 	},
 	askForModule: function() {
 		var done = this.async();

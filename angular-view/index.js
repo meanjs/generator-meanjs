@@ -5,6 +5,9 @@ var util = require('util'),
 
 
 var ViewGenerator = yeoman.generators.NamedBase.extend({
+	init: function() {
+		this.env.error('wat');
+	},
 	askForModuleName: function() {
 		var modulesFolder = process.cwd() + '/public/modules/';
 		var done = this.async();

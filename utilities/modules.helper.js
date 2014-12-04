@@ -10,7 +10,6 @@ module.exports = {
 		try {
 			var files = fs.readdirSync(modulesPath); 
 		} catch (e) {
-			console.error('\nThe "modules" directory was not found.\n');
 			return null;
 		}
 		
