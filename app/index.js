@@ -38,7 +38,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			default: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js'
 		}, {
 			name: 'appKeywords',
-			message: 'How would you describe your application in comma seperated key words?',
+			message: 'How would you describe your application in comma separated key words?',
 			default: 'MongoDB, Express, AngularJS, Node.js'
 		}, {
 			name: 'appAuthor',

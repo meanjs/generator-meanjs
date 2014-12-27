@@ -3,7 +3,7 @@
         <h1><%= humanizedPluralName %></h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="<%= camelizedSingularName %> in <%= camelizedPluralName %>" data-ng-href="#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}" class="list-group-item">
+        <a data-ng-repeat="<%= camelizedSingularName %> in <%= camelizedPluralName %>" data-ng-href="/#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Posted on
 				<span data-ng-bind="<%= camelizedSingularName %>.created | date:'medium'"></span>
