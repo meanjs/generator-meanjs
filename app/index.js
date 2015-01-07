@@ -61,7 +61,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appKeywords = props.appKeywords;
 			this.appAuthor = props.appAuthor;
 			this.addArticleExample = props.addArticleExample;
-			this.addChatExample = props.addCheckExample;
+			this.addChatExample = props.addChatExample;
 
 			this.slugifiedAppName = this._.slugify(this.appName);
 			this.humanizedAppName = this._.humanize(this.appName);
