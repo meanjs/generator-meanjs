@@ -181,7 +181,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
     
     renderChatExample: function() {
         if (this.addChatExample) {
-            this.director('modules/chat');
+            this.directory('modules/chat');
         }
     },
 
