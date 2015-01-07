@@ -51,7 +51,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		}, {
 			type: 'confirm',
 			name: 'addChatExample',
-			message: 'Would you like to generate the chat example module? (adds socket.io support)'
+			message: 'Would you like to generate the chat example module? (adds socket.io support)',
 			default: true
 		}];
 
