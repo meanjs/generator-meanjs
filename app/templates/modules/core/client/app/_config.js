@@ -5,7 +5,7 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = '<%= appName %>';
 
-	var applicationModuleVendorDependencies = ['ngResource',<% if (angularCookies) { %> 'ngCookies', <% } if (angularAnimate) { %> 'ngAnimate', <% } if (angularTouch) { %> 'ngTouch', <% } if (angularSanitize) { %> 'ngSanitize', <% } %> 'ui.router', 'ui.bootstrap', 'ui.utils'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ui.router', 'ui.bootstrap', 'ui.utils', 'angularFileUpload'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
