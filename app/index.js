@@ -180,7 +180,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	},
     
     renderChatExample: function() {
-        if (this.socketio && this.addChatExample) {
+        if (this.addChatExample) {
             this.director('modules/chat');
         }
     },
