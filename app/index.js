@@ -68,28 +68,34 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	askForAngularApplicationModules: function() {
 		var done = this.async();
 
-		var prompts = [{
-			type: 'checkbox',
-			name: 'modules',
-			message: 'Which AngularJS modules would you like to include?',
-			choices: [{
-				value: 'angularCookies',
-				name: 'ngCookies',
-				checked: true
-			}, {
-				value: 'angularAnimate',
-				name: 'ngAnimate',
-				checked: true
-			}, {
-				value: 'angularTouch',
-				name: 'ngTouch',
-				checked: true
-			}, {
-				value: 'angularSanitize',
-				name: 'ngSanitize',
-				checked: true
-			}]
-		}];
+		var prompts = [
+			{
+				type: 'checkbox',
+				name: 'modules',
+				message: 'Which modules would you like to include?',
+				choices: [{
+					value: 'angularCookies',
+					name: 'ngCookies',
+					checked: true
+				}, {
+					value: 'angularAnimate',
+					name: 'ngAnimate',
+					checked: true
+				}, {
+					value: 'angularTouch',
+					name: 'ngTouch',
+					checked: true
+				}, {
+					value: 'angularSanitize',
+					name: 'ngSanitize',
+					checked: true
+				}, {
+					value: 'socket.io',
+					name: 'socketio',
+					checked: true
+				}]
+			}
+		];
 
 		this.prompt(prompts, function(props) {
 			this.angularCookies = this._.contains(props.modules, 'angularCookies');
@@ -162,17 +168,16 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	renderArticleExample: function() {
 		// Copy example files if desired
 		if (this.addArticleExample) {
-			// Copy Express files
-			this.copy('app/controllers/articles.server.controller.js');
-			this.copy('app/models/article.server.model.js');
-			this.copy('app/routes/articles.server.routes.js');
-			this.copy('app/tests/article.server.model.test.js');
-			this.copy('app/tests/article.server.routes.test.js');
-
-			// Copy AngularJS files
-			this.directory('public/modules/articles');
+			this.directory('modules/articles');
 		}
 	},
+    
+    renderChatExample: function() {
+        
+        if (this.addChatExample) {
+            this.director('modules/chat');
+        }
+    },
 
 	renderApplicationEnvironmentConfigFiles: function() {
 		this.template('config/env/_default.js', 'config/env/default.js');
