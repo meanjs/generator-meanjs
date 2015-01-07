@@ -48,6 +48,11 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			name: 'addArticleExample',
 			message: 'Would you like to generate the article example CRUD module?',
 			default: true
+		}, {
+			type: 'confirm',
+			name: 'addChatExample',
+			message: 'Would you like to generate the chat example module? (adds socket.io support)'
+			default: true
 		}];
 
 		this.prompt(prompts, function(props) {
@@ -56,6 +61,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.appKeywords = props.appKeywords;
 			this.appAuthor = props.appAuthor;
 			this.addArticleExample = props.addArticleExample;
+			this.addChatExample = props.addCheckExample;
 
 			this.slugifiedAppName = this._.slugify(this.appName);
 			this.humanizedAppName = this._.humanize(this.appName);
@@ -102,6 +108,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 			this.angularAnimate = this._.contains(props.modules, 'angularAnimate');
 			this.angularTouch = this._.contains(props.modules, 'angularTouch');
 			this.angularSanitize = this._.contains(props.modules, 'angularSanitize');
+			this.socketio = this.renderChatExample || this._.contains(props.modules, 'socketio');
 
 			done();
 		}.bind(this));
@@ -173,8 +180,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
 	},
     
     renderChatExample: function() {
-        
-        if (this.addChatExample) {
+        if (this.socketio && this.addChatExample) {
             this.director('modules/chat');
         }
     },
