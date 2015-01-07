@@ -18,7 +18,7 @@ var getGlobbedPaths = function(globPatterns, excludes) {
     // The output array
     var output = [];
 
-    // If glob pattern is array so we use each pattern in a recursive way, otherwise we use glob
+    // If glob pattern is array so we use each pattern in a recursive way, otherwise we use glob 
     if (_.isArray(globPatterns)) {
         globPatterns.forEach(function(globPattern) {
             output = _.union(output, getGlobbedPaths(globPattern, excludes));
@@ -89,7 +89,7 @@ var initGlobalConfigFolders = function(config, assets) {
     };
 
     // Setting globbed client paths
-    config.folders.client = getGlobbedPaths(path.join(process.cwd(), 'modules/*/client/'), process.cwd());
+    config.folders.client = getGlobbedPaths(path.join(process.cwd(), 'modules/*/client/'), process.cwd().replace(new RegExp(/\\/g),'/'));
 };
 
 /**
