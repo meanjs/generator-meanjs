@@ -7,7 +7,7 @@ var util = require('util'),
 
 var ControllerGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
-		var modulesFolder = process.cwd() + '/public/modules/';
+		var modulesFolder = process.cwd() + '/modules/';
 		var done = this.async();
 
 		var prompts = [{
@@ -46,8 +46,8 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderControllerFiles: function() {
-		this.template('_.client.controller.js', 'public/modules/' + this.slugifiedModuleName + '/controllers/' + this.slugifiedControllerName + '.client.controller.js');
-		this.template('_.client.controller.test.js', 'public/modules/' + this.slugifiedModuleName + '/tests/' + this.slugifiedControllerName + '.client.controller.test.js');
+		this.template('_.client.controller.js', 'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedControllerName + '.client.controller.js');
+		this.template('_.client.controller.test.js', 'modules/' + this.slugifiedModuleName + '/client/tests/' + this.slugifiedControllerName + '.client.controller.test.js');
 	}
 });
 
