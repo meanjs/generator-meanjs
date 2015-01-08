@@ -6,7 +6,7 @@ var util = require('util'),
 
 var ConfigGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
-		var modulesFolder = process.cwd() + '/public/modules/';
+		var modulesFolder = process.cwd() + '/modules/';
 		var done = this.async();
 
 		var prompts = [{
@@ -45,7 +45,7 @@ var ConfigGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderConfigFile: function() {
-		this.template('_.client.config.js', 'public/modules/' + this.slugifiedModuleName + '/config/' + this.slugifiedName + '.client.config.js')
+		this.template('_.client.config.js', 'modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedName + '.client.config.js')
 	}
 });
 
