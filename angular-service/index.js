@@ -14,7 +14,6 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
 			this.env.error('No modules found!');
 	},
 	askForModuleName: function() {
-		var modulesFolder = process.cwd() + '/public/modules/';
 		var done = this.async();
 
 		var prompts = [{
@@ -40,7 +39,8 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
 		this.humanizedNgServiceName = this._.humanize(this.slugifiedNgServiceName);
 	},
 	renderServiceFile: function() {
-		this.template('_.client.service.js', 'modules/' + this.slugifiedModuleName + '/client/services/' + this.slugifiedNgServiceName + '.client.service.js')
+		this.template('_.client.service.js', 'modules/' + this.slugifiedModuleName 
+					  + '/client/services/' + this.slugifiedNgServiceName + '.client.service.js')
 	}
 });
 
