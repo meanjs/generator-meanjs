@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('<%= slugifiedModuleName %>').factory('<%= classifiedName %>', [
+angular.module('<%= slugifiedModuleName %>').factory('<%= classifiedNgServiceName %>', [
 	function() {
-		// <%= humanizedName %> service logic
+		// <%= humanizedNgServiceName %> service logic
 		// ...
 
 		// Public API
