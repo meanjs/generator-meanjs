@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('<%= slugifiedModuleName %>').filter('<%= camelizedName %>', [
+angular.module('<%= slugifiedModuleName %>').filter('<%= camelizedNgFilterName %>', [
 	function() {
 		return function(input) {
-			// <%= humanizedName %> directive logic
+			// <%= humanizedNgFilterName %> directive logic
 			// ...
 
-			return '<%= camelizedName %> filter: ' + input;
+			return '<%= camelizedNgFilterName %> filter: ' + input;
 		};
 	}
 ]);
