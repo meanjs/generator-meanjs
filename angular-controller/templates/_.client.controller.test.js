@@ -1,10 +1,10 @@
 'use strict';
 
 (function() {
-	// <%= humanizedControllerName %> Controller Spec
-	describe('<%= humanizedControllerName %> Controller Tests', function() {
+	// <%= humanizedNgControllerName %> Controller Spec
+	describe('<%= humanizedNgControllerName %> Controller Tests', function() {
 		// Initialize global variables
-		var <%= classifiedControllerName %>Controller,
+		var <%= classifiedNgControllerName %>Controller,
 			scope,
 			$httpBackend,
 			$stateParams,
@@ -44,8 +44,8 @@
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
-			// Initialize the <%= humanizedControllerName %> controller.
-			<%= classifiedControllerName %>Controller = $controller('<%= classifiedControllerName %>Controller', {
+			// Initialize the <%= humanizedNgControllerName %> controller.
+			<%= classifiedNgControllerName %>Controller = $controller('<%= classifiedNgControllerName %>Controller', {
 				$scope: scope
 			});
 		}));
