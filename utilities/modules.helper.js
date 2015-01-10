@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 module.exports = {
 	/* Trust but Verify the user is in the root of the project directory */
-	constructListOfModuleChoices: function (entityName) {
+	constructListOfModuleChoices: function (slugifiedName) {
 		var modulesPath = './modules';
 		
 		try {
@@ -29,7 +29,7 @@ module.exports = {
 			matches an existing module. If so, do not offer the option to create a new module.
 		*/
 		var modulesMatchingCreationEntity = directories.filter(function(dir) {
-			return dir === entityName;
+			return dir === slugifiedName;
 		});
 		
 		if (modulesMatchingCreationEntity.length === 0) {
@@ -40,8 +40,8 @@ module.exports = {
 				}
 			});
 			choices.unshift({
-				name: 'create new module',
-				value: null
+				name: 'add as new module',
+				value: slugifiedName
 			});
 		}
 		
