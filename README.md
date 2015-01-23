@@ -44,7 +44,7 @@ You are now ready to get started with the MEAN.JS generator. The generator will 
 Available generators:
 
 * [meanjs](#application-generator)
-* [meanjs:crud-module](#crud-module-sub-generator)
+* [meanjs:vertical-module](#vertical-module-sub-generator)
 * [meanjs:angular-module](#angularjs-module-sub-generator)
 * [meanjs:angular-route](#angularjs-route-sub-generator)
 * [meanjs:angular-controller](#angularjs-controller-sub-generator)
@@ -82,19 +82,19 @@ Now, the application generator does a great job scaffolding a whole application,
 
 
 
-## CRUD Module Sub-Generator
+## Vertical Module Sub-Generator
 
-The CRUD module sub-generator will help you create a new CRUD module, similar to the article sample provided with the project. To create a new CRUD module you will need to use *yo* again:
+The vertical module sub-generator will create a new module similar to the article sample provided with the project. To create a new vertical module you will need to use *yo* again:
 
 
 ```
-$ yo meanjs:crud-module <module-name>
+$ yo meanjs:vertical-module <module-name>
 ```
 
 This will create both AngularJS and Express files supporting full CRUD functionality, and add the Karma and Mocha tests.
 
 
-**Note:** Don’t forget to use your module name as an argument when calling the CRUD module sub-generator.
+**Note:** Don’t forget to use your module name as an argument when calling the vertical module sub-generator.
 
 
 
