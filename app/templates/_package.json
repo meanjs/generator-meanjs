@@ -4,8 +4,8 @@
 	"version": "0.0.1",<% if (appAuthor) { %>
 	"author": "<%= capitalizedAppAuthor %>",<% } %>
 	"engines": {
-		"node": "0.10.x",
-		"npm": "1.4.x"
+		"node": ">=0.10.28",
+		"npm": ">=1.4.28"
 	},
 	"scripts": {
 		"start": "grunt",

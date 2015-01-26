@@ -8,9 +8,10 @@ var fs = require('fs'),
 	https = require('https'),
 	express = require('express'),
 	morgan = require('morgan'),
+	logger = require('./logger'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
-	compress = require('compression'),
+	compression = require('compression'),
 	methodOverride = require('method-override'),
 	cookieParser = require('cookie-parser'),
 	helmet = require('helmet'),
@@ -47,11 +48,13 @@ module.exports = function(db) {
 	});
 
 	// Should be placed before express.static
-	app.use(compress({
+	app.use(compression({
+		// only compress files for the following content types
 		filter: function(req, res) {
 			return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
 		},
-		level: 9
+		// zlib option for compression level
+		level: 3
 	}));
 
 	// Showing stack errors
@@ -64,11 +67,11 @@ module.exports = function(db) {
 	app.set('view engine', 'server.view.html');
 	app.set('views', './app/views');
 
+	// Enable logger (morgan)
+	app.use(morgan(logger.getLogFormat(), logger.getLogOptions()));
+
 	// Environment dependent middleware
 	if (process.env.NODE_ENV === 'development') {
-		// Enable logger (morgan)
-		app.use(morgan('dev'));
-
 		// Disable views cache
 		app.set('view cache', false);
 	} else if (process.env.NODE_ENV === 'production') {
@@ -82,6 +85,16 @@ module.exports = function(db) {
 	app.use(bodyParser.json());
 	app.use(methodOverride());
 
+	// Use helmet to secure Express headers
+	app.use(helmet.xframe());
+	app.use(helmet.xssFilter());
+	app.use(helmet.nosniff());
+	app.use(helmet.ienoopen());
+	app.disable('x-powered-by');
+
+	// Setting the app router and static folder
+	app.use(express.static(path.resolve('./public')));
+
 	// CookieParser should be above session
 	app.use(cookieParser());
 
@@ -93,7 +106,9 @@ module.exports = function(db) {
 		store: new mongoStore({
 			db: db.connection.db,
 			collection: config.sessionCollection
-		})
+		}),
+		cookie: config.sessionCookie,
+		name: config.sessionName
 	}));
 
 	// use passport session
@@ -102,16 +117,6 @@ module.exports = function(db) {
 
 	// connect flash for flash messages
 	app.use(flash());
-
-	// Use helmet to secure Express headers
-	app.use(helmet.xframe());
-	app.use(helmet.xssFilter());
-	app.use(helmet.nosniff());
-	app.use(helmet.ienoopen());
-	app.disable('x-powered-by');
-
-	// Setting the app router and static folder
-	app.use(express.static(path.resolve('./public')));
 
 	// Globbing routing files
 	config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
@@ -141,9 +146,6 @@ module.exports = function(db) {
 	});
 
 	if (process.env.NODE_ENV === 'secure') {
-		// Log SSL usage
-		console.log('Securely using https protocol');
-
 		// Load SSL key and certificate
 		var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
 		var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
