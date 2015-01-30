@@ -5,7 +5,7 @@ angular.module('<%= slugifiedModuleName %>').config(['$stateProvider',
 	function($stateProvider) {
 		// <%= humanizedModuleName %> state routing
 		$stateProvider.
-		state('<%= slugifiedName %>', {
+		state('<%= stateName %>', {
 			url: '/<%= slugifiedRoutePath %>',
 			templateUrl: 'modules/<%= slugifiedModuleName %>/views/<%= slugifiedViewName %>.client.view.html'
 		});
