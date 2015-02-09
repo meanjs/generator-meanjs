@@ -8,7 +8,7 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 		// Create new <%= humanizedSingularName %>
 		$scope.create = function() {
 			// Create new <%= humanizedSingularName %> object
-			var <%= camelizedSingularName %> = new <%= classifiedPluralName %> ({
+			var <%= camelizedSingularName %> = new <%= classifiedPluralName %>({
 				name: this.name
 			});
 
@@ -25,11 +25,11 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 
 		// Remove existing <%= humanizedSingularName %>
 		$scope.remove = function(<%= camelizedSingularName %>) {
-			if ( <%= camelizedSingularName %> ) { 
+			if (<%= camelizedSingularName %>) {
 				<%= camelizedSingularName %>.$remove();
 
 				for (var i in $scope.<%= camelizedPluralName %>) {
-					if ($scope.<%= camelizedPluralName %> [i] === <%= camelizedSingularName %>) {
+					if ($scope.<%= camelizedPluralName %>[i] === <%= camelizedSingularName %>) {
 						$scope.<%= camelizedPluralName %>.splice(i, 1);
 					}
 				}
@@ -58,7 +58,7 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 
 		// Find existing <%= humanizedSingularName %>
 		$scope.findOne = function() {
-			$scope.<%= camelizedSingularName %> = <%= classifiedPluralName %>.get({ 
+			$scope.<%= camelizedSingularName %> = <%= classifiedPluralName %>.get({
 				<%= camelizedSingularName %>Id: $stateParams.<%= camelizedSingularName %>Id
 			});
 		};

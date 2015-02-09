@@ -13,14 +13,22 @@ var <%= classifiedSingularName %>Schema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		required: 'Please fill <%= humanizedSingularName %> name',
-		trim: true
+		trim: true,
+		required: 'Name cannot be blank'
 	},
-	created: {
+	updatedAt: {
 		type: Date,
 		default: Date.now
 	},
-	user: {
+	updatedBy: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now
+	},
+	createdBy: {
 		type: Schema.ObjectId,
 		ref: 'User'
 	}

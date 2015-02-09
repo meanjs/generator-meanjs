@@ -18,10 +18,10 @@ var MeanGenerator = yeoman.generators.Base.extend({
 		});
 
 		// have Yeoman greet the user
-		console.log(this.yeoman);
+		this.log(this.yeoman);
 
 		// replace it with a short and sweet description of your generator
-		console.log(chalk.magenta('You\'re using the official MEAN.JS generator.'));
+		this.log(chalk.magenta('You\'re using the official MEAN.JS generator.'));
 	},
 
 	askForApplicationDetails: function() {

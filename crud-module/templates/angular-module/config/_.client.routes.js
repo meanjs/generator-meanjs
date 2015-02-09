@@ -1,6 +1,6 @@
 'use strict';
 
-//Setting up route
+// Setting up route
 angular.module('<%= slugifiedPluralName %>').config(['$stateProvider',
 	function($stateProvider) {
 		// <%= humanizedPluralName %> state routing
