@@ -261,8 +261,10 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 	});
 
 	afterEach(function(done) {
-		User.remove().exec();
-		<%= classifiedSingularName %>.remove().exec();
-		done();
+		User.remove().exec(function(){
+			<%= classifiedSingularName %>.remove().exec(function(){
+				done();
+			});	
+		});
 	});
 });
