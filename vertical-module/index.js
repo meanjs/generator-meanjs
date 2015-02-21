@@ -48,7 +48,7 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 		}, {
 			type: 'confirm',
 			name: 'addMenuItems',
-			message: 'Would you like to add the CRUD module links to a menu?',
+			message: 'Would you like to add the CRUD links for this module to a menu?',
 			default: true
 		}];
 
