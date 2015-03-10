@@ -114,6 +114,7 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 		this.template('angular-module/views/_.create.client.view.html', 'public/modules/' + this.slugifiedPluralName + '/views/create-' + this.slugifiedSingularName + '.client.view.html');
 		this.template('angular-module/views/_.edit.client.view.html', 'public/modules/' + this.slugifiedPluralName + '/views/edit-' + this.slugifiedSingularName + '.client.view.html');
 		this.template('angular-module/views/_.list.client.view.html', 'public/modules/' + this.slugifiedPluralName + '/views/list-' + this.slugifiedPluralName + '.client.view.html');
+		this.template('angular-module/views/_.remove.client.view.html', 'public/modules/' + this.slugifiedPluralName + '/views/remove-' + this.slugifiedSingularName + '.client.view.html');
 		this.template('angular-module/views/_.view.client.view.html', 'public/modules/' + this.slugifiedPluralName + '/views/view-' + this.slugifiedSingularName + '.client.view.html');
 
 		// Render angular module definition
