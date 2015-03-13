@@ -42,7 +42,7 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
 					<%= camelizedSingularName %>.$remove();
 
 					for (var i in $scope.<%= camelizedPluralName %> ) {
-						if ($scope.<%= camelizedPluralName %> [i] === <%= camelizedSingularName %> ) {
+						if ($scope.<%= camelizedPluralName %>[i] === <%= camelizedSingularName %>) {
 							$scope.<%= camelizedPluralName %>.splice(i, 1);
 						}
 					}
