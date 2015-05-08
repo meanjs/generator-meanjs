@@ -21,7 +21,29 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 		this.humanizedSingularName = this._.humanize(this.slugifiedSingularName);
 	},
 
+	askForExpressOnlyInstall: function() {
+		var done = this.async();
+
+		var prompts = [{
+			type: 'confirm',
+			name: 'expressOnlyInstall',
+			message: 'Would you like this to be an Express-Only CRUD module?',
+			default: false
+		}];
+
+		this.prompt(prompts, function(props) {
+			this.expressOnlyInstall = props.expressOnlyInstall;
+
+			done();
+		}.bind(this));
+	},
+
 	askForModuleFolders: function() {
+		if (this.expressOnlyInstall) {
+			this.addMenuItems = false;
+			return;
+		}
+
 		var done = this.async();
 
 		var prompts = [{
@@ -83,6 +105,17 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 	},
 
 	renderModule: function() {
+		// Render express module files
+		this.template('express-module/_.server.controller.js', 'app/controllers/' + this.slugifiedPluralName + '.server.controller.js');
+		this.template('express-module/_.server.model.js', 'app/models/' + this.slugifiedSingularName + '.server.model.js');
+		this.template('express-module/_.server.routes.js', 'app/routes/' + this.slugifiedPluralName + '.server.routes.js');
+		this.template('express-module/_.server.model.test.js', 'app/tests/' + this.slugifiedSingularName + '.server.model.test.js');
+		this.template('express-module/_.server.routes.test.js', 'app/tests/' + this.slugifiedSingularName + '.server.routes.test.js');
+
+		if (this.expressOnlyInstall) {
+			return;
+		}
+
 		// Create module folder
 		this.mkdir('public/modules/' + this.slugifiedPluralName);
 
@@ -91,13 +124,6 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 		if (this.addImagesFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/img');
 		if (this.addDirectivesFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/directives');
 		if (this.addFiltersFolder) this.mkdir('public/modules/' + this.slugifiedPluralName + '/filters');
-
-		// Render express module files
-		this.template('express-module/_.server.controller.js', 'app/controllers/' + this.slugifiedPluralName + '.server.controller.js');
-		this.template('express-module/_.server.model.js', 'app/models/' + this.slugifiedSingularName + '.server.model.js');
-		this.template('express-module/_.server.routes.js', 'app/routes/' + this.slugifiedPluralName + '.server.routes.js');
-		this.template('express-module/_.server.model.test.js', 'app/tests/' + this.slugifiedSingularName + '.server.model.test.js');
-		this.template('express-module/_.server.routes.test.js', 'app/tests/' + this.slugifiedSingularName + '.server.routes.test.js');
 
 		// Render angular module files
 		this.template('angular-module/config/_.client.routes.js', 'public/modules/' + this.slugifiedPluralName + '/config/' + this.slugifiedPluralName + '.client.routes.js');
