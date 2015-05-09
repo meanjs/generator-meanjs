@@ -1,15 +1,15 @@
 .content {
-	margin-top: 50px;
+  margin-top: 50px;
 }
 .undecorated-link:hover {
-	text-decoration: none;
+  text-decoration: none;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
+  display: none !important;
 }
 .ng-invalid.ng-dirty{
-    border-color:#FA787E;
+  border-color:#FA787E;
 }
 .ng-valid.ng-dirty{
-    border-color:#78FA89;
+  border-color:#78FA89;
 }

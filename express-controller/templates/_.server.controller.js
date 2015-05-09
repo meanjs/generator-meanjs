@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    _ = require('lodash');
+  _ = require('lodash');
 
 /**
  * Create a <%= humanizedSingularName %>
