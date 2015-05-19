@@ -45,7 +45,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 		});
 	});
 
-	it('should be able to save <%= humanizedSingularName %> instance if logged in', function(done) {
+	it('should be able to save a <%= humanizedSingularName %> if logged in', function(done) {
 		agent.post('/auth/signin')
 			.send(credentials)
 			.expect(200)
@@ -74,7 +74,8 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 								var <%= camelizedPluralName %> = <%= camelizedPluralName %>GetRes.body;
 
 								// Set assertions
-								(<%= camelizedPluralName %>[0].user._id).should.equal(userId);
+								(<%= camelizedPluralName %>[0].updatedBy._id).should.equal(userId);
+								(<%= camelizedPluralName %>[0].createdBy._id).should.equal(userId);
 								(<%= camelizedPluralName %>[0].name).should.match('<%= humanizedSingularName %> Name');
 
 								// Call the assertion callback
@@ -84,7 +85,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 			});
 	});
 
-	it('should not be able to save <%= humanizedSingularName %> instance if not logged in', function(done) {
+	it('should not be able to save a <%= humanizedSingularName %> if not logged in', function(done) {
 		agent.post('/<%= slugifiedPluralName %>')
 			.send(<%= camelizedSingularName %>)
 			.expect(401)
@@ -94,7 +95,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 			});
 	});
 
-	it('should not be able to save <%= humanizedSingularName %> instance if no name is provided', function(done) {
+	it('should not be able to save a <%= humanizedSingularName %> if no name is provided', function(done) {
 		// Invalidate name field
 		<%= camelizedSingularName %>.name = '';
 
@@ -114,7 +115,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 					.expect(400)
 					.end(function(<%= camelizedSingularName %>SaveErr, <%= camelizedSingularName %>SaveRes) {
 						// Set message assertion
-						(<%= camelizedSingularName %>SaveRes.body.message).should.match('Please fill <%= humanizedSingularName %> name');
+						(<%= camelizedSingularName %>SaveRes.body.message).should.match('Name cannot be blank');
 						
 						// Handle <%= humanizedSingularName %> save error
 						done(<%= camelizedSingularName %>SaveErr);
@@ -122,7 +123,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 			});
 	});
 
-	it('should be able to update <%= humanizedSingularName %> instance if signed in', function(done) {
+	it('should be able to update a <%= humanizedSingularName %> if signed in', function(done) {
 		agent.post('/auth/signin')
 			.send(credentials)
 			.expect(200)
@@ -144,7 +145,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 						// Update <%= humanizedSingularName %> name
 						<%= camelizedSingularName %>.name = 'WHY YOU GOTTA BE SO MEAN?';
 
-						// Update existing <%= humanizedSingularName %>
+						// Update an existing <%= humanizedSingularName %>
 						agent.put('/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>SaveRes.body._id)
 							.send(<%= camelizedSingularName %>)
 							.expect(200)
@@ -164,6 +165,10 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 	});
 
 	it('should be able to get a list of <%= humanizedPluralName %> if not signed in', function(done) {
+		// Set <%= humanizedSingularName %> user
+		<%= camelizedSingularName %>.updatedBy = user;
+		<%= camelizedSingularName %>.createdBy = user;
+
 		// Create new <%= humanizedSingularName %> model instance
 		var <%= camelizedSingularName %>Obj = new <%= classifiedSingularName %>(<%= camelizedSingularName %>);
 
@@ -184,6 +189,10 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 
 
 	it('should be able to get a single <%= humanizedSingularName %> if not signed in', function(done) {
+		// Set <%= humanizedSingularName %> user
+		<%= camelizedSingularName %>.updatedBy = user;
+		<%= camelizedSingularName %>.createdBy = user;
+
 		// Create new <%= humanizedSingularName %> model instance
 		var <%= camelizedSingularName %>Obj = new <%= classifiedSingularName %>(<%= camelizedSingularName %>);
 
@@ -200,7 +209,18 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 		});
 	});
 
-	it('should be able to delete <%= humanizedSingularName %> instance if signed in', function(done) {
+	it('should return proper error for single <%= humanizedSingularName %> which doesnt exist, if not signed in', function(done) {
+		request(app).get('/<%= slugifiedPluralName %>/test')
+			.end(function(req, res) {
+				// Set assertion
+				res.body.should.be.an.Object.with.property('message', '<%= humanizedSingularName %> is invalid');
+
+				// Call the assertion callback
+				done();
+			});
+	});
+
+	it('should be able to delete an <%= humanizedSingularName %> if signed in', function(done) {
 		agent.post('/auth/signin')
 			.send(credentials)
 			.expect(200)
@@ -219,7 +239,7 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 						// Handle <%= humanizedSingularName %> save error
 						if (<%= camelizedSingularName %>SaveErr) done(<%= camelizedSingularName %>SaveErr);
 
-						// Delete existing <%= humanizedSingularName %>
+						// Delete an existing <%= humanizedSingularName %>
 						agent.delete('/<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>SaveRes.body._id)
 							.send(<%= camelizedSingularName %>)
 							.expect(200)
@@ -237,9 +257,10 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 			});
 	});
 
-	it('should not be able to delete <%= humanizedSingularName %> instance if not signed in', function(done) {
+	it('should not be able to delete a <%= humanizedSingularName %> if not signed in', function(done) {
 		// Set <%= humanizedSingularName %> user 
-		<%= camelizedSingularName %>.user = user;
+		<%= camelizedSingularName %>.updatedBy = user;
+		<%= camelizedSingularName %>.createdBy = user;
 
 		// Create new <%= humanizedSingularName %> model instance
 		var <%= camelizedSingularName %>Obj = new <%= classifiedSingularName %>(<%= camelizedSingularName %>);
@@ -261,10 +282,8 @@ describe('<%= humanizedSingularName %> CRUD tests', function() {
 	});
 
 	afterEach(function(done) {
-		User.remove().exec(function(){
-			<%= classifiedSingularName %>.remove().exec(function(){
-				done();
-			});	
+		User.remove().exec(function() {
+			<%= classifiedSingularName %>.remove().exec(done);
 		});
 	});
 });

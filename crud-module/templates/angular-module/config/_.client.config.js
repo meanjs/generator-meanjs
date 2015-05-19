@@ -1,6 +1,6 @@
 'use strict';
 
-// Configuring the new module
+// Configuring the <%= humanizedPluralName %> module
 angular.module('<%= slugifiedPluralName %>').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items

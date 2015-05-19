@@ -12,8 +12,17 @@ var mongoose = require('mongoose'),
  * Create a <%= humanizedSingularName %>
  */
 exports.create = function(req, res) {
+
+	// Filters out control fields
+	delete req.body.updatedAt;
+	delete req.body.updatedBy;
+	delete req.body.createdAt;
+	delete req.body.createdBy;
+
 	var <%= camelizedSingularName %> = new <%= classifiedSingularName %>(req.body);
-	<%= camelizedSingularName %>.user = req.user;
+
+	<%= camelizedSingularName %>.createdBy = req.user;
+	<%= camelizedSingularName %>.updatedBy = req.user;
 
 	<%= camelizedSingularName %>.save(function(err) {
 		if (err) {
@@ -21,7 +30,7 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(<%= camelizedSingularName %>);
+			res.json(<%= camelizedSingularName %>);
 		}
 	});
 };
@@ -30,16 +39,26 @@ exports.create = function(req, res) {
  * Show the current <%= humanizedSingularName %>
  */
 exports.read = function(req, res) {
-	res.jsonp(req.<%= camelizedSingularName %>);
+	res.json(req.<%= camelizedSingularName %>);
 };
 
 /**
  * Update a <%= humanizedSingularName %>
  */
 exports.update = function(req, res) {
-	var <%= camelizedSingularName %> = req.<%= camelizedSingularName %> ;
 
-	<%= camelizedSingularName %> = _.extend(<%= camelizedSingularName %> , req.body);
+	// Filters out control fields
+	delete req.body.updatedAt;
+	delete req.body.updatedBy;
+	delete req.body.createdAt;
+	delete req.body.createdBy;
+
+	var <%= camelizedSingularName %> = req.<%= camelizedSingularName %>;
+
+	<%= camelizedSingularName %> = _.extend(<%= camelizedSingularName %>, req.body);
+
+	<%= camelizedSingularName %>.updatedAt = Date.now();
+	<%= camelizedSingularName %>.updatedBy = req.user;
 
 	<%= camelizedSingularName %>.save(function(err) {
 		if (err) {
@@ -47,7 +66,7 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(<%= camelizedSingularName %>);
+			res.json(<%= camelizedSingularName %>);
 		}
 	});
 };
@@ -56,7 +75,7 @@ exports.update = function(req, res) {
  * Delete an <%= humanizedSingularName %>
  */
 exports.delete = function(req, res) {
-	var <%= camelizedSingularName %> = req.<%= camelizedSingularName %> ;
+	var <%= camelizedSingularName %> = req.<%= camelizedSingularName %>;
 
 	<%= camelizedSingularName %>.remove(function(err) {
 		if (err) {
@@ -64,7 +83,7 @@ exports.delete = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(<%= camelizedSingularName %>);
+			res.json(<%= camelizedSingularName %>);
 		}
 	});
 };
@@ -72,14 +91,14 @@ exports.delete = function(req, res) {
 /**
  * List of <%= humanizedPluralName %>
  */
-exports.list = function(req, res) { 
-	<%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
+exports.list = function(req, res) {
+	<%= classifiedSingularName %>.find().sort('-createdAt').populate('createdBy', 'displayName').populate('updatedBy', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(<%= camelizedPluralName %>);
+			res.json(<%= camelizedPluralName %>);
 		}
 	});
 };
@@ -87,11 +106,22 @@ exports.list = function(req, res) {
 /**
  * <%= humanizedSingularName %> middleware
  */
-exports.<%= camelizedSingularName %>ByID = function(req, res, next, id) { 
-	<%= classifiedSingularName %>.findById(id).populate('user', 'displayName').exec(function(err, <%= camelizedSingularName %>) {
+exports.<%= camelizedSingularName %>ByID = function(req, res, next, id) {
+
+	if (!mongoose.Types.ObjectId.isValid(id)) {
+		return res.status(400).send({
+			message: '<%= humanizedSingularName %> is invalid'
+		});
+	}
+
+	<%= classifiedSingularName %>.findById(id).populate('createdBy', 'displayName').populate('updatedBy', 'displayName').exec(function(err, <%= camelizedSingularName %>) {
 		if (err) return next(err);
-		if (! <%= camelizedSingularName %>) return next(new Error('Failed to load <%= humanizedSingularName %> ' + id));
-		req.<%= camelizedSingularName %> = <%= camelizedSingularName %> ;
+		if (!<%= camelizedSingularName %>) {
+			return res.status(404).send({
+				message: '<%= humanizedSingularName %> not found'
+			});
+		}
+		req.<%= camelizedSingularName %> = <%= camelizedSingularName %>;
 		next();
 	});
 };
@@ -100,8 +130,10 @@ exports.<%= camelizedSingularName %>ByID = function(req, res, next, id) {
  * <%= humanizedSingularName %> authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.<%= camelizedSingularName %>.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
+	if (req.<%= camelizedSingularName %>.createdBy.id !== req.user.id) {
+		return res.status(403).send({
+			message: 'User is not authorized'
+		});
 	}
 	next();
 };
