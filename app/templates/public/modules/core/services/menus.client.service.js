@@ -1,6 +1,6 @@
 'use strict';
 
-//Menu service used for managing  menus
+//Menu service used for managing menus
 angular.module('core').service('Menus', [
 
 	function() {
@@ -10,7 +10,7 @@ angular.module('core').service('Menus', [
 		// Define the menus object
 		this.menus = {};
 
-		// A private function for rendering decision 
+		// A private function for rendering decision
 		var shouldRender = function(user) {
 			if (user) {
 				if (!!~this.roles.indexOf('*')) {
@@ -31,8 +31,8 @@ angular.module('core').service('Menus', [
 			return false;
 		};
 
-		// Validate menu existance
-		this.validateMenuExistance = function(menuId) {
+		// Validate menu existence
+		this.validateMenuExistence = function(menuId) {
 			if (menuId && menuId.length) {
 				if (this.menus[menuId]) {
 					return true;
@@ -49,7 +49,7 @@ angular.module('core').service('Menus', [
 		// Get the menu object by menu id
 		this.getMenu = function(menuId) {
 			// Validate that the menu exists
-			this.validateMenuExistance(menuId);
+			this.validateMenuExistence(menuId);
 
 			// Return the menu object
 			return this.menus[menuId];
@@ -72,7 +72,7 @@ angular.module('core').service('Menus', [
 		// Remove existing menu object by menu id
 		this.removeMenu = function(menuId) {
 			// Validate that the menu exists
-			this.validateMenuExistance(menuId);
+			this.validateMenuExistence(menuId);
 
 			// Return the menu object
 			delete this.menus[menuId];
@@ -81,7 +81,7 @@ angular.module('core').service('Menus', [
 		// Add menu item object
 		this.addMenuItem = function(menuId, menuItemTitle, menuItemURL, menuItemType, menuItemUIRoute, isPublic, roles, position) {
 			// Validate that the menu exists
-			this.validateMenuExistance(menuId);
+			this.validateMenuExistence(menuId);
 
 			// Push new menu item
 			this.menus[menuId].items.push({
@@ -104,7 +104,7 @@ angular.module('core').service('Menus', [
 		// Add submenu item object
 		this.addSubMenuItem = function(menuId, rootMenuItemURL, menuItemTitle, menuItemURL, menuItemUIRoute, isPublic, roles, position) {
 			// Validate that the menu exists
-			this.validateMenuExistance(menuId);
+			this.validateMenuExistence(menuId);
 
 			// Search for menu item
 			for (var itemIndex in this.menus[menuId].items) {
@@ -129,7 +129,7 @@ angular.module('core').service('Menus', [
 		// Remove existing menu object by menu id
 		this.removeMenuItem = function(menuId, menuItemURL) {
 			// Validate that the menu exists
-			this.validateMenuExistance(menuId);
+			this.validateMenuExistence(menuId);
 
 			// Search for menu item to remove
 			for (var itemIndex in this.menus[menuId].items) {
@@ -145,7 +145,7 @@ angular.module('core').service('Menus', [
 		// Remove existing menu object by menu id
 		this.removeSubMenuItem = function(menuId, submenuItemURL) {
 			// Validate that the menu exists
-			this.validateMenuExistance(menuId);
+			this.validateMenuExistence(menuId);
 
 			// Search for menu item to remove
 			for (var itemIndex in this.menus[menuId].items) {
