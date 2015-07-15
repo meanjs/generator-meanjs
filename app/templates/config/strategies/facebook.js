@@ -15,7 +15,37 @@ module.exports = function() {
 			clientID: config.facebook.clientID,
 			clientSecret: config.facebook.clientSecret,
 			callbackURL: config.facebook.callbackURL,
-			passReqToCallback: true
+			passReqToCallback: true,
+			profileFields: [
+				'id',
+				'username',
+				'displayName',
+				'name',
+				'gender',
+				'birthday',
+				'profileurl',
+				'emails',
+				'photos'
+			]
+			/*
+			 * Available profile fields are described at:
+			 * https://developers.facebook.com/docs/graph-api/reference/user
+			 *
+			 * You can also request the following fields which will be mapped accordingly.
+			 *
+			 * {
+			 *   'id':          'id',
+			 *   'username':    'username',
+			 *   'displayName': 'name',
+			 *   'name':       ['last_name', 'first_name', 'middle_name'],
+			 *   'gender':      'gender',
+			 *   'birthday':    'birthday',
+			 *   'profileUrl':  'link',
+			 *   'emails':      'email',
+			 *   'photos':      'picture'
+			 * }
+			 * Default is to request for id and displayName only.
+			 */
 		},
 		function(req, accessToken, refreshToken, profile, done) {
 			// Set the provider data and include tokens
