@@ -7,6 +7,16 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 	display: none !important;
 }
+
+.page-header{padding:0;margin:0;}
+
+table.detail-view {
+  margin-top: 26px;
+}
+.detail-view th {
+  width: 160px;
+}
+
 .ng-invalid.ng-dirty {
 	border-color: #FA787E;
 }

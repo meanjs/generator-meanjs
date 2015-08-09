@@ -1,21 +1,38 @@
 <section data-ng-controller="<%= classifiedPluralName %>Controller" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="<%= camelizedSingularName %>.name"></h1>
-	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == <%= camelizedSingularName %>.user._id))">
-		<a class="btn btn-primary" href="/#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="<%= camelizedSingularName %>.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="<%= camelizedSingularName %>.user.displayName"></span>
-		</em>
-	</small>
+  
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Probando {{<%= camelizedSingularName %>.name}}</h1>
+      </div>
+      <div class="col-md-4">
+        <div class="crud-buttons h1 text-right">
+          <div class="btn-group" role="group" aria-label="Botones de acción">
+            <a type="button" class="btn btn-default" href="/#!/<%= slugifiedPluralName %>">Volver</a>
+            <a type="button" class="btn btn-warning" href="/#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}/edit">Editar</a>
+            <button type="button" class="btn btn-danger" data-ng-click="remove();">Borrar</button>
+            <a type="button" class="btn btn-primary" href="/#!/<%= slugifiedPluralName %>/create">Nuevo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="detail-view table table-striped table-condensed table-bordered" id="yw0">
+    <tbody>
+      <tr>
+        <th>Nombre</th>
+        <td>{{<%= camelizedSingularName %>.name}}</td>
+      </tr>
+      <tr>
+        <th>Alta</th>
+        <td>{{<%= camelizedSingularName %>.created | date:'mediumDate'}}</td>
+      </tr>
+      <tr>
+        <th>Creado por</th>
+        <td>{{<%= camelizedSingularName %>.user.displayName}}</td>
+      </tr>
+    </tbody>
+  </table>
+
 </section>
