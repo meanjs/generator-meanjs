@@ -8,8 +8,8 @@
       <div class="col-md-4">
         <div class="crud-buttons h1 text-right">
           <div class="btn-group" role="group" aria-label="Botones de acción">
-            <a type="button" class="btn btn-default" href="/#!/<%= slugifiedPluralName %>">Volver</a>
-            <a type="button" class="btn btn-warning" href="/#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}/edit">Editar</a>
+            <a href="/#!/<%= slugifiedPluralName %>" class="btn btn-default">Volver</a>
+            <a href="/#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}/edit" class="btn btn-warning">Editar</a>
             <button type="button" class="btn btn-danger" data-ng-click="remove();">Borrar</button>
             <a type="button" class="btn btn-primary" href="/#!/<%= slugifiedPluralName %>/create">Nuevo</a>
           </div>
