@@ -1,23 +1,53 @@
 <section data-ng-controller="<%= classifiedPluralName %>Controller">
-    <div class="page-header">
+  <div class="page-header">
+    <div class="row">
+      
+      <div class="col-md-8">
         <h1>New <%= humanizedSingularName %></h1>
+      </div>
+
+      <div class="col-md-4">
+        <div class="crud-buttons h1 text-right">
+          <div class="btn-group" role="group" aria-label="Botones de acción">
+            <a href="/#!/<%= slugifiedPluralName %>" class="btn btn-default">Cancelar</a>
+            <button type="submit" class="btn btn-success" form="myForm">Guardar</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="create()" novalidate>
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-default">
-                </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
-        </form>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12" data-ng-show="error">
+      <div class="alert alert-danger" role="alert">
+        <span class="sr-only">Error:</span>
+        <div class="text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  <div class="col-md-12">
+    <form id="myForm" name="myForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+      <fieldset>
+        
+        <!-- Nombre -->
+        <div class="form-group" data-ng-class="{'has-error': myForm.name.$dirty && myForm.name.$invalid }">
+          <label class="control-label" for="name">Name <span class="text-danger help-inline">*</span></label>
+          <input type="text" name="name" data-ng-model="name" class="form-control" placeholder="Name" required>
+          <span class="help-block" ng-show="myForm.name.$dirty && myForm.name.$error.required">Campo requerido</span>
+          <small>Ud. debe colocar aqui el nombre de la persona</small>
+        </div>
+        
+        <!-- Submit section -->
+        <div class="form-group text-right">
+          <a href="/#!/<%= slugifiedPluralName %>" class="btn btn-default">Cancelar</a>
+          <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+        
+      </fieldset>
+    </form>
+  </div>
 </section>

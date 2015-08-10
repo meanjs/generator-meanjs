@@ -7,9 +7,13 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 	display: none !important;
 }
-.ng-invalid.ng-dirty {
-	border-color: #FA787E;
+
+.page-header{padding:0;margin:0;}
+
+table.detail-view,
+table.list-view {
+  margin-top: 26px;
 }
-.ng-valid.ng-dirty {
-	border-color: #78FA89;
+.detail-view th {
+  width: 160px;
 }

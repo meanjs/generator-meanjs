@@ -1,19 +1,39 @@
 <section data-ng-controller="<%= classifiedPluralName %>Controller" data-ng-init="find()">
-    <div class="page-header">
+  <div class="page-header">
+      
+    <div class="row">
+      <div class="col-md-8">
         <h1><%= humanizedPluralName %></h1>
+      </div>
+      <div class="col-md-4">
+        <div class="crud-buttons h1 text-right">
+          <div class="btn-group" role="group" aria-label="Botones de acción">
+            <a type="button" class="btn btn-primary" href="/#!/<%= slugifiedPluralName %>/create">Nuevo</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="<%= camelizedSingularName %> in <%= camelizedPluralName %>" data-ng-href="#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="<%= camelizedSingularName %>.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="<%= camelizedSingularName %>.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="<%= camelizedSingularName %>.name"></h4>
-        </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!<%= camelizedPluralName %>.$resolved || <%= camelizedPluralName %>.length">
-    	No <%= humanizedPluralName %> yet, why don't you <a href="/#!/<%= slugifiedPluralName %>/create">create one</a>?
-    </div>
+      
+  </div>
+
+  <table class="list-view table table-striped table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Created</th>
+        <th>User created</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-repeat="<%= camelizedSingularName %> in <%= camelizedPluralName %>">
+        <td><a data-ng-href="#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}">{{<%= camelizedSingularName %>.name}}</a></td>
+        <td>{{<%= camelizedSingularName %>.created | date:'medium'}}</td>
+        <td>{{<%= camelizedSingularName %>.user.displayName}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-warning text-center" data-ng-hide="!<%= camelizedPluralName %>.$resolved || <%= camelizedPluralName %>.length">
+    No <%= humanizedPluralName %> yet, why don't you <a href="/#!/<%= slugifiedPluralName %>/create">create one</a>?
+  </div>
 </section>
