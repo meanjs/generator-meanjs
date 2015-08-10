@@ -16,10 +16,3 @@ table.detail-view {
 .detail-view th {
   width: 160px;
 }
-
-.ng-invalid.ng-dirty {
-	border-color: #FA787E;
-}
-.ng-valid.ng-dirty {
-	border-color: #78FA89;
-}
