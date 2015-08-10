@@ -10,7 +10,8 @@
 
 .page-header{padding:0;margin:0;}
 
-table.detail-view {
+table.detail-view,
+table.list-view {
   margin-top: 26px;
 }
 .detail-view th {
