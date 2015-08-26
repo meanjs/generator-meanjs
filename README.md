@@ -1,3 +1,7 @@
+# DEPRECATED
+### This project is not actively being maintained! Please use with caution and at your own risk.
+### Check out the latest [MEAN.js project on github](https://github.com/meanjs/mean).
+
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
 [![Build Status](https://travis-ci.org/meanjs/generator-meanjs.svg?branch=master)](https://travis-ci.org/meanjs/generator-meanjs)
