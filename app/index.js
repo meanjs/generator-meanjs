@@ -1,10 +1,9 @@
-'use strict';
-
-var Promise = require('bluebird');
-var child_process = require('child_process');
-var clog = require('c.log');
-var path = require('path');
-var yeoman = require('yeoman-generator');
+var Promise = require('bluebird'),
+  child_process = require('child_process'),
+  path = require('path'),
+  s = require('underscore.string'),
+  generators = require('yeoman-generator'),
+  log = require('./log');
 
 var exec = function (cmd) {
   return new Promise(function (resolve, reject) {
@@ -27,27 +26,27 @@ var versions = {
   '0.4.1': 'v0.4.1'
 };
 
-var MeanGenerator = yeoman.generators.Base.extend({
+module.exports = generators.Base.extend({
   
   init: function () {
-    this.pkg = yeoman.file.readJSON(path.join(__dirname, '../package.json'));
+    this.pkg = this.fs.readJSON(path.join(__dirname, '../package.json'));
 
     this.on('end', function () {
       if (!this.options['skip-install']) {
-        clog.green('Running npm install for you....');
-        clog.green('This may take a couple minutes.');
+        log.green('Running npm install for you....');
+        log.green('This may take a couple minutes.');
         exec('cd ' + folder + ' && npm install')
           .then(function () {
-            clog('');
-            clog.green('------------------------------------------');
-            clog.green('Your MEAN.js application is ready!');
-            clog('');
-            clog.green('To Get Started, run the following command:');
-            clog('');
-            clog.yellow('cd ' + folder + ' && grunt');
-            clog('');
-            clog.green('Happy Hacking!');
-            clog.green('------------------------------------------');
+            log('');
+            log.green('------------------------------------------');
+            log.green('Your MEAN.js application is ready!');
+            log('');
+            log.green('To Get Started, run the following command:');
+            log('');
+            log.yellow('cd ' + folder + ' && grunt');
+            log('');
+            log.green('Happy Hacking!');
+            log.green('------------------------------------------');
           });
       }
     });
@@ -61,15 +60,15 @@ var MeanGenerator = yeoman.generators.Base.extend({
         done();
       })
       .catch(function (err) {
-        clog.red(new Error(err));
+        log.red(new Error(err));
         return;
       });
   },
 
   welcomeMessage: function () {
-    clog(this.yeoman);
+    log(this.yeoman);
 
-    clog.green('You\'re using the official MEAN.JS generator.');
+    log.green('You\'re using the official MEAN.JS generator.');
   },
 
   promptForVersion: function () {
@@ -98,7 +97,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
   promptForFolder: function () {
     var done = this.async();
 
-    clog.red(version);
+    log.red(version);
 
     var prompt = {
       name: 'folder',
@@ -116,14 +115,14 @@ var MeanGenerator = yeoman.generators.Base.extend({
   cloneRepo: function () {
     var done = this.async();
 
-    clog.green('Cloning the MEAN repo.......');
+    log.green('Cloning the MEAN repo.......');
 
     exec('git clone --branch ' + versions[version] + ' https://github.com/meanjs/mean.git ' + folder)
       .then(function () {
         done();
       })
       .catch(function (err) {
-        clog.red(err);
+        log.red(err);
         return;
       });
   },
@@ -148,7 +147,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
         done();
       })
       .catch(function (err) {
-        clog.red(err);
+        log.red(err);
         return;
       });
   },
@@ -191,18 +190,38 @@ var MeanGenerator = yeoman.generators.Base.extend({
       this.addArticleExample = props.addArticleExample;
       this.addChatExample = props.addChatExample;
 
-      this.slugifiedAppName = this._.slugify(this.appName);
-      this.humanizedAppName = this._.humanize(this.appName);
-      this.capitalizedAppAuthor = this._.capitalize(this.appAuthor);
+      this.slugifiedAppName = s(this.appName).slugify().value();
+      this.humanizedAppName = s(this.appName).humanize().value();
+      this.capitalizedAppAuthor = s(this.appAuthor).capitalize().value();
 
       done();
     }.bind(this));
   },
 
   copyTemplates: function () {
-    this.template(version + '/_package.json', folderPath + 'package.json');
-    this.template(version + '/_bower.json', folderPath + 'bower.json');
-    this.template(version + '/config/env/_default.js', folderPath + 'config/env/default.js');
+    this.fs.copyTpl(
+      this.templatePath(version + '/_package.json'),
+      this.destinationPath(folderPath + 'package.json'),
+      {
+        slugifiedAppName: this.slugifiedAppName,
+        appDescription: this.appDescription,
+        capitalizedAppAuthor: this.capitalizedAppAuthor
+      });
+    this.fs.copyTpl(
+      this.templatePath(version + '/_bower.json'),
+      this.destinationPath(folderPath + 'bower.json'),
+      {
+        slugifiedAppName: this.slugifiedAppName,
+        appDescription: this.appDescription
+      });
+    this.fs.copyTpl(
+      this.templatePath(version + '/config/env/_default.js'),
+      this.destinationPath(folderPath + 'config/env/default.js'),
+      {
+        appName: this.appName,
+        appDescription: this.appDescription,
+        appKeywords: this.appKeywords
+      });
   },
 
   removeChatExample: function () {
@@ -214,7 +233,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
           done();
         })
         .catch(function (err) {
-          clog.red(err);
+          log.red(err);
           return;
         });
     } else {
@@ -231,7 +250,7 @@ var MeanGenerator = yeoman.generators.Base.extend({
           done();
         })
         .catch(function (err) {
-          clog.red(err);
+          log.red(err);
           return;
         });
     } else {
@@ -240,5 +259,3 @@ var MeanGenerator = yeoman.generators.Base.extend({
   }
 
 });
-
-module.exports = MeanGenerator;
