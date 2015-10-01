@@ -33,7 +33,8 @@
     "chalk": "~1.1.1",
     "underscore.string": "~3.2.2",
     "yeoman-generator": "~0.20.3",
-    "yo": "~1.4.8"
+    "yo": "~1.4.8",
+    "mkdirp": "~0.5.1"
   },
   "devDependencies": {
     "mocha": "~2.3.2",
