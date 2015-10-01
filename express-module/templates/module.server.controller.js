@@ -13,6 +13,7 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
     var <%= moduleName %> = new <%= capitalizedModuleName %>(req.body);
+    <%= moduleName %>.user = req.user;
 
     <%= moduleName %>.save(function (err) {
         if (err) {
@@ -67,16 +68,16 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of <%= capitalizedModuleName %>s
+ * List of <%= capitalizedModuleName %>
  */
 exports.list = function (req, res) {
-    <%= capitalizedModuleName %>.find().sort('-created').exec(function (err, <%= moduleName %>s) {
+    <%= capitalizedModuleName %>.find().sort('-created').populate('user', 'displayName').exec(function (err, <%= moduleName %>) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.json(<%= moduleName %>s);
+            res.json(<%= moduleName %>);
         }
     });
 };
@@ -92,7 +93,7 @@ exports.<%= moduleName %>ByID = function (req, res, next, id) {
         });
     }
 
-    <%= capitalizedModuleName %>.findById(id).exec(function (err, <%= moduleName %>) {
+    <%= capitalizedModuleName %>.findById(id).populate('user', 'displayName').exec(function (err, <%= moduleName %>) {
         if (err) {
             return next(err);
         } else if (!<%= moduleName %>) {

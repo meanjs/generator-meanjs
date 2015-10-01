@@ -3,21 +3,21 @@
 /**
  * Module dependencies.
  */
-var <%= moduleName %>sPolicy = require('../policies/<%= moduleName %>s.server.policy'),
-    <%= moduleName %>s = require('../controllers/<%= moduleName %>s.server.controller');
+var <%= moduleName %>Policy = require('../policies/<%= moduleName %>.server.policy'),
+    <%= moduleName %> = require('../controllers/<%= moduleName %>.server.controller');
 
 module.exports = function (app) {
-    // <%= capitalizedModuleName %>s collection routes
-    app.route('/api/<%= moduleName %>s').all(<%= moduleName %>sPolicy.isAllowed)
-        .get(<%= moduleName %>s.list)
-        .post(<%= moduleName %>s.create);
+    // <%= capitalizedModuleName %> collection routes
+    app.route('/api/<%= moduleName %>').all(<%= moduleName %>Policy.isAllowed)
+        .get(<%= moduleName %>.list)
+        .post(<%= moduleName %>.create);
 
     // Single <%= moduleName %> routes
-    app.route('/api/<%= moduleName %>s/:<%= moduleName %>Id').all(<%= moduleName %>sPolicy.isAllowed)
-        .get(<%= moduleName %>s.read)
-        .put(<%= moduleName %>s.update)
-        .delete(<%= moduleName %>s.delete);
+    app.route('/api/<%= moduleName %>/:<%= moduleName %>Id').all(<%= moduleName %>Policy.isAllowed)
+        .get(<%= moduleName %>.read)
+        .put(<%= moduleName %>.update)
+        .delete(<%= moduleName %>.delete);
 
     // Finish by binding the <%= moduleName %> middleware
-    app.param('<%= moduleName %>Id', <%= moduleName %>s.<%= moduleName %>ByID);
+    app.param('<%= moduleName %>Id', <%= moduleName %>.<%= moduleName %>ByID);
 };
