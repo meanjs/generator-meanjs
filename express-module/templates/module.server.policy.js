@@ -9,41 +9,41 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke Articles Permissions
+ * Invoke <%= capitalizedModuleName %> Permissions
  */
 exports.invokeRolesPolicies = function () {
     acl.allow([{
         roles: ['admin'],
         allows: [{
-            resources: '/api/articles',
+            resources: '/api/<%= moduleName %>',
             permissions: '*'
         }, {
-            resources: '/api/articles/:articleId',
+            resources: '/api/<%= moduleName %>/:articleId',
             permissions: '*'
         }]
     }, {
         roles: ['user'],
         allows: [{
-            resources: '/api/articles',
+            resources: '/api/<%= moduleName %>',
             permissions: ['get', 'post']
         }, {
-            resources: '/api/articles/:articleId',
+            resources: '/api/<%= moduleName %>/:articleId',
             permissions: ['get']
         }]
     }, {
         roles: ['guest'],
         allows: [{
-            resources: '/api/articles',
+            resources: '/api/<%= moduleName %>',
             permissions: ['get']
         }, {
-            resources: '/api/articles/:articleId',
+            resources: '/api/<%= moduleName %>/:articleId',
             permissions: ['get']
         }]
     }]);
 };
 
 /**
- * Check If Articles Policy Allows
+ * Check If <%= capitalizedModuleName %> Policy Allows
  */
 exports.isAllowed = function (req, res, next) {
     var roles = (req.user) ? req.user.roles : ['guest'];
