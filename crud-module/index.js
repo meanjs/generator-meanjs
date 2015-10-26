@@ -68,7 +68,7 @@ module.exports = generators.NamedBase.extend({
         var prompts = [{
             type: 'confirm',
             name: 'addAngularModule',
-            message: 'Would you like to generate the AngularJS Route?',
+            message: 'Would you like to generate the Angular Module?',
             default: true
         }, {
             type: 'confirm',
