@@ -1,6 +1,24 @@
-var s = require('underscore.string'),
+var Promise = require('bluebird'),
+    child_process = require('child_process'),
+    s = require('underscore.string'),
     generators = require('yeoman-generator'),
-    mkdirp = require('mkdirp');
+    mkdirp = require('mkdirp'),
+    log = require('../app/log');
+
+var exec = function (cmd) {
+    return new Promise(function (resolve, reject) {
+        child_process.exec(cmd, function (err, res) {
+            if(err) {
+                reject(err);
+            } else {
+                resolve(res);
+            }
+        });
+    });
+};
+
+// Global Variables
+var folderPath;
 
 module.exports = generators.NamedBase.extend({
 
@@ -9,127 +27,112 @@ module.exports = generators.NamedBase.extend({
         this.capitalizedModuleName = s(this.name).capitalize().value();
     },
 
-    createFolders: function() {
-        mkdirp("modules/" + this.moduleName);
-        mkdirp("modules/" + this.moduleName + "/client");
-        mkdirp("modules/" + this.moduleName + "/client/config");
-        mkdirp("modules/" + this.moduleName + "/client/controllers");
-        mkdirp("modules/" + this.moduleName + "/client/services");
-        mkdirp("modules/" + this.moduleName + "/client/views");
-        mkdirp("modules/" + this.moduleName + "/server");
-        mkdirp("modules/" + this.moduleName + "/server/config");
-        mkdirp("modules/" + this.moduleName + "/server/controllers");
-        mkdirp("modules/" + this.moduleName + "/server/models");
-        mkdirp("modules/" + this.moduleName + "/server/policies");
-        mkdirp("modules/" + this.moduleName + "/server/routes");
-        mkdirp("modules/" + this.moduleName + "/tests");
-        mkdirp("modules/" + this.moduleName + "/tests/client");
-        mkdirp("modules/" + this.moduleName + "/tests/e2e");
-        mkdirp("modules/" + this.moduleName + "/tests/server");
+    promptForFolder: function () {
+        var done = this.async();
+
+        var prompt = {
+            name: 'folder',
+            message: 'In which folder would you like the module to be generated? This can be changed later.',
+            default: 'modules'
+        };
+
+        this.prompt(prompt, function (props) {
+            folder = props.folder;
+            folderPath = './' + folder + '/' + this.moduleName + '/';
+            done();
+        }.bind(this));
     },
 
-    createFiles: function() {
+    createFolders: function() {
+        mkdirp(folderPath);
+        mkdirp(folderPath + "/client");
+        mkdirp(folderPath + "/client/config");
+        mkdirp(folderPath + "/client/controllers");
+        mkdirp(folderPath + "/client/services");
+        mkdirp(folderPath + "/client/views");
+        mkdirp(folderPath + "/server");
+        mkdirp(folderPath + "/server/config");
+        mkdirp(folderPath + "/server/controllers");
+        mkdirp(folderPath + "/server/models");
+        mkdirp(folderPath + "/server/policies");
+        mkdirp(folderPath + "/server/routes");
+        mkdirp(folderPath + "/tests");
+        mkdirp(folderPath + "/tests/client");
+        mkdirp(folderPath + "/tests/e2e");
+        mkdirp(folderPath + "/tests/server");
+    },
 
-        // Client templates
-        this.fs.copyTpl(
-            this.templatePath("module.client.config.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/config/" + this.moduleName + ".client.config.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("module.client.controller.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/controllers/" + this.moduleName + ".client.controller.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("module.client.routes.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/config/" + this.moduleName + ".client.routes.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("module.client.service.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/services/" + this.moduleName + ".client.service.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("views/create.client.view.html"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/views/create.client.view.html"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("views/edit.client.view.html"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/views/edit.client.view.html"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("views/list.client.view.html"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/views/list.client.view.html"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("views/view.client.view.html"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/views/view.client.view.html"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("module.client.module.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/client/" + this.moduleName + ".client.module.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
+    getPrompts: function() {
+        var done = this.async();
 
-        // Server templates
-        this.fs.copyTpl(
-            this.templatePath("module.client.config.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/server/config/" + this.moduleName + ".server.config.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("module.server.controller.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/server/controllers/" + this.moduleName + ".server.controller.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("module.server.model.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/server/models/" + this.moduleName + ".server.model.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("module.server.policy.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/server/policies/" + this.moduleName + ".server.policy.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
-        this.fs.copyTpl(
-            this.templatePath("module.server.routes.js"),
-            this.destinationPath("modules/" + this.moduleName  + "/server/routes/" + this.moduleName + ".server.routes.js"),
-            {
-                moduleName: this.name,
-                capitalizedModuleName: this.capitalizedModuleName
-            });
+        var prompts = [{
+            type: 'confirm',
+            name: 'addAngularModule',
+            message: 'Would you like to generate the AngularJS Route?',
+            default: true
+        }, {
+            type: 'confirm',
+            name: 'addExpressModule',
+            message: 'Would you like to generate the Express Module?',
+            default: true
+        }];
+
+        this.prompt(prompts, function(props) {
+            this.addAngularModule = props.addAngularModule;
+            this.addExpressModule = props.addExpressModule;
+
+            done();
+        }.bind(this));
+    },
+
+    copyTemplates: function() {
+
+        var files = {
+            'module.client.module.js' : folderPath  + "/client/" + this.moduleName + ".client.module.js",
+            'module.client.config.js' : folderPath + "/client/config/" + this.moduleName + ".client.config.js",
+            'module.client.controller.js' : folderPath  + "/client/controllers/" + this.moduleName + ".client.controller.js",
+            'module.client.routes.js' : folderPath  + "/client/config/" + this.moduleName + ".client.routes.js",
+            'module.client.service.js' : folderPath  + "/client/services/" + this.moduleName + ".client.service.js",
+            'views/create.client.view.html' : folderPath  + "/client/views/create.client.view.html",
+            'views/edit.client.view.html' : folderPath  + "/client/views/edit.client.view.html",
+            'views/list.client.view.html' : folderPath  + "/client/views/list.client.view.html",
+            'views/view.client.view.html' : folderPath  + "/client/views/view.client.view.html",
+            'module.server.config.js' : folderPath  + "/server/config/" + this.moduleName + ".server.config.js",
+            'module.server.controller.js' : folderPath  + "/server/controllers/" + this.moduleName + ".server.controller.js",
+            'module.server.model.js' : folderPath  + "/server/models/" + this.moduleName + ".server.model.js",
+            'module.server.policy.js' : folderPath  + "/server/policies/" + this.moduleName + ".server.policy.js",
+            'module.server.routes.js' : folderPath  + "/server/routes/" + this.moduleName + ".server.routes.js"
+        };
+
+        for(var template in files) {
+            this.fs.copyTpl(
+                this.templatePath(template),
+                this.destinationPath(files[template]),
+                {
+                    moduleName: this.name,
+                    capitalizedModuleName: this.capitalizedModuleName
+                }
+            );
+        }
+    },
+
+    removeAngularModule: function () {
+        if(!this.addAngularModule) {
+            exec('rm -rf ' + folderPath + 'client')
+                .catch(function (err) {
+                    log.red(err);
+                    return;
+                });
+        }
+    },
+
+    removeExpressModule: function () {
+        if(!this.addExpressModule) {
+            exec('rm -rf ' + folderPath + 'server')
+                .catch(function (err) {
+                    log.red(err);
+                    return;
+                });
+        }
     }
 });
