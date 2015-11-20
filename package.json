@@ -31,6 +31,7 @@
   "dependencies": {
     "bluebird": "~2.10.0",
     "chalk": "~1.1.1",
+    "mkdirp": "~0.5.1",
     "underscore.string": "~3.2.2",
     "yeoman-generator": "~0.20.3",
     "yo": "~1.4.8"
