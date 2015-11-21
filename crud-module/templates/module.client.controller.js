@@ -1,43 +1,84 @@
 'use strict';
 
 // <%= capitalizedModuleName %> controller
-angular.module('<%= moduleName %>').controller('<%= capitalizedModuleName %>Controller', ['$scope', '$stateParams', '$location', 'Authentication', '<%= capitalizedModuleName %>',
+angular.module('<%= pluralModuleName %>').controller('<%= capitalizedModuleName %>Controller', ['$scope', '$stateParams', '$location', 'Authentication', '<%= capitalizedModuleName %>',
     function ($scope, $stateParams, $location, Authentication, <%= capitalizedModuleName %>) {
         $scope.authentication = Authentication;
 
-        // Create new Article
-        $scope.create = function (isValid) {
-            
-            //
-            
-        };
+    // Create new <%= moduleName %>
+    $scope.create = function (isValid) {
+      $scope.error = null;
 
-        // Remove existing Article
-        $scope.remove = function (article) {
-            
-            //
-            
-        };
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', '<%= moduleName %>Form');
 
-        // Update existing Article
-        $scope.update = function (isValid) {
-            
-            //
-            
-        };
+        return false;
+      }
 
-        // Find a list of <%= capitalizedModuleName %>
-        $scope.find = function () {
-            
-            //
-            
-        };
+      // Create new <%= moduleName %> object
+      var <%= moduleName %> = new <%= capitalizedModuleName %>({
+        title: this.title,
+        content: this.content
+      });
 
-        // Find existing Article
-        $scope.findOne = function () {
-            
-            //
-            
-        };
-    }
+      // Redirect after save
+      <%= moduleName %>.$save(function (response) {
+        $location.path('<%= pluralModuleName %>/' + response._id);
+
+        // Clear form fields
+        $scope.title = '';
+        $scope.content = '';
+      }, function (errorResponse) {
+        $scope.error = errorResponse.data.message;
+      });
+    };
+
+    // Remove existing <%= moduleName %>
+    $scope.remove = function (<%= moduleName %>) {
+      if (<%= moduleName %>) {
+        <%= moduleName %>.$remove();
+
+        for (var i in $scope.<%= moduleName %>) {
+          if ($scope.<%= moduleName %>[i] === <%= moduleName %>) {
+            $scope.<%= moduleName %>.splice(i, 1);
+          }
+        }
+      } else {
+        $scope.<%= moduleName %>.$remove(function () {
+          $location.path('<%= pluralModuleName %>');
+        });
+      }
+    };
+
+    // Update existing <%= moduleName %>
+    $scope.update = function (isValid) {
+      $scope.error = null;
+
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', '<%= moduleName %>Form');
+
+        return false;
+      }
+
+      var <%= moduleName %> = $scope.<%= moduleName %>;
+
+      <%= moduleName %>.$update(function () {
+        $location.path('<%= pluralModuleName %>/' + <%= moduleName %>._id);
+      }, function (errorResponse) {
+        $scope.error = errorResponse.data.message;
+      });
+    };
+
+    // Find a list of <%= moduleName %>s
+    $scope.find = function () {
+      $scope.<%= pluralModuleName %> = <%= capitalizedModuleName %>.query();
+    };
+
+    // Find existing <%= moduleName %>
+    $scope.findOne = function () {
+      $scope.<%= moduleName %> = <%= capitalizedModuleName %>.get({
+        <%= moduleName %>Id: $stateParams.<%= moduleName %>Id
+      });
+    };
+  }
 ]);

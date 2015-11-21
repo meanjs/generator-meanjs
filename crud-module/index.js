@@ -1,6 +1,8 @@
 var Promise = require('bluebird'),
     child_process = require('child_process'),
     s = require('underscore.string'),
+    inflection = require( 'underscore.inflection' ),
+    _ = require('underscore'),
     generators = require('yeoman-generator'),
     mkdirp = require('mkdirp'),
     log = require('../app/log');
@@ -25,6 +27,9 @@ module.exports = generators.NamedBase.extend({
     init: function() {
         this.moduleName = s(this.name).slugify().value();
         this.capitalizedModuleName = s(this.name).capitalize().value();
+        this.pluralCapitalizedModuleName = _.pluralize(this.capitalizedModuleName);
+        this.pluralModuleName = _.pluralize(this.name);
+
     },
 
     promptForFolder: function () {
@@ -38,7 +43,7 @@ module.exports = generators.NamedBase.extend({
 
         this.prompt(prompt, function (props) {
             folder = props.folder;
-            folderPath = './' + folder + '/' + this.moduleName + '/';
+            folderPath = './' + folder + '/' + this.pluralModuleName + '/';
             done();
         }.bind(this));
     },
@@ -88,20 +93,20 @@ module.exports = generators.NamedBase.extend({
     copyTemplates: function() {
 
         var files = {
-            'module.client.module.js' : folderPath  + "/client/" + this.moduleName + ".client.module.js",
-            'module.client.config.js' : folderPath + "/client/config/" + this.moduleName + ".client.config.js",
-            'module.client.controller.js' : folderPath  + "/client/controllers/" + this.moduleName + ".client.controller.js",
-            'module.client.routes.js' : folderPath  + "/client/config/" + this.moduleName + ".client.routes.js",
-            'module.client.service.js' : folderPath  + "/client/services/" + this.moduleName + ".client.service.js",
-            'views/create.client.view.html' : folderPath  + "/client/views/create.client.view.html",
-            'views/edit.client.view.html' : folderPath  + "/client/views/edit.client.view.html",
-            'views/list.client.view.html' : folderPath  + "/client/views/list.client.view.html",
-            'views/view.client.view.html' : folderPath  + "/client/views/view.client.view.html",
-            'module.server.config.js' : folderPath  + "/server/config/" + this.moduleName + ".server.config.js",
-            'module.server.controller.js' : folderPath  + "/server/controllers/" + this.moduleName + ".server.controller.js",
+            'module.client.module.js' : folderPath  + "/client/" + this.pluralModuleName + ".client.module.js",
+            'module.client.config.js' : folderPath + "/client/config/" + this.pluralModuleName + ".client.config.js",
+            'module.client.controller.js' : folderPath  + "/client/controllers/" + this.pluralModuleName + ".client.controller.js",
+            'module.client.routes.js' : folderPath  + "/client/config/" + this.pluralModuleName + ".client.routes.js",
+            'module.client.service.js' : folderPath  + "/client/services/" + this.pluralModuleName + ".client.service.js",
+            'views/create.client.view.html' : folderPath  + "/client/views/create-" + this.moduleName + ".client.view.html",
+            'views/edit.client.view.html' : folderPath  + "/client/views/edit-" + this.moduleName + ".client.view.html",
+            'views/list.client.view.html' : folderPath  + "/client/views/list-" + this.pluralModuleName + ".client.view.html",
+            'views/view.client.view.html' : folderPath  + "/client/views/view-" + this.moduleName + ".client.view.html",
+            'module.server.config.js' : folderPath  + "/server/config/" + this.pluralModuleName + ".server.config.js",
+            'module.server.controller.js' : folderPath  + "/server/controllers/" + this.pluralModuleName + ".server.controller.js",
             'module.server.model.js' : folderPath  + "/server/models/" + this.moduleName + ".server.model.js",
-            'module.server.policy.js' : folderPath  + "/server/policies/" + this.moduleName + ".server.policy.js",
-            'module.server.routes.js' : folderPath  + "/server/routes/" + this.moduleName + ".server.routes.js"
+            'module.server.policy.js' : folderPath  + "/server/policies/" + this.pluralModuleName + ".server.policy.js",
+            'module.server.routes.js' : folderPath  + "/server/routes/" + this.pluralModuleName + ".server.routes.js"
         };
 
         for(var template in files) {
@@ -110,7 +115,9 @@ module.exports = generators.NamedBase.extend({
                 this.destinationPath(files[template]),
                 {
                     moduleName: this.name,
-                    capitalizedModuleName: this.capitalizedModuleName
+                    capitalizedModuleName: this.capitalizedModuleName,
+                    pluralModuleName: this.pluralModuleName,
+                    pluralCapitalizedModuleName: this.pluralCapitalizedModuleName
                 }
             );
         }

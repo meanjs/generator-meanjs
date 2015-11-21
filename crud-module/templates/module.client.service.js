@@ -1,10 +1,14 @@
 'use strict';
 
-//<%= capitalizedModuleName %> service used for communicating with the <%= moduleName %> REST endpoints
-angular.module('<%= moduleName %>').factory('<%= capitalizedModuleName %>', ['$resource',
-    function ($resource) {
-        
-        //
-        
-    }
+//<%= capitalizedModuleName %> service used for communicating with the articles REST endpoints
+angular.module('<%= pluralModuleName %>').factory('<%= capitalizedModuleName %>', ['$resource',
+  function ($resource) {
+    return $resource('api/<%= pluralModuleName %>/:<%= moduleName %>Id', {
+      <%= moduleName %>Id: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
 ]);
