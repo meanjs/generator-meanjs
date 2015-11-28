@@ -24,7 +24,8 @@ var folder, folderPath, version;
 var versions = {
   'master': 'master',
   '0.4.0': 'v0.4.0',
-  '0.4.1': 'v0.4.1'
+  '0.4.1': 'v0.4.1',
+  '0.4.2': 'v0.4.2'
 };
 
 module.exports = generators.Base.extend({
