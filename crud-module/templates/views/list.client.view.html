@@ -1,0 +1,20 @@
+<section ng-controller="<%= capitalizedModuleName %>Controller" ng-init="find()">
+  <div class="page-header">
+    <h1><%= pluralCapitalizedModuleName %></h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="<%= moduleName %> in <%= pluralModuleName %>" ui-sref="<%= pluralModuleName %>.view({<%= moduleName %>Id: <%= moduleName %>._id})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="<%= moduleName %>.created | date:'mediumDate'"></span>
+        by
+        <span ng-bind="<%= moduleName %>.user.displayName"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="<%= moduleName %>.title"></h4>
+      <p class="list-group-item-text" ng-bind="<%= moduleName %>.content"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="<%= pluralModuleName %>.$resolved && !<%= pluralModuleName %>.length">
+    No <%= pluralModuleName %> yet, why don't you <a ui-sref="<%= pluralModuleName %>.create">create one</a>?
+  </div>
+</section>
