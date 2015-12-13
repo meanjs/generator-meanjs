@@ -1,0 +1,19 @@
+<section data-ng-controller="<%= classifiedPluralName %>Controller" data-ng-init="find()">
+    <div class="page-header">
+        <h1><%= humanizedPluralName %></h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="<%= camelizedSingularName %> in <%= camelizedPluralName %>" data-ng-href="#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="<%= camelizedSingularName %>.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="<%= camelizedSingularName %>.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="<%= camelizedSingularName %>.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!<%= camelizedPluralName %>.$resolved || <%= camelizedPluralName %>.length">
+    	No <%= humanizedPluralName %> yet, why don't you <a href="/#!/<%= slugifiedPluralName %>/create">create one</a>?
+    </div>
+</section>
