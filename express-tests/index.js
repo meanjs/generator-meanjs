@@ -1,10 +1,12 @@
 'use strict';
+
 var util = require('util'),
 	inflections = require('underscore.inflections'),
+	fs = require('fs'),
 	yeoman = require('yeoman-generator');
 
 
-var ModelGenerator = yeoman.generators.NamedBase.extend({
+var TestGenerator = yeoman.generators.NamedBase.extend({
 	askForModuleName: function() {
 		var modulesFolder = process.cwd() + '/modules/';
 		var done = this.async();
@@ -47,13 +49,16 @@ var ModelGenerator = yeoman.generators.NamedBase.extend({
 			done();
 		}.bind(this));
 	},
+	renderTestsFile: function() {
+		var modelFilePath = process.cwd() + '/modules/' + this.slugifiedModuleName + '/server/models/' + this.slugifiedModelName + '.server.model.js';
 
-	createModelFile: function() {
-		// We create the model file
-		this.template('_.server.model.js', 'modules/' + this.slugifiedModuleName + '/server/models/' + this.slugifiedModelName + '.server.model.js');
-		// We create the test file for the models
-		this.template('_.server.model.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/server/' + this.slugifiedModelName + '.server.model.tests.js');
+		// If model file exists we create a test for it otherwise we will first create a model
+		if (!fs.existsSync(modelFilePath)) {
+			this.template('_.server.model.js', 'modules/' + this.slugifiedModuleName + '/server/models/' + this.slugifiedModelName + '.server.model.js')
+		}
+
+		this.template('_.server.model.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/server/' + this.slugifiedModelName + '.server.model.tests.js')
 	}
 });
 
-module.exports = ModelGenerator;
+module.exports = TestGenerator;

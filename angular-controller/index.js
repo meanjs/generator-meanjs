@@ -47,7 +47,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 
 	renderControllerFiles: function() {
 		this.template('_.client.controller.js', 'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedControllerName + '.client.controller.js');
-		this.template('_.client.controller.test.js', 'modules/' + this.slugifiedModuleName + '/tests/client/' + this.slugifiedControllerName + '.client.controller.test.js');
+		this.template('_.client.controller.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/client/' + this.slugifiedControllerName + '.client.controller.tests.js');
 	}
 });
 
