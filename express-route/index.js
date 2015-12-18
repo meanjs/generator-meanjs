@@ -1,5 +1,6 @@
 'use strict';
 var util = require('util'),
+	s = require('underscore.string'),
 	yeoman = require('yeoman-generator');
 
 
@@ -33,9 +34,9 @@ var RouteGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.slugifiedModuleName = s(this.moduleName).slugify().value();
 
-			this.slugifiedName = this._.slugify(this._.humanize(this.name));
+			this.slugifiedName = s(this.name).humanize().slugify().value();
 
 			done();
 		}.bind(this));

@@ -1,5 +1,6 @@
 'use strict';
 var util = require('util'),
+	s = require('underscore.string'),
 	inflections = require('underscore.inflections'),
 	yeoman = require('yeoman-generator');
 
@@ -34,13 +35,13 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.slugifiedModuleName = s(this.moduleName).slugify().value();
 
-			this.slugifiedControllerName = this._.slugify(this._.humanize(this.name));
+			this.slugifiedControllerName = s(this.name).humanize().slugify().value();
 
-			this.humanizedName = this._.humanize(this.slugifiedName);
-			this.humanizedPluralName = inflections.pluralize(this._.humanize(this.slugifiedName));
-			this.humanizedSingularName = inflections.singularize(this._.humanize(this.slugifiedName));
+			this.humanizedName = s(this.slugifiedName).humanize().value();
+			this.humanizedPluralName = inflections.pluralize(this.humanizedName);
+			this.humanizedSingularName = inflections.singularize(this.humanizedName);
 
 			done();
 		}.bind(this));

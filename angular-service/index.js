@@ -2,6 +2,7 @@
 
 var util = require('util'),
 	fs = require('fs'),
+	s = require('underscore.string'),
 	yeoman = require('yeoman-generator');
 
 
@@ -35,11 +36,11 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
-			this.slugifiedModuleName = this._.slugify(this._.humanize(this.moduleName));
+			this.slugifiedModuleName = s(this.moduleName).humanize().slugify().value();
 
-			this.slugifiedName = this._.slugify(this.name);
-			this.classifiedName = this._.classify(this.slugifiedName);
-			this.humanizedName = this._.humanize(this.slugifiedName);
+			this.slugifiedName = s(this.name).slugify().value();
+			this.classifiedName = s(this.slugifiedName).classify().value();
+			this.humanizedName = s(this.slugifiedName).humanize().value();
 
 			done();
 		}.bind(this));

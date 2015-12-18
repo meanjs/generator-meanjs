@@ -1,6 +1,7 @@
 'use strict';
 var util = require('util'),
 	fs = require('fs'),
+	s = require('underscore.string'),
 	yeoman = require('yeoman-generator');
 
 
@@ -36,12 +37,12 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 			this.moduleName = props.moduleName;
 			this.controllerName = props.controllerName;
 
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
-			this.humanizedModuleName = this._.humanize(this.moduleName);
+			this.slugifiedModuleName = s(this.moduleName).slugify().value();
+			this.humanizedModuleName = s(this.moduleName).humanize().value();
 
-			this.slugifiedName = this._.slugify(this._.humanize(this.name));
-			this.classifiedName = this._.classify(this.slugifiedName);
-			this.humanizedName = this._.humanize(this.slugifiedName);
+			this.slugifiedName = s(this.name).humanize().slugify().value();
+			this.classifiedName = s(this.slugifiedName).classify().value();
+			this.humanizedName = s(this.slugifiedName).humanize().value();
 
 			done();
 		}.bind(this));
@@ -69,14 +70,14 @@ var ViewGenerator = yeoman.generators.NamedBase.extend({
 			this.viewName = props.viewName;
 			this.controllerName = props.controllerName;
 
-			this.slugifiedRoutePath = this._.slugify(this.routePath);
+			this.slugifiedRoutePath = s(this.routePath).slugify().value();
 
-			this.slugifiedViewName = this._.slugify(this.viewName);
-			this.humanizedViewName = this._.humanize(this.viewName);
+			this.slugifiedViewName = s(this.viewName).slugify().value();
+			this.humanizedViewName = s(this.viewName).humanize().value();
 
-			this.slugifiedControllerName = this._.slugify(this._.humanize(this.controllerName));
-			this.classifiedControllerName = this._.classify(this.slugifiedControllerName);
-			this.humanizedControllerName = this._.humanize(this.slugifiedControllerName);
+			this.slugifiedControllerName = s(this.controllerName).humanize().slugify().value();
+			this.classifiedControllerName = s(this.slugifiedControllerName).classify().value();
+			this.humanizedControllerName = s(this.slugifiedControllerName).humanize().value();
 
 			done();
 		}.bind(this));

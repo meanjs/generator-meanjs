@@ -32,6 +32,8 @@
   "dependencies": {
     "bluebird": "~3.0.6",
     "chalk": "~1.1.1",
+    "lodash": "^3.10.1",
+    "underscore.inflections": "^0.2.1",
     "underscore.string": "~3.2.2",
     "yeoman-generator": "~0.21.1",
     "yo": "~1.5.0"
@@ -40,5 +42,5 @@
     "mocha": "~2.3.4",
     "temp": "~0.8.3"
   },
-  "license" : "MIT"
+  "license": "MIT"
 }

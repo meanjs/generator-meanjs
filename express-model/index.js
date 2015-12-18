@@ -1,6 +1,7 @@
 'use strict';
 var util = require('util'),
 	inflections = require('underscore.inflections'),
+	s = require('underscore.string'),
 	yeoman = require('yeoman-generator');
 
 
@@ -34,13 +35,13 @@ var ModelGenerator = yeoman.generators.NamedBase.extend({
 
 		this.prompt(prompts, function(props) {
 			this.moduleName = props.moduleName;
-			this.slugifiedModuleName = this._.slugify(this.moduleName);
+			this.slugifiedModuleName = s(this.moduleName).slugify().value();
 
 			// Set model names
-			this.slugifiedModelName = this._.slugify(this._.humanize(this.name));
-			this.classifiedModelName = this._.classify(this.slugifiedModelName);
-			this.humanizedModelName = this._.humanize(this.slugifiedModelName);
-			this.camelizedModelName = this._.camelize(this.slugifiedModelName);
+			this.slugifiedModelName = s(this.name).humanize().slugify().value();
+			this.classifiedModelName = s(this.slugifiedModelName).classify().value();
+			this.humanizedModelName = s(this.slugifiedModelName).humanize().value();
+			this.camelizedModelName = s(this.slugifiedModelName).camelize().value();
 
 			this.slugifiedPluralModelName = inflections.pluralize(this.slugifiedModelName);
 
