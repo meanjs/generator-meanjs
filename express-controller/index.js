@@ -1,5 +1,6 @@
 'use strict';
 var util = require('util'),
+	fs = require('fs'),
 	s = require('underscore.string'),
 	inflections = require('underscore.inflections'),
 	yeoman = require('yeoman-generator');

@@ -2,6 +2,7 @@
 var util = require('util'),
     s = require('underscore.string'),
     _ = require('lodash'),
+    mkdirp = require('mkdirp'),
     yeoman = require('yeoman-generator');
 
 
@@ -68,16 +69,20 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
                 name: 'controllers',
                 checked: true
             }, {
-                value: 'addModelsFolder',
+                value: 'addServerConfigFolder',
                 name: 'models',
                 checked: true
             }, {
-                value: 'addPoliciesFolder',
+                value: 'addServerPoliciesFolder',
                 name: 'policies',
                 checked: false
             }, {
-                value: 'addRoutesFolder',
+                value: 'addServerRoutesFolder',
                 name: 'routes',
+                checked: true
+            }, {
+                value: 'addServerTestsFolder',
+                name: 'tests',
                 checked: true
             }]
         }];
@@ -97,9 +102,10 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
             //server-side
             this.addServerConfigFolder = _.contains(props.serverFolders, 'addServerConfigFolder');
             this.addServerControllersFolder = _.contains(props.serverFolders, 'addServerControllersFolder');
-            this.addModelsFolder = _.contains(props.serverFolders, 'addModelsFolder');
-            this.addPoliciesFolder = _.contains(props.serverFolders, 'addPoliciesFolder');
-            this.addRoutesFolder = _.contains(props.serverFolders, 'addRoutesFolder');
+            this.addServerConfigFolder = _.contains(props.serverFolders, 'addServerConfigFolder');
+            this.addServerPoliciesFolder = _.contains(props.serverFolders, 'addServerPoliciesFolder');
+            this.addServerRoutesFolder = _.contains(props.serverFolders, 'addServerRoutesFolder');
+            this.addServerTestsFolder = _.contains(props.serverFolders, 'addServerTestsFolder');
 
             done();
         }.bind(this));
@@ -107,29 +113,34 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
 
     renderModule: function() {
         // Create module folder
-        this.mkdirp.sync('modules/' + this.slugifiedName + '/client/');
+        mkdirp.sync('modules/' + this.slugifiedName + '/client/');
 
         // Create client module sub-folders
-        if (this.addConfigFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/client/config');
-        if (this.addControllersFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/client/controllers');
-        if (this.addCSSFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/client/css');
-        if (this.addDirectivesFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/client/directives');
-        if (this.addFiltersFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/client/filters');
-        if (this.addImagesFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/client/img');
-        if (this.addServicesFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/client/services');
-        if (this.addViewsFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/client/views');
+        if (this.addConfigFolder) mkdirp.sync('modules/' + this.slugifiedName + '/client/config');
+        if (this.addControllersFolder) mkdirp.sync('modules/' + this.slugifiedName + '/client/controllers');
+        if (this.addCSSFolder) mkdirp.sync('modules/' + this.slugifiedName + '/client/css');
+        if (this.addDirectivesFolder) mkdirp.sync('modules/' + this.slugifiedName + '/client/directives');
+        if (this.addFiltersFolder) mkdirp.sync('modules/' + this.slugifiedName + '/client/filters');
+        if (this.addImagesFolder) mkdirp.sync('modules/' + this.slugifiedName + '/client/img');
+        if (this.addServicesFolder) mkdirp.sync('modules/' + this.slugifiedName + '/client/services');
+        if (this.addViewsFolder) mkdirp.sync('modules/' + this.slugifiedName + '/client/views');
 
-        if (this.addTestsFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/tests/client');
-
-        // Create server module sub-folders
-        if (this.addServerConfigFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
-        if (this.addServerControllersFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
-        if (this.addModelsFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
-        if (this.addPoliciesFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
-        if (this.addRoutesFolder) this.mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
+        if (this.addTestsFolder) mkdirp.sync('modules/' + this.slugifiedName + '/tests/client');
 
         // Render angular module definition
         this.template('_.client.module.js', 'modules/' + this.slugifiedName + '/client/' + this.slugifiedName + '.client.module.js');
+
+        // Create server module sub-folders
+        if (this.addServerConfigFolder) mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
+        if (this.addServerControllersFolder) mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
+        if (this.addServerConfigFolder) mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
+        if (this.addServerPoliciesFolder) mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
+        if (this.addServerRoutesFolder) mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
+
+        if (this.addServerTestsFolder) mkdirp.sync('modules/' + this.slugifiedName + '/tests/server');
+
+        // Render server module config
+        this.template('_.server.config.js', 'modules/' + this.slugifiedName + '/server/config/' + this.slugifiedName + '.server.config.js');
     }
 });
 
