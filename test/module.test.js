@@ -10,28 +10,6 @@ describe('Module Sub Generators Tests', function() {
    */
   before(function (done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), done);
-
-    helpers.run(path.join(__dirname, '../app'))
-        .withOptions({
-          'skip-install': true
-        })
-        .withArguments([])
-        .withPrompts({
-          version: '0.4.2',
-          folder: 'temp',
-          appName: 'MEANtestAppName042',
-          appDescription: 'Testing the express generators on version 042',
-          appKeywords: 'MongoDB, Express, AngularJS, Node.js',
-          appAuthor: 'Test',
-          addArticleExample: false,
-          addChatExample: false
-        })
-        .on('ready', function (generator) {
-          // this is called right before `generator.run()` is called
-        })
-        .on('end', function () {
-          done();
-        });
   });
 
   /**
