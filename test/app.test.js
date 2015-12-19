@@ -1,9 +1,9 @@
 var path = require('path'),
-  fs = require('fs'),
-  helpers = require('yeoman-generator').test,
-  assert = require('yeoman-generator').assert,
-  temp = require('temp').track();
-  
+    fs = require('fs'),
+    helpers = require('yeoman-generator').test,
+    assert = require('yeoman-generator').assert,
+    temp = require('temp').track();
+
 describe('Main Generator', function () {
   this.timeout(0);
   /**
@@ -23,26 +23,26 @@ describe('Main Generator', function () {
   describe('Application generator without sample module 0.4.0', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .withOptions({
-          'skip-install': true
-        })
-        .withArguments([])
-        .withPrompts({
-          version: '0.4.0',
-          folder: 'temp',
-          appName: 'MEANtestAppName',
-          appDescription: 'Testing the generator',
-          appKeywords: 'MongoDB, Express, AngularJS, Node.js',
-          appAuthor: 'Test',
-          addArticleExample: false,
-          addChatExample: false
-        })
-        .on('ready', function (generator) {
-          // this is called right before `generator.run()` is called
-        })
-        .on('end', function () {
-          done();
-        });
+          .withOptions({
+            'skip-install': true
+          })
+          .withArguments([])
+          .withPrompts({
+            version: '0.4.0',
+            folder: 'temp',
+            appName: 'MEANtestAppName',
+            appDescription: 'Testing the generator',
+            appKeywords: 'MongoDB, Express, AngularJS, Node.js',
+            appAuthor: 'Test',
+            addArticleExample: false,
+            addChatExample: false
+          })
+          .on('ready', function (generator) {
+            // this is called right before `generator.run()` is called
+          })
+          .on('end', function () {
+            done();
+          });
     });
 
     it('should generate a package.json file', function () {
@@ -62,11 +62,11 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
     it('should generate a bower.json file', function () {
       assert.file('temp/bower.json');
     });
-    
+
     it('should populate the bower.json correctly', function (done) {
       fs.readFile('temp/bower.json', function (err, data) {
         if(err) {
@@ -79,32 +79,32 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
   });
 
   describe('Application generator without sample module 0.4.1', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .withOptions({
-          'skip-install': true
-        })
-        .withArguments([])
-        .withPrompts({
-          version: '0.4.1',
-          folder: 'temp',
-          appName: 'MEANtestAppName041',
-          appDescription: 'Testing the generator 041',
-          appKeywords: 'MongoDB, Express, AngularJS, Node.js',
-          appAuthor: 'Test',
-          addArticleExample: false,
-          addChatExample: false
-        })
-        .on('ready', function (generator) {
-          // this is called right before `generator.run()` is called
-        })
-        .on('end', function () {
-          done();
-        });
+          .withOptions({
+            'skip-install': true
+          })
+          .withArguments([])
+          .withPrompts({
+            version: '0.4.1',
+            folder: 'temp',
+            appName: 'MEANtestAppName041',
+            appDescription: 'Testing the generator 041',
+            appKeywords: 'MongoDB, Express, AngularJS, Node.js',
+            appAuthor: 'Test',
+            addArticleExample: false,
+            addChatExample: false
+          })
+          .on('ready', function (generator) {
+            // this is called right before `generator.run()` is called
+          })
+          .on('end', function () {
+            done();
+          });
     });
 
     it('should generate a package.json file', function () {
@@ -124,11 +124,11 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
     it('should generate a bower.json file', function () {
       assert.file('temp/bower.json');
     });
-    
+
     it('should populate the bower.json correctly', function (done) {
       fs.readFile('temp/bower.json', function (err, data) {
         if(err) {
@@ -141,32 +141,32 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
   });
 
   describe('Application generator without sample module 0.4.2', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .withOptions({
-          'skip-install': true
-        })
-        .withArguments([])
-        .withPrompts({
-          version: '0.4.2',
-          folder: 'temp',
-          appName: 'MEANtestAppName042',
-          appDescription: 'Testing the generator 042',
-          appKeywords: 'MongoDB, Express, AngularJS, Node.js',
-          appAuthor: 'Test',
-          addArticleExample: false,
-          addChatExample: false
-        })
-        .on('ready', function (generator) {
-          // this is called right before `generator.run()` is called
-        })
-        .on('end', function () {
-          done();
-        });
+          .withOptions({
+            'skip-install': true
+          })
+          .withArguments([])
+          .withPrompts({
+            version: '0.4.2',
+            folder: 'temp',
+            appName: 'MEANtestAppName042',
+            appDescription: 'Testing the generator 042',
+            appKeywords: 'MongoDB, Express, AngularJS, Node.js',
+            appAuthor: 'Test',
+            addArticleExample: false,
+            addChatExample: false
+          })
+          .on('ready', function (generator) {
+            // this is called right before `generator.run()` is called
+          })
+          .on('end', function () {
+            done();
+          });
     });
 
     it('should generate a package.json file', function () {
@@ -182,19 +182,19 @@ describe('Main Generator', function () {
           assert.equal(packageJson.name, 'meantestappname042');
           assert.equal(packageJson.description, 'Testing the generator 042');
           assert.equal(packageJson.author, 'Test');
-          
+
           // Testing the meanjs version was introduced in 0.4.2
           assert.equal(packageJson['meanjs-version'], '0.4.2');
-          
+
           done();
         }
       });
     });
-    
+
     it('should generate a bower.json file', function () {
       assert.file('temp/bower.json');
     });
-    
+
     it('should populate the bower.json correctly', function (done) {
       fs.readFile('temp/bower.json', function (err, data) {
         if(err) {
@@ -207,7 +207,7 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
   });
 
 });
