@@ -40,9 +40,5 @@
     "mocha": "~2.3.4",
     "temp": "~0.8.3"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+  "license": "MIT"
 }
