@@ -5,113 +5,114 @@ var path = require('path'),
     temp = require('temp').track();
 
 describe('Express Sub Generators Tests', function() {
-  /**
-   * Setup the temp directory
-   */
-  before(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), done);
-  });
-
-  /**
-   * Clean up temp directory
-   */
-  after(function () {
-    temp.cleanup();
-  });
-
-  describe('Generate an express controller through the sub-generator', function() {
-    beforeEach(function(done) {
-      helpers.run(path.join(__dirname, '../express-controller'))
-          .withOptions({
-            'skip-install': true
-          })
-          .withArguments(['foo'])
-          .withPrompts({
-            'moduleName': 'core'
-          })
-          .on('ready', function (generator) {
-            // this is called right before `generator.run()` is called
-          })
-          .on('end', function () {
-            done();
-          });
+    this.timeout(0);
+    /**
+     * Setup the temp directory
+     */
+    before(function (done) {
+        helpers.testDirectory(path.join(__dirname, 'temp'), done);
     });
 
-    it('should generate an express controller file', function() {
-      assert.file('modules/core/server/controllers/foo.server.controller.js');
-    });
-  });
-
-  describe('Generate an express model through the sub-generator', function() {
-    beforeEach(function(done) {
-      helpers.run(path.join(__dirname, '../express-model'))
-          .withOptions({
-            'skip-install': true
-          })
-          .withArguments(['foo'])
-          .withPrompts({
-            'moduleName': 'core'
-          })
-          .on('ready', function (generator) {
-            // this is called right before `generator.run()` is called
-          })
-          .on('end', function () {
-            done();
-          });
+    /**
+     * Clean up temp directory
+     */
+    after(function () {
+        temp.cleanup();
     });
 
-    it('should generate an express model and an associated test file', function() {
-      assert.file('modules/core/server/models/foo.server.model.js');
-      assert.file('modules/core/tests/server/foo.server.model.tests.js');
-    });
-  });
+    describe('Generate an express controller through the sub-generator', function() {
+        beforeEach(function(done) {
+            helpers.run(path.join(__dirname, '../express-controller'))
+                .withOptions({
+                    'skip-install': true
+                })
+                .withArguments(['foo'])
+                .withPrompts({
+                    'moduleName': 'core'
+                })
+                .on('ready', function (generator) {
+                    // this is called right before `generator.run()` is called
+                })
+                .on('end', function () {
+                    done();
+                });
+        });
 
-  describe('Generate an express route through the sub-generator', function() {
-    beforeEach(function(done) {
-      helpers.run(path.join(__dirname, '../express-route'))
-          .withOptions({
-            'skip-install': true
-          })
-          .withArguments(['foo'])
-          .withPrompts({
-            'moduleName': 'core'
-          })
-          .on('ready', function (generator) {
-            // this is called right before `generator.run()` is called
-          })
-          .on('end', function () {
-            done();
-          });
-    });
-
-    it('should generate an express route file', function() {
-      assert.file('modules/core/server/routes/foo.server.routes.js');
-    });
-  });
-
-  describe('Generate an express test through the sub-generator', function() {
-    beforeEach(function(done) {
-      helpers.run(path.join(__dirname, '../express-tests'))
-          .withOptions({
-            'skip-install': true
-          })
-          .withArguments(['foo'])
-          .withPrompts({
-            'moduleName': 'core'
-          })
-          .on('ready', function (generator) {
-            // this is called right before `generator.run()` is called
-          })
-          .on('end', function () {
-            done();
-          });
+        it('should generate an express controller file', function() {
+            assert.file('modules/core/server/controllers/foo.server.controller.js');
+        });
     });
 
-    it('should generate an express route file', function() {
-      assert.file('modules/core/server/models/foo.server.model.js');
-      assert.file('modules/core/tests/server/foo.server.model.tests.js');
+    describe('Generate an express model through the sub-generator', function() {
+        beforeEach(function(done) {
+            helpers.run(path.join(__dirname, '../express-model'))
+                .withOptions({
+                    'skip-install': true
+                })
+                .withArguments(['foo'])
+                .withPrompts({
+                    'moduleName': 'core'
+                })
+                .on('ready', function (generator) {
+                    // this is called right before `generator.run()` is called
+                })
+                .on('end', function () {
+                    done();
+                });
+        });
+
+        it('should generate an express model and an associated test file', function() {
+            assert.file('modules/core/server/models/foo.server.model.js');
+            assert.file('modules/core/tests/server/foo.server.model.tests.js');
+        });
     });
-  });
+
+    describe('Generate an express route through the sub-generator', function() {
+        beforeEach(function(done) {
+            helpers.run(path.join(__dirname, '../express-route'))
+                .withOptions({
+                    'skip-install': true
+                })
+                .withArguments(['foo'])
+                .withPrompts({
+                    'moduleName': 'core'
+                })
+                .on('ready', function (generator) {
+                    // this is called right before `generator.run()` is called
+                })
+                .on('end', function () {
+                    done();
+                });
+        });
+
+        it('should generate an express route file', function() {
+            assert.file('modules/core/server/routes/foo.server.routes.js');
+        });
+    });
+
+    describe('Generate an express test through the sub-generator', function() {
+        beforeEach(function(done) {
+            helpers.run(path.join(__dirname, '../express-tests'))
+                .withOptions({
+                    'skip-install': true
+                })
+                .withArguments(['foo'])
+                .withPrompts({
+                    'moduleName': 'core'
+                })
+                .on('ready', function (generator) {
+                    // this is called right before `generator.run()` is called
+                })
+                .on('end', function () {
+                    done();
+                });
+        });
+
+        it('should generate an express route file', function() {
+            assert.file('modules/core/server/models/foo.server.model.js');
+            assert.file('modules/core/tests/server/foo.server.model.tests.js');
+        });
+    });
 });
 
 //describe('AngularJS Sub Generators Tests', function() {

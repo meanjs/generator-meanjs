@@ -5,6 +5,7 @@ var path = require('path'),
     temp = require('temp').track();
 
 describe('Module Sub Generators Tests', function() {
+  this.timeout(0);
   /**
    * Setup the temp directory
    */
