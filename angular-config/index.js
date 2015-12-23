@@ -5,18 +5,17 @@ var yeoman = require('yeoman-generator'),
   modulesHelper = require('../utilities/modules.helper');
 
 var ConfigGenerator = yeoman.generators.NamedBase.extend({
+
   init: function () {
     this.slugifiedNgConfigName = s.slugify(s.humanize(this.name));
     this.classifiedNgConfigName = s.classify(this.slugifiedNgConfigName);
     this.humanizedNgConfigName = s.humanize(this.slugifiedNgConfigName);
-
     this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedNgConfigName);
     if (this.availableModuleChoices == null)
       this.env.error('No modules found!');
   },
   askForModuleName: function () {
     var done = this.async();
-
     var prompts = [{
       type: 'list',
       name: 'moduleName',
