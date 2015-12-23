@@ -47,7 +47,7 @@ describe('Angular Directive Subgenerator', function () {
     });
 
     it('should generate an angular directive file', function () {
-      assert.file(tempDir+'/modules/core/client/directives/foo.client.controller.js');
+      assert.file(tempDir+'/modules/core/client/directives/foo.client.directive.js');
     });
 
 

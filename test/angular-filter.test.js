@@ -7,7 +7,7 @@ var path = require('path'),
   tempDir,
   temp = require('temp').track();
 
-describe('Angular Controller Subgenerator', function () {
+describe('Angular Filter Subgenerator', function () {
   this.timeout(0);
   /**
    * Setup the temp directory
@@ -24,9 +24,9 @@ describe('Angular Controller Subgenerator', function () {
     fs.removeSync(path.join(__dirname, 'temp'));
   });
 
-  describe('Generate an Angular Controller file', function () {
+  describe('Generate an Angular Filter file', function () {
     beforeEach(function (done) {
-      helpers.run(path.join(__dirname, '../angular-controller'))
+      helpers.run(path.join(__dirname, '../angular-filter'))
         .inTmpDir(function (dir) {
           tempDir = dir;
           fs.copySync(path.join(__dirname, 'temp'), dir)
@@ -46,12 +46,8 @@ describe('Angular Controller Subgenerator', function () {
         });
     });
 
-    it('should generate an angular controller', function () {
-      assert.file(tempDir+'/modules/core/client/controllers/foo.client.controller.js');
-    });
-
-    it('should generate an angular controller test file', function () {
-      assert.file(tempDir+'/modules/core/client/tests/foo.client.controller.test.js');
+    it('should generate an angular filter file', function () {
+      assert.file(tempDir+'/modules/core/client/filters/foo.client.filter.js');
     });
 
 

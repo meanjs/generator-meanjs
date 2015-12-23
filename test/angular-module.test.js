@@ -7,7 +7,9 @@ var path = require('path'),
   tempDir,
   temp = require('temp').track();
 
-describe('Angular Controller Subgenerator', function () {
+var folders = ['config','controllers','css','directives','filters','img','services','tests','views'];
+
+describe('Angular Module Subgenerator', function () {
   this.timeout(0);
   /**
    * Setup the temp directory
@@ -24,9 +26,9 @@ describe('Angular Controller Subgenerator', function () {
     fs.removeSync(path.join(__dirname, 'temp'));
   });
 
-  describe('Generate an Angular Controller file', function () {
+  describe('Generate an Angular Module file', function () {
     beforeEach(function (done) {
-      helpers.run(path.join(__dirname, '../angular-controller'))
+      helpers.run(path.join(__dirname, '../angular-module'))
         .inTmpDir(function (dir) {
           tempDir = dir;
           fs.copySync(path.join(__dirname, 'temp'), dir)
@@ -36,7 +38,7 @@ describe('Angular Controller Subgenerator', function () {
         })
         .withArguments(['foo'])
         .withPrompts({
-          'moduleName': 'core'
+          'folders': folders
         })
         .on('ready', function (generator) {
           // this is called right before `generator.run()` is called
@@ -46,12 +48,8 @@ describe('Angular Controller Subgenerator', function () {
         });
     });
 
-    it('should generate an angular controller', function () {
-      assert.file(tempDir+'/modules/core/client/controllers/foo.client.controller.js');
-    });
-
-    it('should generate an angular controller test file', function () {
-      assert.file(tempDir+'/modules/core/client/tests/foo.client.controller.test.js');
+    it('should generate an angular module file', function () {
+      assert.file(tempDir+'/modules/foo/client/foo.client.module.js');
     });
 
 
