@@ -47,11 +47,11 @@ describe('Angular Controller Subgenerator', function () {
     });
 
     it('should generate an angular controller', function () {
-      assert.file(tempDir+'/modules/core/client/controllers/foo.client.controller.js');
+      assert.file(tempDir+'/modules/core/client/controllers/foos.client.controller.js');
     });
 
     it('should generate an angular controller test file', function () {
-      assert.file(tempDir+'/modules/core/client/tests/foo.client.controller.test.js');
+      assert.file(tempDir+'/modules/core/client/tests/foos.client.controller.test.js');
     });
 
 

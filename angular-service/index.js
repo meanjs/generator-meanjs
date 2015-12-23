@@ -4,12 +4,13 @@ var util = require('util'),
   fs = require('fs'),
   s = require('underscore.string'),
   yeoman = require('yeoman-generator'),
+  inflections = require('underscore.inflections'),
   modulesHelper = require('../utilities/modules.helper');
 
 var ServiceGenerator = yeoman.generators.NamedBase.extend({
   init: function () {
     this.slugifiedNgServiceName = s.slugify(s.humanize(this.name));
-
+    this.slugifiedPluralName = inflections.pluralize(this.slugifiedNgServiceName);
     this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedNgServiceName);
     if (this.availableModuleChoices == null)
       this.env.error('No modules found!');
@@ -41,7 +42,7 @@ var ServiceGenerator = yeoman.generators.NamedBase.extend({
   },
   renderServiceFile: function () {
     this.template('_.client.service.js', 'modules/' + this.slugifiedModuleName
-      + '/client/services/' + this.slugifiedNgServiceName + '.client.service.js')
+      + '/client/services/' + this.slugifiedPluralName + '.client.service.js')
   }
 });
 

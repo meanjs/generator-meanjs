@@ -47,7 +47,7 @@ describe('Express Controller Subgenerator', function () {
     });
 
     it('should generate an express controller file', function () {
-      assert.file(tempDir+'/modules/core/server/controllers/foo.server.controller.js');
+      assert.file(tempDir+'/modules/core/server/controllers/foos.server.controller.js');
     });
 
 

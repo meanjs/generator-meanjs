@@ -3,6 +3,7 @@ var util = require('util'),
   fs = require('fs'),
   s = require('underscore.string'),
   yeoman = require('yeoman-generator'),
+  inflections = require('underscore.inflections'),
   htmlWiring = require('html-wiring'),
   ejs = require('ejs'),
   modulesHelper = require('../utilities/modules.helper');
@@ -11,7 +12,7 @@ var RouteGenerator = yeoman.generators.NamedBase.extend({
   init: function () {
     this.slugifiedNgRouteName = s.slugify(s.humanize(this.name));
     this.classifiedNgRouteName = s.classify(this.slugifiedNgRouteName);
-
+    this.slugifiedPluralName = inflections.pluralize(this.slugifiedNgRouteName);
     this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedNgRouteName);
     if (this.availableModuleChoices == null)
       this.env.error('No modules found!');
@@ -89,9 +90,9 @@ var RouteGenerator = yeoman.generators.NamedBase.extend({
   },
   renderRouteViewController: function () {
     this.template('_.client.controller.js',
-      'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedNgControllerName + '.client.controller.js')
+      'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedPluralName + '.client.controller.js')
     this.template('_.client.controller.test.js',
-      'modules/' + this.slugifiedModuleName + '/client/tests/' + this.slugifiedNgControllerName + '.client.controller.test.js')
+      'modules/' + this.slugifiedModuleName + '/client/tests/' + this.slugifiedPluralName + '.client.controller.test.js')
     this.template('_.client.view.html',
       'modules/' + this.slugifiedModuleName + '/client/views/' + this.slugifiedNgViewName + '.client.view.html')
   }

@@ -1,6 +1,7 @@
 'use strict';
 var Log = require('../app/log.js'),
   s = require('underscore.string'),
+  inflections = require('underscore.inflections'),
   yeoman = require('yeoman-generator'),
   mkdirp = require('mkdirp');
 
@@ -8,6 +9,7 @@ var Log = require('../app/log.js'),
 var ModuleGenerator = yeoman.generators.NamedBase.extend({
   init: function () {
     this.slugifiedName = s.slugify(s.humanize(this.name));
+    this.slugifiedPluralName = inflections.pluralize(this.slugifiedName);
   },
 
   askForModuleFolders: function () {
@@ -70,7 +72,7 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
     })
     // Render angular module definition
     this.template('_.client.module.js', 'modules/' + this.slugifiedName + '/client/'
-      + this.slugifiedName + '.client.module.js');
+      + this.slugifiedPluralName + '.client.module.js');
   }
 });
 

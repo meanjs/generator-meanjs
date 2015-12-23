@@ -47,7 +47,7 @@ describe('Angular Config Subgenerator', function () {
     });
 
     it('should generate an angular config file', function () {
-      assert.file(tempDir+'/modules/core/client/config/foo.client.config.js');
+      assert.file(tempDir+'/modules/core/client/config/foos.client.config.js');
     });
 
 

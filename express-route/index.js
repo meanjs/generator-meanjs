@@ -1,12 +1,13 @@
 'use strict';
 var yeoman = require('yeoman-generator'),
   s = require('underscore.string'),
+  inflections = require('underscore.inflections'),
   modulesHelper = require('../utilities/modules.helper');
 
 var RouteGenerator = yeoman.generators.NamedBase.extend({
   createRouteFile: function () {
     this.slugifiedRouteName = s.slugify(s.humanize(this.name));
-
+    this.slugifiedPluralName = inflections.pluralize(this.slugifiedRouteName);
     this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedRouteName);
     if (this.availableModuleChoices == null)
       this.env.error('No modules found!');
@@ -27,7 +28,7 @@ var RouteGenerator = yeoman.generators.NamedBase.extend({
     }.bind(this));
   },
   renderTemplate: function () {
-    this.template('_.server.routes.js', 'modules/' + this.moduleChoice + '/server/routes/' + this.slugifiedRouteName + '.server.routes.js');
+    this.template('_.server.routes.js', 'modules/' + this.moduleChoice + '/server/routes/' + this.slugifiedPluralName + '.server.routes.js');
   }
 });
 

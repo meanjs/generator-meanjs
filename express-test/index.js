@@ -2,6 +2,7 @@
 
 var inflections = require('underscore.inflections'),
   yeoman = require('yeoman-generator'),
+  inflections = require('underscore.inflections'),
   s = require('underscore.string'),
   modulesHelper = require('../utilities/modules.helper');
 

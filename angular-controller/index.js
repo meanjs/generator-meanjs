@@ -10,7 +10,7 @@ var util = require('util'),
 var ControllerGenerator = yeoman.generators.NamedBase.extend({
   init: function () {
     this.slugifiedNgControllerName = s.slugify(s.humanize(this.name));
-
+    this.slugifiedPluralName = inflections.pluralize(this.slugifiedNgControllerName);
     this.humanizedNgControllerName = s.humanize(this.slugifiedNgControllerName);
 
     this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedNgControllerName);
@@ -42,8 +42,8 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
   },
 
   renderControllerFiles: function () {
-    this.template('_.client.controller.js', 'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedNgControllerName + '.client.controller.js');
-    this.template('_.client.controller.test.js', 'modules/' + this.slugifiedModuleName + '/client/tests/' + this.slugifiedNgControllerName + '.client.controller.test.js');
+    this.template('_.client.controller.js', 'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedPluralName + '.client.controller.js');
+    this.template('_.client.controller.test.js', 'modules/' + this.slugifiedModuleName + '/client/tests/' + this.slugifiedPluralName + '.client.controller.test.js');
   }
 });
 

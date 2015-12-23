@@ -47,7 +47,7 @@ describe('Angular Service Subgenerator', function () {
     });
 
     it('should generate an angular service file', function () {
-      assert.file(tempDir+'/modules/core/client/services/foo.client.service.js');
+      assert.file(tempDir+'/modules/core/client/services/foos.client.service.js');
     });
 
 

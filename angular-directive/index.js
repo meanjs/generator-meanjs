@@ -3,13 +3,14 @@
 var util = require('util'),
   fs = require('fs'),
   yeoman = require('yeoman-generator'),
+  inflections = require('underscore.inflections'),
   s = require('underscore.string'),
   modulesHelper = require('../utilities/modules.helper');
 
 var DirectiveGenerator = yeoman.generators.NamedBase.extend({
   init: function () {
     this.slugifiedNgDirectiveName = s.slugify(s.humanize(this.name));
-
+    this.slugifiedPluralName = inflections.pluralize(this.slugifiedNgDirectiveName);
     this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedNgDirectiveName);
     if (this.availableModuleChoices == null)
       this.env.error('No modules found!');
@@ -40,7 +41,7 @@ var DirectiveGenerator = yeoman.generators.NamedBase.extend({
 
   renderDirectiveFile: function () {
     this.template('_.client.directive.js', 'modules/' + this.slugifiedModuleName
-      + '/client/directives/' + this.slugifiedNgDirectiveName + '.client.directive.js')
+      + '/client/directives/' + this.slugifiedPluralName + '.client.directive.js')
   }
 });
 

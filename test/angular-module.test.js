@@ -49,7 +49,7 @@ describe('Angular Module Subgenerator', function () {
     });
 
     it('should generate an angular module file', function () {
-      assert.file(tempDir+'/modules/foo/client/foo.client.module.js');
+      assert.file(tempDir+'/modules/foo/client/foos.client.module.js');
     });
 
 

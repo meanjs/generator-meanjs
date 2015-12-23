@@ -2,6 +2,7 @@
 
 var yeoman = require('yeoman-generator'),
   s = require('underscore.string'),
+  inflections = require('underscore.inflections'),
   modulesHelper = require('../utilities/modules.helper');
 
 var ConfigGenerator = yeoman.generators.NamedBase.extend({
@@ -10,6 +11,7 @@ var ConfigGenerator = yeoman.generators.NamedBase.extend({
     this.slugifiedNgConfigName = s.slugify(s.humanize(this.name));
     this.classifiedNgConfigName = s.classify(this.slugifiedNgConfigName);
     this.humanizedNgConfigName = s.humanize(this.slugifiedNgConfigName);
+    this.slugifiedPluralName = inflections.pluralize(this.slugifiedNgConfigName);
     this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedNgConfigName);
     if (this.availableModuleChoices == null)
       this.env.error('No modules found!');
@@ -37,7 +39,7 @@ var ConfigGenerator = yeoman.generators.NamedBase.extend({
   },
 
   renderConfigFile: function () {
-    this.template('_.client.config.js', 'modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedNgConfigName + '.client.config.js')
+    this.template('_.client.config.js', 'modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedPluralName + '.client.config.js')
   }
 });
 

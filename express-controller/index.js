@@ -12,7 +12,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
     this.humanizedName = s.humanize(this.slugifiedControllerName);
     this.humanizedPluralName = inflections.pluralize(s.humanize(this.slugifiedControllerName));
     this.humanizedSingularName = inflections.singularize(s.humanize(this.slugifiedControllerName));
-
+    this.slugifiedPluralName = inflections.pluralize(this.slugifiedControllerName);
     this.availableModuleChoices = modulesHelper.constructListOfModuleChoices(this.slugifiedControllerName);
     if (this.availableModuleChoices == null)
       this.env.error('No modules found!');
@@ -34,7 +34,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
   },
   renderTemplate: function () {
     this.template('_.server.controller.js',
-      'modules/' + this.moduleChoice + '/server/controllers/' + this.slugifiedControllerName + '.server.controller.js');
+      'modules/' + this.moduleChoice + '/server/controllers/' + this.slugifiedPluralName + '.server.controller.js');
   }
 });
 

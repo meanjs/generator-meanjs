@@ -4,6 +4,7 @@ var util = require('util'),
   fs = require('fs'),
   yeoman = require('yeoman-generator'),
   s = require('underscore.string'),
+
   modulesHelper = require('../utilities/modules.helper');
 
 var FilterGenerator = yeoman.generators.NamedBase.extend({

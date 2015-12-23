@@ -7,7 +7,7 @@ var path = require('path'),
   tempDir,
   temp = require('temp').track();
 
-describe('Angular Route Subgenerator', function () {
+describe('CRUD Subgenerator', function () {
   this.timeout(0);
   /**
    * Setup the temp directory
@@ -24,9 +24,9 @@ describe('Angular Route Subgenerator', function () {
     fs.removeSync(path.join(__dirname, 'temp'));
   });
 
-  describe('Generate an Angular Route file', function () {
+  describe('Generate an CRUD modules files', function () {
     beforeEach(function (done) {
-      helpers.run(path.join(__dirname, '../angular-route'))
+      helpers.run(path.join(__dirname, '../express-route'))
         .inTmpDir(function (dir) {
           tempDir = dir;
           fs.copySync(path.join(__dirname, 'temp'), dir)
@@ -36,10 +36,10 @@ describe('Angular Route Subgenerator', function () {
         })
         .withArguments(['foo'])
         .withPrompts({
-          'moduleName': 'core',
-          'routePath': 'foo',
-          'viewName': 'foo',
-          'controllerName': 'Foo'
+          'folders': [],
+          'addMenuItems': true ,
+          'menuId': 'topbar'
+
         })
         .on('ready', function (generator) {
           // this is called right before `generator.run()` is called
@@ -49,17 +49,20 @@ describe('Angular Route Subgenerator', function () {
         });
     });
 
-    it('should generate an angular controller file', function () {
-      assert.file(tempDir+'/modules/core/client/controllers/foos.client.controller.js');
+    it('should generate an express server files', function () {
+      assert.file(tempDir+'/modules/foos/server/controllers/foo.server.controller.js');
+      assert.file(tempDir+'/modules/foos/server/models/foo.server.model.js');
+      assert.file(tempDir+'/modules/foos/server/routes/foo.server.routes.js');
+      assert.file(tempDir+'/modules/foos/server/policies/foo.server.policy.js');
     });
 
-    it('should generate an angular controller test file', function () {
-      assert.file(tempDir+'/modules/core/client/tests/foos.client.controller.test.js');
+    it('should generate an angular client files', function () {
+      assert.file(tempDir+'/modules/foos/client/controllers/foo.server.controller.js');
+      assert.file(tempDir+'/modules/foos/client/models/foo.server.model.js');
+      assert.file(tempDir+'/modules/foos/client/routes/foo.server.routes.js');
+      assert.file(tempDir+'/modules/foos/client/policies/foo.server.policy.js');
     });
 
-    it('should generate an angular view file', function () {
-      assert.file(tempDir+'/modules/core/client/views/foo.client.view.html');
-    });
 
 
   });

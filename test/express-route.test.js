@@ -47,7 +47,7 @@ describe('Express Route Subgenerator', function () {
     });
 
     it('should generate an express route file', function () {
-      assert.file(tempDir+'/modules/core/server/routes/foo.server.routes.js');
+      assert.file(tempDir+'/modules/core/server/routes/foos.server.routes.js');
     });
 
 
