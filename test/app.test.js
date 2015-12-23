@@ -1,9 +1,11 @@
+'use strict';
+
 var path = require('path'),
   fs = require('fs'),
   helpers = require('yeoman-generator').test,
   assert = require('yeoman-generator').assert,
   temp = require('temp').track();
-  
+
 describe('Main Generator', function () {
   this.timeout(0);
   /**
@@ -62,14 +64,14 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
     it('should generate a bower.json file', function () {
       assert.file('temp/bower.json');
     });
-    
+
     it('should populate the bower.json correctly', function (done) {
       fs.readFile('temp/bower.json', function (err, data) {
-        if(err) {
+        if (err) {
           done(err);
         } else {
           var bowerJson = JSON.parse(data);
@@ -79,7 +81,7 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
   });
 
   describe('Application generator without sample module 0.4.1', function () {
@@ -124,14 +126,14 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
     it('should generate a bower.json file', function () {
       assert.file('temp/bower.json');
     });
-    
+
     it('should populate the bower.json correctly', function (done) {
       fs.readFile('temp/bower.json', function (err, data) {
-        if(err) {
+        if (err) {
           done(err);
         } else {
           var bowerJson = JSON.parse(data);
@@ -141,7 +143,7 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
   });
 
   describe('Application generator without sample module 0.4.2', function () {
@@ -182,22 +184,22 @@ describe('Main Generator', function () {
           assert.equal(packageJson.name, 'meantestappname042');
           assert.equal(packageJson.description, 'Testing the generator 042');
           assert.equal(packageJson.author, 'Test');
-          
+
           // Testing the meanjs version was introduced in 0.4.2
           assert.equal(packageJson['meanjs-version'], '0.4.2');
-          
+
           done();
         }
       });
     });
-    
+
     it('should generate a bower.json file', function () {
       assert.file('temp/bower.json');
     });
-    
+
     it('should populate the bower.json correctly', function (done) {
       fs.readFile('temp/bower.json', function (err, data) {
-        if(err) {
+        if (err) {
           done(err);
         } else {
           var bowerJson = JSON.parse(data);
@@ -207,7 +209,7 @@ describe('Main Generator', function () {
         }
       });
     });
-    
+
   });
 
 });
