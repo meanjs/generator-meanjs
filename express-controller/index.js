@@ -22,13 +22,13 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
 
     var prompts = [{
       type: 'list',
-      name: 'moduleChoice',
+      name: 'moduleName',
       message: 'Which module would you like to add this controller to?',
       choices: this.availableModuleChoices
     }];
 
     this.prompt(prompts, function (props) {
-      this.moduleChoice = props.moduleChoice || this.slugifiedControllerName;
+      this.moduleChoice = props.moduleName || this.slugifiedControllerName;
       done();
     }.bind(this));
   },

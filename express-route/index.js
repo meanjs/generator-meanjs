@@ -16,13 +16,13 @@ var RouteGenerator = yeoman.generators.NamedBase.extend({
 
     var prompts = [{
       type: 'list',
-      name: 'moduleChoice',
+      name: 'moduleName',
       message: 'Which module would you like to add this route to?',
       choices: this.availableModuleChoices
     }];
 
     this.prompt(prompts, function (props) {
-      this.moduleChoice = props.moduleChoice || this.slugifiedRouteName;
+      this.moduleChoice = props.moduleName || this.slugifiedRouteName;
       done();
     }.bind(this));
   },

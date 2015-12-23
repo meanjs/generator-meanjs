@@ -25,13 +25,13 @@ var TestGenerator = yeoman.generators.NamedBase.extend({
 
     var prompts = [{
       type: 'list',
-      name: 'moduleChoice',
+      name: 'moduleName',
       message: 'Which module would you like to add this model test to?',
       choices: this.availableModuleChoices
     }];
 
     this.prompt(prompts, function (props) {
-      this.moduleChoice = props.moduleChoice || this.slugifiedModelName;
+      this.moduleChoice = props.moduleName || this.slugifiedModelName;
       done();
     }.bind(this));
   },
