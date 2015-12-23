@@ -9,12 +9,9 @@ var mongoose = require('mongoose'),
 /**
  * <%= classifiedModelName %> Schema
  */
-var <
-%= classifiedModelName % > Schema = new Schema({
+var <%= classifiedModelName %>Schema = new Schema({
   // <%= classifiedModelName %> model fields
   // ...
 });
 
-mongoose.model('<%= classifiedModelName %>', < %= classifiedModelName % > Schema
-)
-;
+mongoose.model('<%= classifiedModelName %>', <%= classifiedModelName %>Schema);
