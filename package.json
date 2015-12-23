@@ -1,13 +1,13 @@
 {
-  "name": "generator-meanjsplus",
+  "name": "generator-meanjs",
   "version": "0.4.2",
-  "description": "MEAN.JS Unofficial Yeoman Generator",
+  "description": "MEAN.JS Official Yeoman Generator",
   "main": "app/index.js",
-  "repository": "webninjamobile/generator-meanjsplus",
+  "repository": "meanjs/generator-meanjs",
   "author": {
     "name": "MEAN.JS Team",
     "email": "support@meanjs.org",
-    "url": "https://github.com/webninjamobile/generator-meanjsplus"
+    "url": "https://github.com/meanjs"
   },
   "engines": {
     "node": ">=0.12.0",
