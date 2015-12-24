@@ -32,13 +32,21 @@
   "dependencies": {
     "bluebird": "~3.0.6",
     "chalk": "~1.1.1",
+    "ejs": "^2.3.4",
+    "fs-extra": "^0.26.3",
+    "glob": "^6.0.1",
+    "html-wiring": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "pluralize": "^1.2.1",
+    "underscore.inflections": "^0.2.1",
     "underscore.string": "~3.2.2",
     "yeoman-generator": "~0.21.1",
     "yo": "~1.5.0"
   },
   "devDependencies": {
     "mocha": "~2.3.4",
-    "temp": "~0.8.3"
+    "temp": "~0.8.3",
+    "ejs": "^2.3.1"
   },
   "license": "MIT"
 }

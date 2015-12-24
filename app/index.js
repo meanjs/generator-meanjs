@@ -11,7 +11,7 @@ var Promise = require('bluebird'),
 var exec = function (cmd) {
   return new Promise(function (resolve, reject) {
     child_process.exec(cmd, function (err, res) {
-      if(err) {
+      if (err) {
         reject(err);
       } else {
         resolve(res);
@@ -31,7 +31,7 @@ var versions = {
 };
 
 module.exports = generators.Base.extend({
-  
+
   init: function () {
     this.pkg = this.fs.readJSON(path.join(__dirname, '../package.json'));
 
@@ -77,7 +77,7 @@ module.exports = generators.Base.extend({
     var done = this.async();
 
     var choices = [];
-    for(var v in versions) {
+    for (var v in versions) {
       choices.push(v);
     }
 
@@ -159,7 +159,7 @@ module.exports = generators.Base.extend({
       default: true
     }];
 
-    this.prompt(prompts, function(props) {
+    this.prompt(prompts, function (props) {
       this.appName = props.appName;
       this.appDescription = props.appDescription;
       this.appKeywords = props.appKeywords;
@@ -184,7 +184,7 @@ module.exports = generators.Base.extend({
     packageJson.author = this.appAuthor;
 
     fs.writeFile(folderPath + 'package.json', JSON.stringify(packageJson, null, 2), function (err) {
-      if(err) {
+      if (err) {
         return log.red(err);
       }
       done();
@@ -220,7 +220,7 @@ module.exports = generators.Base.extend({
     configFile.replace(keywordsRegex, 'keywords: \'' + this.appKeywords + '\'');
 
     fs.writeFile(folderPath + 'config/env/default.js', configFile, function (err) {
-      if(err) {
+      if (err) {
         return log.red(err);
       }
       done();
@@ -230,7 +230,7 @@ module.exports = generators.Base.extend({
   removeChatExample: function () {
     var done = this.async();
 
-    if(!this.addChatExample) {
+    if (!this.addChatExample) {
       exec('rm -rf ' + folderPath + 'modules/chat')
         .then(function () {
           done();
@@ -247,7 +247,7 @@ module.exports = generators.Base.extend({
   removeArticlesExample: function () {
     var done = this.async();
 
-    if(!this.addArticleExample) {
+    if (!this.addArticleExample) {
       exec('rm -rf ' + folderPath + 'modules/articles')
         .then(function () {
           done();
