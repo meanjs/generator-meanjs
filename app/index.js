@@ -68,8 +68,6 @@ module.exports = generators.Base.extend({
   },
 
   welcomeMessage: function () {
-    log(this.yeoman);
-
     log.green('You\'re using the official MEAN.JS generator.');
   },
 
