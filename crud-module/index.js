@@ -1,67 +1,80 @@
 'use strict';
-var util = require('util'),
+
+var fs = require('fs'),
   inflections = require('underscore.inflections'),
-  s = require('underscore.string'),
   mkdirp = require('mkdirp'),
+  s = require('underscore.string'),
   yeoman = require('yeoman-generator');
 
+var folderChoices = [{
+  value: 'css',
+  name: 'css',
+  checked: false
+}, {
+  value: 'img',
+  name: 'img',
+  checked: false
+}, {
+  value: 'directives',
+  name: 'directives',
+  checked: false
+}, {
+  value: 'filters',
+  name: 'filters',
+  checked: false
+}];
 
-var ModuleGenerator = yeoman.generators.NamedBase.extend({
-  init: function () {
-    this.slugifiedName = s.slugify(this.name);
 
-    this.slugifiedPluralName = inflections.pluralize(this.slugifiedName);
-    this.slugifiedSingularName = inflections.singularize(this.slugifiedName);
-
-    this.camelizedPluralName = s.camelize(this.slugifiedPluralName);
-    this.camelizedSingularName = s.camelize(this.slugifiedSingularName);
-
-    this.classifiedPluralName = s.classify(this.slugifiedPluralName);
-    this.classifiedSingularName = s.classify(this.slugifiedSingularName);
-
-    this.humanizedPluralName = s.humanize(this.slugifiedPluralName);
-    this.humanizedSingularName = s.humanize(this.slugifiedSingularName);
-  },
-
-  askForModuleFolders: function () {
+var CrudGenerator = yeoman.generators.Base.extend({
+  askForModule: function () {
+    var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
 
-    var prompts = [{
+    var prompts = [{type: 'input',
+      name: 'name',
+      message: 'What is the name of the CRUD module?',
+      validate: function( value ) {
+        if (value.length > 0) {
+          return true;
+        } else {
+          return "Please enter a CRUD module name";
+        }
+      }
+    },
+      {
       type: 'checkbox',
       name: 'folders',
       message: 'Which supplemental folders would you like to include in your angular module?',
-      choices: [{
-        value: 'css',
-        name: 'css',
-        checked: false
-      }, {
-        value: 'img',
-        name: 'img',
-        checked: false
-      }, {
-        value: 'directives',
-        name: 'directives',
-        checked: false
-      }, {
-        value: 'filters',
-        name: 'filters',
-        checked: false
-      }]
-    }, {
+      choices: folderChoices
+    },{
       type: 'confirm',
       name: 'addMenuItems',
-      message: 'Would you like to add the CRUD module links to a menu?',
-      default: true
+      default: true,
+      message: 'Would you like to add the CRUD module links to a menu?'
     }];
 
     this.prompt(prompts, function (props) {
-      this.folders = props.folders
+      this.name = props.name;
+      this.folders = props.folders;
       this.addMenuItems = props.addMenuItems;
+
+      this.slugifiedName = s.slugify(this.name);
+
+      this.slugifiedPluralName = inflections.pluralize(this.slugifiedName);
+      this.slugifiedSingularName = inflections.singularize(this.slugifiedName);
+
+      this.camelizedPluralName = s.camelize(this.slugifiedPluralName);
+      this.camelizedSingularName = s.camelize(this.slugifiedSingularName);
+
+      this.classifiedPluralName = s.classify(this.slugifiedPluralName);
+      this.classifiedSingularName = s.classify(this.slugifiedSingularName);
+
+      this.humanizedPluralName = s.humanize(this.slugifiedPluralName);
+      this.humanizedSingularName = s.humanize(this.slugifiedSingularName);
 
       done();
     }.bind(this));
   },
-
   askForMenuId: function () {
     if (this.addMenuItems) {
       var done = this.async();
@@ -79,8 +92,7 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
       }.bind(this));
     }
   },
-
-  renderModule: function () {
+  createCrudModule: function () {
     // Create module folder
     mkdirp('modules/' + this.slugifiedPluralName);
     mkdirp('modules/' + this.slugifiedPluralName + '/client');
@@ -126,4 +138,4 @@ var ModuleGenerator = yeoman.generators.NamedBase.extend({
   }
 });
 
-module.exports = ModuleGenerator;
+module.exports = CrudGenerator;

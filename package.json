@@ -45,8 +45,7 @@
   },
   "devDependencies": {
     "mocha": "~2.3.4",
-    "temp": "~0.8.3",
-    "ejs": "^2.3.1"
+    "temp": "~0.8.3"
   },
   "license": "MIT"
 }
