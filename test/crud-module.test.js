@@ -55,7 +55,6 @@ describe('CRUD Module Generator Tests', function () {
       assert.file('modules/foos/client/views/create-foo.client.view.html');
       assert.file('modules/foos/client/views/edit-foo.client.view.html');
       assert.file('modules/foos/client/views/list-foos.client.view.html');
-      assert.file('modules/foos/client/views/view-foo.client.view.html');
       assert.file('modules/foos/client/foos.client.module.js');
       assert.file('modules/foos/client/config/foos.client.config.js');
     });
