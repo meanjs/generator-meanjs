@@ -1,6 +1,6 @@
 {
   "name": "generator-meanjs",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "MEAN.JS Official Yeoman Generator",
   "main": "app/index.js",
   "repository": "meanjs/generator-meanjs",
@@ -10,10 +10,11 @@
     "url": "https://github.com/meanjs"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.0",
+    "npm": ">=2.0.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "gulp test"
   },
   "keywords": [
     "yeoman-generator",
@@ -29,19 +30,23 @@
     "angular"
   ],
   "dependencies": {
-    "bluebird": "~2.10.0",
+    "bluebird": "~3.0.6",
     "chalk": "~1.1.1",
+    "ejs": "~2.3.4",
+    "html-wiring": "~1.2.0",
+    "mkdirp": "~0.5.1",
+    "underscore.inflections": "~0.2.1",
     "underscore.string": "~3.2.2",
-    "yeoman-generator": "~0.20.3",
-    "yo": "~1.4.8"
+    "yeoman-generator": "~0.21.1",
+    "yo": "~1.5.0"
   },
   "devDependencies": {
-    "mocha": "~2.3.2",
-    "temp": "~0.8.0"
+    "gulp": "https://github.com/gulpjs/gulp.git#3311fcab7fe6de65a7a981d2433205c91d151c0a",
+    "gulp-eslint": "~1.1.0",
+    "gulp-jshint": "~1.12.0",
+    "gulp-mocha": "~2.2.0",
+    "mocha": "~2.3.4",
+    "temp": "~0.8.3"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+  "license": "MIT"
 }

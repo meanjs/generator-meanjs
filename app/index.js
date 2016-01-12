@@ -1,5 +1,8 @@
+'use strict';
+
 var Promise = require('bluebird'),
   child_process = require('child_process'),
+  fs = require('fs'),
   path = require('path'),
   s = require('underscore.string'),
   generators = require('yeoman-generator'),
@@ -23,7 +26,8 @@ var folder, folderPath, version;
 var versions = {
   'master': 'master',
   '0.4.0': 'v0.4.0',
-  '0.4.1': 'v0.4.1'
+  '0.4.1': 'v0.4.1',
+  '0.4.2': 'v0.4.2'
 };
 
 module.exports = generators.Base.extend({
@@ -66,8 +70,6 @@ module.exports = generators.Base.extend({
   },
 
   welcomeMessage: function () {
-    log(this.yeoman);
-
     log.green('You\'re using the official MEAN.JS generator.');
   },
 
@@ -127,31 +129,6 @@ module.exports = generators.Base.extend({
       });
   },
 
-  removeFiles: function () {
-    var done = this.async();
-
-    var files = [
-      'package.json',
-      'bower.json',
-      'config/env/default.js'
-    ];
-
-    var remove = [];
-
-    for(var i = 0; i < files.length; i++) {
-      remove.push(exec('rm ./' + folder + '/' + files[i]));
-    };
-
-    Promise.all(remove)
-      .then(function () {
-        done();
-      })
-      .catch(function (err) {
-        log.red(err);
-        return;
-      });
-  },
-
   getPrompts: function () {
     var done = this.async();
 
@@ -198,30 +175,56 @@ module.exports = generators.Base.extend({
     }.bind(this));
   },
 
-  copyTemplates: function () {
-    this.fs.copyTpl(
-      this.templatePath(version + '/_package.json'),
-      this.destinationPath(folderPath + 'package.json'),
-      {
-        slugifiedAppName: this.slugifiedAppName,
-        appDescription: this.appDescription,
-        capitalizedAppAuthor: this.capitalizedAppAuthor
-      });
-    this.fs.copyTpl(
-      this.templatePath(version + '/_bower.json'),
-      this.destinationPath(folderPath + 'bower.json'),
-      {
-        slugifiedAppName: this.slugifiedAppName,
-        appDescription: this.appDescription
-      });
-    this.fs.copyTpl(
-      this.templatePath(version + '/config/env/_default.js'),
-      this.destinationPath(folderPath + 'config/env/default.js'),
-      {
-        appName: this.appName,
-        appDescription: this.appDescription,
-        appKeywords: this.appKeywords
-      });
+  replacePackageConfigs: function () {
+    var done = this.async();
+
+    var packageJson = JSON.parse(fs.readFileSync(folderPath + 'package.json'));
+    packageJson.name = this.slugifiedAppName;
+    packageJson.description = this.appDescription;
+    packageJson.author = this.appAuthor;
+
+    fs.writeFile(folderPath + 'package.json', JSON.stringify(packageJson, null, 2), function (err) {
+      if(err) {
+        return log.red(err);
+      }
+      done();
+    });
+  },
+
+  replaceBowerConfigs: function () {
+    var done = this.async();
+
+    var bowerJson = JSON.parse(fs.readFileSync(folderPath + 'bower.json'));
+    bowerJson.name = this.slugifiedAppName;
+    bowerJson.description = this.appDescription;
+
+    fs.writeFile(folderPath + 'bower.json', JSON.stringify(bowerJson, null, 2), function (err) {
+      if (err) {
+        return log.red(err);
+      }
+      done();
+    });
+  },
+
+  replaceConfigConfigs: function () {
+    var done = this.async();
+
+    var titleRegex = /title: 'MEAN.JS'/g;
+    var descriptionRegex = /description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js'/g;
+    var keywordsRegex = /keywords: 'mongodb, express, angularjs, node.js, mongoose, passport'/g;
+
+    var configFile = (fs.readFileSync(folderPath + 'config/env/default.js')).toString();
+
+    configFile.replace(titleRegex, 'title: \'' + this.slugifiedAppName + '\'');
+    configFile.replace(descriptionRegex, 'description: \'' + this.appDescription + '\'');
+    configFile.replace(keywordsRegex, 'keywords: \'' + this.appKeywords + '\'');
+
+    fs.writeFile(folderPath + 'config/env/default.js', configFile, function (err) {
+      if(err) {
+        return log.red(err);
+      }
+      done();
+    });
   },
 
   removeChatExample: function () {
