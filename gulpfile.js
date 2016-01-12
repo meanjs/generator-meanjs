@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 // ESLint JS linting task
 gulp.task('eslint', function () {
   return gulp
-    .src('./app/**/*', './test/**/*')
+    .src(['./app/**/*', './test/**/*', '!./test/temp'])
     .pipe(eslint())
     .pipe(eslint.format());
 });
@@ -14,7 +14,7 @@ gulp.task('eslint', function () {
 // JS linting task
 gulp.task('jshint', function () {
   return gulp
-    .src('./app/**/*', './test/**/*')
+    .src(['./app/**/*', './test/**/*', '!./test/temp'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(jshint.reporter('fail'));
@@ -25,7 +25,7 @@ gulp.task('lint', gulp.parallel('eslint', 'jshint'));
 // Mocha test task
 gulp.task('mocha', function () {
   return gulp
-    .src('./test/**/*')
+    .src(['./test/**/*', '!./test/temp'])
     .pipe(mocha({
       reporter: 'spec'
     }));
