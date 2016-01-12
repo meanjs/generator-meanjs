@@ -1,3 +1,5 @@
+'use strict';
+
 var chalk = require('chalk');
 
 var log = function log(value) {
