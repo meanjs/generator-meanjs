@@ -17,11 +17,8 @@ exports.create = function(req, res) {
   <%= camelizedSingularName %>.user = req.user;
 
   <%= camelizedSingularName %>.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
+    if (err) { return res.status(400).send({ message: errorHandler.getErrorMessage(err) }); }
+    else {
       res.jsonp(<%= camelizedSingularName %>);
     }
   });
@@ -43,11 +40,8 @@ exports.update = function(req, res) {
   <%= camelizedSingularName %> = _.extend(<%= camelizedSingularName %> , req.body);
 
   <%= camelizedSingularName %>.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
+    if (err) { return res.status(400).send({ message: errorHandler.getErrorMessage(err) }); }
+    else {
       res.jsonp(<%= camelizedSingularName %>);
     }
   });
@@ -60,11 +54,8 @@ exports.delete = function(req, res) {
   var <%= camelizedSingularName %> = req.<%= camelizedSingularName %> ;
 
   <%= camelizedSingularName %>.remove(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
+    if (err) { return res.status(400).send({ message: errorHandler.getErrorMessage(err) }); }
+    else {
       res.jsonp(<%= camelizedSingularName %>);
     }
   });
@@ -74,11 +65,8 @@ exports.delete = function(req, res) {
  * List of <%= humanizedPluralName %>
  */
 exports.list = function(req, res) { <%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
-  if (err) {
-    return res.status(400).send({
-      message: errorHandler.getErrorMessage(err)
-    });
-  } else {
+  if (err) { return res.status(400).send({ message: errorHandler.getErrorMessage(err) }); }
+  else {
     res.jsonp(<%= camelizedPluralName %>);
   }
 });

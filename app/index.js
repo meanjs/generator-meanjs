@@ -1,3 +1,5 @@
+'use strict';
+
 var Promise = require('bluebird'),
   child_process = require('child_process'),
   fs = require('fs'),

@@ -93,11 +93,6 @@ var CrudGenerator = yeoman.generators.Base.extend({
     }
   },
   createCrudModule: function () {
-    // Create module folder
-    mkdirp('modules/' + this.slugifiedPluralName);
-    mkdirp('modules/' + this.slugifiedPluralName + '/client');
-    mkdirp('modules/' + this.slugifiedPluralName + '/server');
-    mkdirp('modules/' + this.slugifiedPluralName + '/tests');
 
     // Create module supplemental folders
     var slugifiedPluralName = this.slugifiedPluralName;
