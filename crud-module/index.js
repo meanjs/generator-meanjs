@@ -115,6 +115,7 @@ var CrudGenerator = yeoman.generators.Base.extend({
     this.template('client/views/_.create.client.view.html', 'modules/' + this.slugifiedPluralName + '/client/views/create-' + this.slugifiedSingularName + '.client.view.html');
     this.template('client/views/_.edit.client.view.html', 'modules/' + this.slugifiedPluralName + '/client/views/edit-' + this.slugifiedSingularName + '.client.view.html');
     this.template('client/views/_.list.client.view.html', 'modules/' + this.slugifiedPluralName + '/client/views/list-' + this.slugifiedPluralName + '.client.view.html');
+    this.template('client/views/_.view.client.view.html', 'modules/' + this.slugifiedPluralName + '/client/views/view-' + this.slugifiedSingularName + '.client.view.html');
 
     // Render angular module definition
     this.template('client/_.client.module.js', 'modules/' + this.slugifiedPluralName + '/client/' + this.slugifiedPluralName + '.client.module.js');

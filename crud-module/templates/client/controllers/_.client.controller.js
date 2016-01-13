@@ -1,18 +1,23 @@
 'use strict';
 
 // <%= humanizedPluralName %> controller
-angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$stateParams', '$location', 'Authentication', '<%= classifiedPluralName %>','$modal',
-  function($scope, $stateParams, $location, Authentication, <%= classifiedPluralName %>,$modal) {
+angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralName %>Controller', ['$scope', '$stateParams', '$location', 'Authentication', '<%= classifiedPluralName %>',
+  function($scope, $stateParams, $location, Authentication, <%= classifiedPluralName %>) {
     $scope.authentication = Authentication;
-    modalController($scope,$modal);
+
     // Create new <%= humanizedSingularName %>
     $scope.create = function() {
       // Create new <%= humanizedSingularName %> object
-      var <%= camelizedSingularName %> = new <%= classifiedPluralName %> (this);
+      var <%= camelizedSingularName %> = new <%= classifiedPluralName %> ({
+        name: this.name
+      });
 
       // Redirect after save
       <%= camelizedSingularName %>.$save(function(response) {
-        $location.path('<%= slugifiedPluralName %>');
+        $location.path('<%= slugifiedPluralName %>/' + response._id);
+
+        // Clear form fields
+        $scope.name = '';
       }, function(errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -39,7 +44,7 @@ angular.module('<%= slugifiedPluralName %>').controller('<%= classifiedPluralNam
       var <%= camelizedSingularName %> = $scope.<%= camelizedSingularName %> ;
 
       <%= camelizedSingularName %>.$update(function() {
-        $location.path('<%= slugifiedPluralName %>');
+        $location.path('<%= slugifiedPluralName %>/' + <%= camelizedSingularName %>._id);
       }, function(errorResponse) {
         $scope.error = errorResponse.data.message;
       });
