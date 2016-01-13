@@ -1,19 +1,39 @@
-<section data-ng-controller="<%= classifiedPluralName %>Controller" data-ng-init="find()">
-    <div class="page-header">
-        <h1><%= humanizedPluralName %></h1>
+<div id="content" ng-controller="<%= classifiedPluralName %>Controller" data-ng-init="find()">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1><%= humanizedPluralName %></h1>
+    <ol class="breadcrumb">
+      <li><a href="/<%= camelizedPluralName %>/create" class="btn btn-success">Create New</a></li>
+    </ol>
+  </section>
+  <div class="clear">&nbsp;</div>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-success" ng-if="<%= camelizedPluralName %>.$resolved && <%= camelizedPluralName %>.length">
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <tbody><tr>
+                <th>Name</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+              </tr>
+              <tr data-ng-repeat="<%= camelizedSingularName %> in <%= camelizedPluralName %>">
+                <td>{{<%= camelizedSingularName %>.name}}</td>
+                <td><a href="/<%= camelizedPluralName %>/{{<%= camelizedSingularName %>._id}}/edit" class="btn btn-primary">Edit</a></td>
+                <td><button ng-click="openModal(<%= camelizedSingularName %>,$index)" class="btn btn-danger">Delete</button></td>
+              </tr>
+              </tbody></table>
+          </div>
+          
+          <!-- /.box-body -->
+        </div>
+        <div class="alert alert-warning text-center" ng-if="<%= camelizedPluralName %>.$resolved && !<%= camelizedPluralName %>.length">
+            No <%= humanizedPluralName %> yet, why don't you <a ui-sref="<%= camelizedPluralName %>.create">create one</a>?
+          </div>
+        <!-- /.box -->
+      </div>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="<%= camelizedSingularName %> in <%= camelizedPluralName %>" data-ng-href="/#!/<%= slugifiedPluralName %>/{{<%= camelizedSingularName %>._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="<%= camelizedSingularName %>.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="<%= camelizedSingularName %>.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="<%= camelizedSingularName %>.name"></h4>
-        </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!<%= camelizedPluralName %>.$resolved || <%= camelizedPluralName %>.length">
-    	No <%= humanizedPluralName %> yet, why don't you <a href="/#!/<%= slugifiedPluralName %>/create">create one</a>?
-    </div>
-</section>
+  </section>
+</div>

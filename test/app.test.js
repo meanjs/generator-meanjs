@@ -1,4 +1,6 @@
-var path = require('path'),
+'use strict';
+
+7var path = require('path'),
   fs = require('fs'),
   helpers = require('yeoman-generator').test,
   assert = require('yeoman-generator').assert,
