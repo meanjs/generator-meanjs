@@ -18,10 +18,6 @@ angular.module('<%= slugifiedPluralName %>').config(['$stateProvider',
       url: '/create',
       templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/create-<%= slugifiedSingularName %>.client.view.html'
     }).
-    state('<%= slugifiedPluralName %>.view', {
-      url: '/:<%= camelizedSingularName %>Id',
-      templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/view-<%= slugifiedSingularName %>.client.view.html'
-    }).
     state('<%= slugifiedPluralName %>.edit', {
       url: '/:<%= camelizedSingularName %>Id/edit',
       templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/edit-<%= slugifiedSingularName %>.client.view.html'

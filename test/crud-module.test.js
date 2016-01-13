@@ -61,7 +61,20 @@ describe('CRUD Module Generator Tests', function () {
         'modules/foos/tests/e2e/foos.e2e.tests.js'
       ]
 
+<<<<<<< HEAD
       assert.file(files);
+=======
+    it('should generate an angular client files', function () {
+      assert.file('modules/foos/client/config/foos.client.routes.js');
+      assert.file('modules/foos/client/controllers/foos.client.controller.js');
+      assert.file('modules/foos/client/services/foos.client.service.js');
+      assert.file('modules/foos/client/views/create-foo.client.view.html');
+      assert.file('modules/foos/client/views/edit-foo.client.view.html');
+      assert.file('modules/foos/client/views/list-foos.client.view.html');
+      assert.file('modules/foos/client/foos.client.module.js');
+      assert.file('modules/foos/client/config/foos.client.config.js');
+    });
+>>>>>>> origin/crud-module
 
     });
 
