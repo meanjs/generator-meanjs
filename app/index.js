@@ -3,6 +3,7 @@
 var Promise = require('bluebird'),
   child_process = require('child_process'),
   fs = require('fs'),
+  rimraf = require('rimraf'),
   path = require('path'),
   s = require('underscore.string'),
   generators = require('yeoman-generator'),
@@ -227,38 +228,48 @@ module.exports = generators.Base.extend({
     });
   },
 
-  removeChatExample: function () {
+  removeExampleModules: function () {
+    var promises = [];
+    
     var done = this.async();
 
     if(!this.addChatExample) {
-      exec('rm -rf ' + folderPath + 'modules/chat')
-        .then(function () {
-          done();
-        })
-        .catch(function (err) {
+      var p1 = Promise.defer();
+      promises.push(p1);
+      
+      rimraf(folderPath + 'modules/chat', function(err) {
+        if (err) {
           log.red(err);
-          return;
-        });
-    } else {
-      done();
+          p1.reject(err);
+        } else {
+          p1.resolve();
+        }
+      });
     }
-  },
-
-  removeArticlesExample: function () {
-    var done = this.async();
-
+    
     if(!this.addArticleExample) {
-      exec('rm -rf ' + folderPath + 'modules/articles')
-        .then(function () {
-          done();
-        })
-        .catch(function (err) {
+      var p2 = Promise.defer();
+      promises.push(p2);
+      
+      rimraf(folderPath + 'modules/articles', function(err) {
+        if (err) {
           log.red(err);
-          return;
-        });
-    } else {
-      done();
+          p2.reject(err);
+        } else {
+          p2.resolve();
+        }
+      });
     }
+    
+    Promise
+      .all(promises)
+      .then(function() {
+        done();
+      })
+      .catch(function() {
+        log.red('Something failed.');
+        done();
+      });
   }
 
 });
