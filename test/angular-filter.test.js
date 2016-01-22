@@ -3,10 +3,12 @@
 var path = require('path'),
   helpers = require('yeoman-generator').test,
   assert = require('yeoman-generator').assert,
+  rimraf = require('rimraf'),
   temp = require('temp').track();
 
 describe('AngularJS Sub Generators Tests', function () {
   this.timeout(0);
+
   /**
    * Setup the temp directory
    */
@@ -17,8 +19,10 @@ describe('AngularJS Sub Generators Tests', function () {
   /**
    * Clean up temp directory
    */
-  after(function () {
+  after(function (done) {
     temp.cleanup();
+
+    rimraf(path.join(__dirname, 'temp'), done);
   });
 
   describe('Generate an AngularJS filter file through the sub-generator', function () {

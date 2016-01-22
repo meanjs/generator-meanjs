@@ -77,7 +77,7 @@ var ModuleGenerator = yeoman.generators.Base.extend({
         name: 'controllers',
         checked: true
       }, {
-        value: 'addConfigFolder',
+        value: 'addModelsFolder',
         name: 'models',
         checked: true
       }, {
@@ -99,11 +99,18 @@ var ModuleGenerator = yeoman.generators.Base.extend({
       // name
       this.name = props.name;
 
-      this.clientFolders = {};
-      _.assign(this.clientFolders, props.clientFolders);
+      var clientFolders = {},
+          serverFolders = {};
 
-      this.serverFolders = {};
-      _.assign(this.serverFolders, props.serverFolders);
+      _.forEach(props.clientFolders, function(prop) {
+        clientFolders[prop] = true;
+      });
+      _.forEach(props.serverFolders, function(prop) {
+        serverFolders[prop] = true;
+      });
+
+      this.clientFolders = clientFolders;
+      this.serverFolders = serverFolders;
 
       done();
     }.bind(this));
@@ -150,12 +157,24 @@ var ModuleGenerator = yeoman.generators.Base.extend({
     this.template('_.client.module.js', 'modules/' + this.slugifiedName + '/client/' + this.slugifiedName + '.client.module.js');
 
     // Create server module sub-folders
-    if (this.serverFolders.addConfigFolder ||
-        this.serverFolders.addControllersFolder ||
-        this.serverFolders.addConfigFolder ||
-        this.serverFolders.addPoliciesFolder ||
-        this.serverFolders.addRoutesFolder) {
+    if (this.serverFolders.addConfigFolder) {
       mkdirp.sync('modules/' + this.slugifiedName + '/server/config');
+    }
+
+    if (this.serverFolders.addControllersFolder) {
+      mkdirp.sync('modules/' + this.slugifiedName + '/server/controllers');
+    }
+
+    if (this.serverFolders.addModelsFolder) {
+      mkdirp.sync('modules/' + this.slugifiedName + '/server/models');
+    }
+
+    if (this.serverFolders.addPoliciesFolder) {
+      mkdirp.sync('modules/' + this.slugifiedName + '/server/policies');
+    }
+
+    if (this.serverFolders.addRoutesFolder) {
+      mkdirp.sync('modules/' + this.slugifiedName + '/server/routes');
     }
 
     if (this.serverFolders.addTestsFolder) {

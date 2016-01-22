@@ -2,12 +2,16 @@
 
 var path = require('path'),
   fs = require('fs'),
+  EOL = require('os').EOL,
   mkdirp = require('mkdirp'),
   helpers = require('yeoman-generator').test,
   assert = require('yeoman-generator').assert,
+  rimraf = require('rimraf'),
   temp = require('temp').track();
 
 describe('AngularJS Sub Generators Tests', function () {
+  this.timeout(0);
+
   /**
    * Setup the temp directory
    */
@@ -18,8 +22,10 @@ describe('AngularJS Sub Generators Tests', function () {
   /**
    * Clean up temp directory
    */
-  after(function () {
+  after(function (done) {
     temp.cleanup();
+
+    rimraf(path.join(__dirname, 'temp'), done);
   });
 
   describe('Generate an AngularJS view files through the sub-generator', function () {
@@ -75,18 +81,18 @@ describe('AngularJS Sub Generators Tests', function () {
         assert.file('modules/core/client/views/foo.client.view.html');
 
         assert.fileContent('modules/core/client/config/core.client.routes.js',
-          "'use strict';\n\n" +
-          "//Setting up route\n" +
-          "angular.module('core').config(['$stateProvider',\n" +
-          "  function($stateProvider) {\n" +
-          "    // Core state routing\n" +
-          "    $stateProvider\n" +
-          "      .state('foo', {\n" +
-          "        url: '/fooroute',\n" +
-          "        templateUrl: 'modules/core/client/views/foo.client.view.html'\n" +
-          "      });\n" +
-          "  }\n" +
-          "]);\n"
+          "'use strict';" + EOL + EOL +
+          "//Setting up route" + EOL +
+          "angular.module('core').config(['$stateProvider'," + EOL +
+          "  function($stateProvider) {" + EOL +
+          "    // Core state routing" + EOL +
+          "    $stateProvider" + EOL +
+          "      .state('foo', {" + EOL +
+          "        url: '/fooroute'," + EOL +
+          "        templateUrl: 'modules/core/client/views/foo.client.view.html'" + EOL +
+          "      });" + EOL +
+          "  }" + EOL +
+          "]);" + EOL
         );
       });
     });
@@ -116,18 +122,18 @@ describe('AngularJS Sub Generators Tests', function () {
         assert.file('modules/core/client/views/core.client.view.html');
 
         assert.fileContent('modules/core/client/config/core.client.routes.js',
-          "'use strict';\n\n" +
-          "//Setting up route\n" +
-          "angular.module('core').config(['$stateProvider',\n" +
-          "  function($stateProvider) {\n" +
-          "    // Core state routing\n" +
-          "    $stateProvider\n" +
-          "      .state('core', {\n" +
-          "        url: '/fooroute',\n" +
-          "        templateUrl: 'modules/core/client/views/core.client.view.html'\n" +
-          "      });\n" +
-          "  }\n" +
-          "]);\n"
+          "'use strict';" + EOL + EOL +
+          "//Setting up route" + EOL +
+          "angular.module('core').config(['$stateProvider'," + EOL +
+          "  function($stateProvider) {" + EOL +
+          "    // Core state routing" + EOL +
+          "    $stateProvider" + EOL +
+          "      .state('core', {" + EOL +
+          "        url: '/fooroute'," + EOL +
+          "        templateUrl: 'modules/core/client/views/core.client.view.html'" + EOL +
+          "      });" + EOL +
+          "  }" + EOL +
+          "]);" + EOL
         );
       });
     });
@@ -149,18 +155,18 @@ describe('AngularJS Sub Generators Tests', function () {
             mkdirp.sync('modules/core/client/config');
             fs.writeFileSync(
               'modules/core/client/config/core.client.routes.js',
-              "'use strict';\n\n" +
-              "//Setting up route\n" +
-              "angular.module('core').config(['$stateProvider',\n" +
-              "  function($stateProvider) {\n" +
-              "    // Core state routing\n" +
-              "    $stateProvider\n" +
-              "      .state('core', {\n" +
-              "        url: '/fooroute',\n" +
-              "        templateUrl: 'modules/core/client/views/core.client.view.html'\n" +
-              "      });\n" +
-              "  }\n" +
-              "]);\n",
+              "'use strict';" + EOL + EOL +
+              "//Setting up route" + EOL +
+              "angular.module('core').config(['$stateProvider'," + EOL +
+              "  function($stateProvider) {" + EOL +
+              "    // Core state routing" + EOL +
+              "    $stateProvider" + EOL +
+              "      .state('core', {" + EOL +
+              "        url: '/fooroute'," + EOL +
+              "        templateUrl: 'modules/core/client/views/core.client.view.html'" + EOL +
+              "      });" + EOL +
+              "  }" + EOL +
+              "]);" + EOL,
               'utf8'
             );
           })
@@ -174,22 +180,22 @@ describe('AngularJS Sub Generators Tests', function () {
         assert.file('modules/core/client/views/bar.client.view.html');
 
         assert.fileContent('modules/core/client/config/core.client.routes.js',
-          "'use strict';\n\n" +
-          "//Setting up route\n" +
-          "angular.module('core').config(['$stateProvider',\n" +
-          "  function($stateProvider) {\n" +
-          "    // Core state routing\n" +
-          "    $stateProvider\n" +
-          "      .state('bar', {\n" +
-          "        url: '/barroute',\n" +
-          "        templateUrl: 'modules/core/client/views/bar.client.view.html'\n" +
-          "      })\n" +
-          "      .state('core', {\n" +
-          "        url: '/fooroute',\n" +
-          "        templateUrl: 'modules/core/client/views/core.client.view.html'\n" +
-          "      });\n" +
-          "  }\n" +
-          "]);\n"
+          "'use strict';" + EOL + EOL +
+          "//Setting up route" + EOL +
+          "angular.module('core').config(['$stateProvider'," + EOL +
+          "  function($stateProvider) {" + EOL +
+          "    // Core state routing" + EOL +
+          "    $stateProvider" + EOL +
+          "      .state('bar', {" + EOL +
+          "        url: '/barroute'," + EOL +
+          "        templateUrl: 'modules/core/client/views/bar.client.view.html'" + EOL +
+          "      })" + EOL +
+          "      .state('core', {" + EOL +
+          "        url: '/fooroute'," + EOL +
+          "        templateUrl: 'modules/core/client/views/core.client.view.html'" + EOL +
+          "      });" + EOL +
+          "  }" + EOL +
+          "]);" + EOL
         );
       });
     });
