@@ -4,10 +4,12 @@ var path = require('path'),
   fs = require('fs'),
   helpers = require('yeoman-generator').test,
   assert = require('yeoman-generator').assert,
+  rimraf = require('rimraf'),
   temp = require('temp').track();
   
 describe('Main Generator', function () {
   this.timeout(0);
+
   /**
    * Setup the temp directory
    */
@@ -18,8 +20,10 @@ describe('Main Generator', function () {
   /**
    * Clean up temp directory
    */
-  after(function () {
+  after(function (done) {
     temp.cleanup();
+
+    rimraf(path.join(__dirname, 'temp'), done);
   });
 
   describe('Application generator without sample module 0.4.0', function () {
