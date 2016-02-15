@@ -38,6 +38,13 @@ module.exports = generators.Base.extend({
     this.pkg = this.fs.readJSON(path.join(__dirname, '../package.json'));
     this._optionOrPrompt = optionOrPrompt;
 
+    this.option('quiet', {
+      desc: 'Makes the installation process less verbose',
+      type: 'Boolean',
+      defaults: false,
+      hide: false
+    });
+
     this.on('end', function () {
       if (!this.options['skip-install']) {
         log.green('Running npm install for you....');
@@ -73,7 +80,8 @@ module.exports = generators.Base.extend({
   },
 
   welcomeMessage: function () {
-    log.green('You\'re using the official MEAN.JS generator.');
+    if (!this.options['quiet'])
+      log.green('You\'re using the official MEAN.JS generator.');
   },
     
   promptForVersion: function () {
@@ -102,7 +110,8 @@ module.exports = generators.Base.extend({
   promptForFolder: function () {
     var done = this.async();
 
-    log.red(version);
+    if (!this.options['quiet'])
+      log.red(version);
 
     var prompt = [{
       name: 'folder',
@@ -120,7 +129,8 @@ module.exports = generators.Base.extend({
   cloneRepo: function () {
     var done = this.async();
 
-    log.green('Cloning the MEAN repo.......');
+    if (!this.options['quiet'])
+      log.green('Cloning the MEAN repo.......');
 
     exec('git clone --branch ' + versions[version] + ' https://github.com/meanjs/mean.git ' + folder)
       .then(function () {
