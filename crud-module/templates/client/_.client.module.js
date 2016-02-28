@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('<%= slugifiedName %>');
+  app.registerModule('<%= slugifiedPluralName %>');
 })(ApplicationConfiguration);

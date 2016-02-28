@@ -121,7 +121,7 @@ var ModuleGenerator = yeoman.generators.Base.extend({
     this.humanizedName = s(this.slugifiedName).humanize().value();
 
     // Create module folder
-    mkdirp.sync('modules/' + this.slugifiedName + '/client/');
+    mkdirp.sync('modules/' + this.slugifiedName);
 
     // Create client module sub-folders
     if (this.clientFolders.addConfigFolder) {

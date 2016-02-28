@@ -1,9 +1,15 @@
-'use strict';
+(function() {
+  'use strict';
 
-// <%= humanizedModuleName %> module config
-angular.module('<%= slugifiedModuleName %>').run(['Menus',
-  function (Menus) {
+  // <%= humanizedModuleName %> module config
+  angular
+    .module('<%= slugifiedModuleName %>')
+    .run(menuConfig);
+
+  menuConfig.$inject = ['Menus'];
+
+  function menuConfig(Menus) {
     // Config logic
     // ...
   }
-]);
+})();
