@@ -46,7 +46,7 @@ var ControllerGenerator = yeoman.generators.Base.extend({
 
       this.slugifiedControllerName = s(this.name).humanize().slugify().value();
 
-      this.humanizedName = s(this.slugifiedName).humanize().value();
+      this.humanizedName = s(this.slugifiedControllerName).humanize().value();
       this.humanizedPluralName = inflections.pluralize(this.humanizedName);
       this.humanizedSingularName = inflections.singularize(this.humanizedName);
 

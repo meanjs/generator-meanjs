@@ -1,7 +1,13 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('<%= slugifiedModuleName %>').directive('<%= camelizedName %>', [
-  function () {
+  angular
+    .module('<%= slugifiedModuleName %>')
+    .directive('<%= camelizedName %>', <%= camelizedName %>);
+
+  <%= camelizedName %>.$inject = [/*Example: '$state', '$window' */];
+
+  function <%= camelizedName %>(/*Example: $state, $window */) {
     return {
       template: '<div></div>',
       restrict: 'E',
@@ -13,4 +19,4 @@ angular.module('<%= slugifiedModuleName %>').directive('<%= camelizedName %>', [
       }
     };
   }
-]);
+})();

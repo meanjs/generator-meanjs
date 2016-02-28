@@ -81,18 +81,24 @@ describe('AngularJS Sub Generators Tests', function () {
         assert.file('modules/core/client/views/foo.client.view.html');
 
         assert.fileContent('modules/core/client/config/core.client.routes.js',
-          "'use strict';" + EOL + EOL +
-          "//Setting up route" + EOL +
-          "angular.module('core').config(['$stateProvider'," + EOL +
-          "  function($stateProvider) {" + EOL +
+          "(function () {" + EOL +
+          "  'use strict';" + EOL + EOL +
+          "  //Setting up route" + EOL +
+          "  angular"  + EOL +
+          "    .module('core')" + EOL +
+          "    .config(routeConfig);" + EOL + EOL +
+          "  routeConfig.$inject = ['$stateProvider'];" + EOL + EOL +
+          "  function routeConfig($stateProvider) {" + EOL +
           "    // Core state routing" + EOL +
           "    $stateProvider" + EOL +
           "      .state('foo', {" + EOL +
           "        url: '/fooroute'," + EOL +
-          "        templateUrl: 'modules/core/client/views/foo.client.view.html'" + EOL +
+          "        templateUrl: 'modules/core/client/views/foo.client.view.html'," + EOL +
+          "        controller: 'FooctrlController'," + EOL +
+          "        controllerAs: 'vm'" + EOL +
           "      });" + EOL +
           "  }" + EOL +
-          "]);" + EOL
+          "})();" + EOL
         );
       });
     });
@@ -122,18 +128,24 @@ describe('AngularJS Sub Generators Tests', function () {
         assert.file('modules/core/client/views/core.client.view.html');
 
         assert.fileContent('modules/core/client/config/core.client.routes.js',
-          "'use strict';" + EOL + EOL +
-          "//Setting up route" + EOL +
-          "angular.module('core').config(['$stateProvider'," + EOL +
-          "  function($stateProvider) {" + EOL +
+          "(function () {" + EOL +
+          "  'use strict';" + EOL + EOL +
+          "  //Setting up route" + EOL +
+          "  angular"  + EOL +
+          "    .module('core')" + EOL +
+          "    .config(routeConfig);" + EOL + EOL +
+          "  routeConfig.$inject = ['$stateProvider'];" + EOL + EOL +
+          "  function routeConfig($stateProvider) {" + EOL +
           "    // Core state routing" + EOL +
           "    $stateProvider" + EOL +
           "      .state('core', {" + EOL +
           "        url: '/fooroute'," + EOL +
-          "        templateUrl: 'modules/core/client/views/core.client.view.html'" + EOL +
+          "        templateUrl: 'modules/core/client/views/core.client.view.html'," + EOL +
+          "        controller: 'FooctrlController'," + EOL +
+          "        controllerAs: 'vm'" + EOL +
           "      });" + EOL +
           "  }" + EOL +
-          "]);" + EOL
+          "})();" + EOL
         );
       });
     });
@@ -155,19 +167,24 @@ describe('AngularJS Sub Generators Tests', function () {
             mkdirp.sync('modules/core/client/config');
             fs.writeFileSync(
               'modules/core/client/config/core.client.routes.js',
-              "'use strict';" + EOL + EOL +
-              "//Setting up route" + EOL +
-              "angular.module('core').config(['$stateProvider'," + EOL +
-              "  function($stateProvider) {" + EOL +
+              "(function () {" + EOL +
+              "  'use strict';" + EOL + EOL +
+              "  //Setting up route" + EOL +
+              "  angular"  + EOL +
+              "    .module('core')" + EOL +
+              "    .config(routeConfig);" + EOL + EOL +
+              "  routeConfig.$inject = ['$stateProvider'];" + EOL + EOL +
+              "  function routeConfig($stateProvider) {" + EOL +
               "    // Core state routing" + EOL +
               "    $stateProvider" + EOL +
               "      .state('core', {" + EOL +
               "        url: '/fooroute'," + EOL +
-              "        templateUrl: 'modules/core/client/views/core.client.view.html'" + EOL +
+              "        templateUrl: 'modules/core/client/views/core.client.view.html'," + EOL +
+              "        controller: 'FooctrlController'," + EOL +
+              "        controllerAs: 'vm'" + EOL +
               "      });" + EOL +
               "  }" + EOL +
-              "]);" + EOL,
-              'utf8'
+              "})();" + EOL
             );
           })
           .on('end', function () {
@@ -180,22 +197,30 @@ describe('AngularJS Sub Generators Tests', function () {
         assert.file('modules/core/client/views/bar.client.view.html');
 
         assert.fileContent('modules/core/client/config/core.client.routes.js',
-          "'use strict';" + EOL + EOL +
-          "//Setting up route" + EOL +
-          "angular.module('core').config(['$stateProvider'," + EOL +
-          "  function($stateProvider) {" + EOL +
+          "(function () {" + EOL +
+          "  'use strict';" + EOL + EOL +
+          "  //Setting up route" + EOL +
+          "  angular"  + EOL +
+          "    .module('core')" + EOL +
+          "    .config(routeConfig);" + EOL + EOL +
+          "  routeConfig.$inject = ['$stateProvider'];" + EOL + EOL +
+          "  function routeConfig($stateProvider) {" + EOL +
           "    // Core state routing" + EOL +
           "    $stateProvider" + EOL +
           "      .state('bar', {" + EOL +
           "        url: '/barroute'," + EOL +
-          "        templateUrl: 'modules/core/client/views/bar.client.view.html'" + EOL +
+          "        templateUrl: 'modules/core/client/views/bar.client.view.html'," + EOL +
+          "        controller: 'BarctrlController'," + EOL +
+          "        controllerAs: 'vm'" + EOL +
           "      })" + EOL +
           "      .state('core', {" + EOL +
           "        url: '/fooroute'," + EOL +
-          "        templateUrl: 'modules/core/client/views/core.client.view.html'" + EOL +
+          "        templateUrl: 'modules/core/client/views/core.client.view.html'," + EOL +
+          "        controller: 'FooctrlController'," + EOL +
+          "        controllerAs: 'vm'" + EOL +
           "      });" + EOL +
           "  }" + EOL +
-          "]);" + EOL
+          "})();" + EOL
         );
       });
     });
