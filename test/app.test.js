@@ -30,7 +30,8 @@ describe('Main Generator', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({
-          'skip-install': true
+          'skip-install': true,
+          'quiet': true
         })
         .withArguments([])
         .withPrompts({
@@ -152,7 +153,8 @@ describe('Main Generator', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({
-          'skip-install': true
+          'skip-install': true,
+          'quiet': true
         })
         .withArguments([])
         .withPrompts({
@@ -275,7 +277,8 @@ describe('Main Generator', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({
-          'skip-install': true
+          'skip-install': true,
+          'quiet': true
         })
         .withArguments([])
         .withPrompts({
