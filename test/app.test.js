@@ -93,6 +93,7 @@ describe('Main Generator', function () {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({
           'skip-install': true,
+          'quiet': true,
           'version': '0.4.0',
           'folder': 'temp',
           'appName': 'MEANtestAppName',
@@ -215,6 +216,7 @@ describe('Main Generator', function () {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({
           'skip-install': true,
+          'quiet': true,
           'version': '0.4.1',
           'folder': 'temp',
           'appName': 'MEANtestAppName041',
@@ -340,6 +342,7 @@ describe('Main Generator', function () {
       helpers.run(path.join(__dirname, '../app'))
         .withOptions({
           'skip-install': true,
+          'quiet': true,
 	  'version': '0.4.2',
 	  'folder': 'temp',
 	  'appName': 'MEANtestAppName042',
