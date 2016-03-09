@@ -80,8 +80,9 @@ module.exports = generators.Base.extend({
   },
 
   welcomeMessage: function () {
-    if (!this.options['quiet'])
+    if (!this.options['quiet']) {
       log.green('You\'re using the official MEAN.JS generator.');
+    }
   },
 
   promptForVersion: function () {
