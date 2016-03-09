@@ -40,7 +40,7 @@
     "underscore.inflections": "~0.2.1",
     "underscore.string": "~3.2.2",
     "yeoman-generator": "~0.21.1",
-    "yeoman-option-or-prompt": "^1.0.2",
+    "yeoman-option-or-prompt": "~1.0.2",
     "yo": "~1.5.0"
   },
   "devDependencies": {

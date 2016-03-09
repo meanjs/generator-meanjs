@@ -25,7 +25,7 @@ describe('Main Generator', function () {
 
     rimraf(path.join(__dirname, 'temp'), done);
   });
-    
+
   describe('Application generator without sample module 0.4.0', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))

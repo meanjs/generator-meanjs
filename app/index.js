@@ -83,7 +83,7 @@ module.exports = generators.Base.extend({
     if (!this.options['quiet'])
       log.green('You\'re using the official MEAN.JS generator.');
   },
-    
+
   promptForVersion: function () {
     var done = this.async();
 
@@ -92,7 +92,7 @@ module.exports = generators.Base.extend({
       choices.push(v);
     }
 
-    var prompt = [{
+    var prompts = [{
       type: 'list',
       name: 'version',
       message: 'What mean.js version would you like to generate?',
@@ -100,7 +100,7 @@ module.exports = generators.Base.extend({
       default: 1
     }];
 
-    this._optionOrPrompt(prompt, function (props) {
+    this._optionOrPrompt(prompts, function (props) {
       version = props.version;
       done();
     }.bind(this));
@@ -110,16 +110,17 @@ module.exports = generators.Base.extend({
   promptForFolder: function () {
     var done = this.async();
 
-    if (!this.options['quiet'])
+    if (!this.options['quiet']) {
       log.red(version);
+    }
 
-    var prompt = [{
+    var prompts = [{
       name: 'folder',
       message: 'In which folder would you like the project to be generated? This can be changed later.',
       default: 'mean'
     }];
 
-    this._optionOrPrompt(prompt, function (props) {
+    this._optionOrPrompt(prompts, function (props) {
       folder = props.folder;
       folderPath = './' + folder + '/';
       done();
@@ -129,8 +130,9 @@ module.exports = generators.Base.extend({
   cloneRepo: function () {
     var done = this.async();
 
-    if (!this.options['quiet'])
+    if (!this.options['quiet']) {
       log.green('Cloning the MEAN repo.......');
+    }
 
     exec('git clone --branch ' + versions[version] + ' https://github.com/meanjs/mean.git ' + folder)
       .then(function () {
