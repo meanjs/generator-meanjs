@@ -79,10 +79,10 @@ describe('<%= humanizedSingularName %> CRUD tests', function () {
 
             // Get a list of <%= humanizedPluralName %>
             agent.get('/api/<%= camelizedPluralName %>')
-              .end(function (<%= camelizedSingularName %>sGetErr, <%= camelizedSingularName %>sGetRes) {
+              .end(function (<%= camelizedPluralName %>GetErr, <%= camelizedPluralName %>GetRes) {
                 // Handle <%= humanizedSingularName %> save error
-                if (<%= camelizedSingularName %>sGetErr) {
-                  return done(<%= camelizedSingularName %>sGetErr);
+                if (<%= camelizedPluralName %>GetErr) {
+                  return done(<%= camelizedPluralName %>GetErr);
                 }
 
                 // Get <%= humanizedPluralName %> list
