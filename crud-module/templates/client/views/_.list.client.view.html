@@ -3,20 +3,20 @@
     <h1><%= humanizedPluralName %></h1>
   </div>
   <div class="list-group">
-    <a data-ng-repeat="<%= slugifiedSingularName %> in vm.<%= camelizedPluralName %>"
-       data-ui-sref="<%= camelizedPluralName %>.view({ <%= slugifiedSingularName %>Id: <%= slugifiedSingularName %>._id })"
+    <a ng-repeat="<%= slugifiedSingularName %> in vm.<%= camelizedPluralName %>"
+       ui-sref="<%= camelizedPluralName %>.view({ <%= slugifiedSingularName %>Id: <%= slugifiedSingularName %>._id })"
        class="list-group-item">
       <small class="list-group-item-text">
         Posted on
-        <span data-ng-bind="<%= camelizedSingularName %>.created | date:'mediumDate'"></span>
+        <span ng-bind="<%= camelizedSingularName %>.created | date:'mediumDate'"></span>
         by
-        <span data-ng-if="<%= camelizedSingularName %>.user" data-ng-bind="<%= camelizedSingularName %>.user.displayName"></span>
-        <span data-ng-if="!<%= camelizedSingularName %>.user">Deleted User</span>
+        <span ng-if="<%= camelizedSingularName %>.user" ng-bind="<%= camelizedSingularName %>.user.displayName"></span>
+        <span ng-if="!<%= camelizedSingularName %>.user">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" data-ng-bind="<%= slugifiedSingularName %>.name"></h4>
+      <h4 class="list-group-item-heading" ng-bind="<%= slugifiedSingularName %>.name"></h4>
     </a>
   </div>
-  <div class="alert alert-warning text-center" data-ng-if="vm.<%= camelizedPluralName %>.$resolved && !vm.<%= camelizedPluralName %>.length">
-    No <%= humanizedPluralName %> yet, why don't you <a data-ui-sref="<%= camelizedPluralName %>.create">create one</a>?
+  <div class="alert alert-warning text-center" ng-if="vm.<%= camelizedPluralName %>.$resolved && !vm.<%= camelizedPluralName %>.length">
+    No <%= humanizedPluralName %> yet, why don't you <a ui-sref="<%= camelizedPluralName %>.create">create one</a>?
   </div>
 </section>
