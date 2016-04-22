@@ -27,7 +27,7 @@ describe('<%= humanizedModelName %> Model Unit Tests:', function() {
       password: 'password'
     });
 
-    user.save(function() { 
+    user.save(function() {
       <%= camelizedModelName %> = new <%= classifiedModelName %>({
         // Add model fields
         // ...
