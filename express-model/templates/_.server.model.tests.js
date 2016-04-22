@@ -11,7 +11,8 @@ var should = require('should'),
 /**
  * Globals
  */
-var user, <%= camelizedModelName %>;
+var user,
+  <%= camelizedModelName %>;
 
 /**
  * Unit tests
