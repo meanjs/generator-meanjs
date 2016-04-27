@@ -47,7 +47,7 @@ describe('<%= humanizedModelName %> Model Unit Tests:', function() {
     });
   });
 
-  afterEach(function(done) { 
+  afterEach(function(done) {
     <%= classifiedModelName %>.remove().exec();
     User.remove().exec();
 
