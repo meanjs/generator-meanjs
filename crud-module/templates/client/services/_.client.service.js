@@ -1,4 +1,4 @@
-//<%= humanizedPluralName %> service used to communicate <%= humanizedPluralName %> REST endpoints
+// <%= humanizedPluralName %> service used to communicate <%= humanizedPluralName %> REST endpoints
 (function () {
   'use strict';
 
@@ -17,4 +17,4 @@
       }
     });
   }
-})();
+}());

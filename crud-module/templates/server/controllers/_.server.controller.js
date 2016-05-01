@@ -36,7 +36,7 @@ exports.read = function(req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  <%= camelizedSingularName %>.isCurrentUserOwner = req.user && <%= camelizedSingularName %>.user && <%= camelizedSingularName %>.user._id.toString() === req.user._id.toString() ? true : false;
+  <%= camelizedSingularName %>.isCurrentUserOwner = req.user && <%= camelizedSingularName %>.user && <%= camelizedSingularName %>.user._id.toString() === req.user._id.toString();
 
   res.jsonp(<%= camelizedSingularName %>);
 };
@@ -45,9 +45,9 @@ exports.read = function(req, res) {
  * Update a <%= humanizedSingularName %>
  */
 exports.update = function(req, res) {
-  var <%= camelizedSingularName %> = req.<%= camelizedSingularName %> ;
+  var <%= camelizedSingularName %> = req.<%= camelizedSingularName %>;
 
-  <%= camelizedSingularName %> = _.extend(<%= camelizedSingularName %> , req.body);
+  <%= camelizedSingularName %> = _.extend(<%= camelizedSingularName %>, req.body);
 
   <%= camelizedSingularName %>.save(function(err) {
     if (err) {
@@ -64,7 +64,7 @@ exports.update = function(req, res) {
  * Delete an <%= humanizedSingularName %>
  */
 exports.delete = function(req, res) {
-  var <%= camelizedSingularName %> = req.<%= camelizedSingularName %> ;
+  var <%= camelizedSingularName %> = req.<%= camelizedSingularName %>;
 
   <%= camelizedSingularName %>.remove(function(err) {
     if (err) {

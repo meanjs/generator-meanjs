@@ -2,4 +2,4 @@
   'use strict';
 
   app.registerModule('<%= slugifiedPluralName %>');
-})(ApplicationConfiguration);
+}(ApplicationConfiguration));

@@ -12,4 +12,4 @@
 
     vm.<%= camelizedPluralName %> = <%= classifiedPluralName %>Service.query();
   }
-})();
+}());

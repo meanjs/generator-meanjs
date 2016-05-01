@@ -33,7 +33,7 @@
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle : '<%= humanizedPluralName %> Create'
+          pageTitle: '<%= humanizedPluralName %> Create'
         }
       })
       .state('<%= slugifiedPluralName %>.edit', {
@@ -57,7 +57,7 @@
         resolve: {
           <%= slugifiedSingularName %>Resolve: get<%= classifiedSingularName %>
         },
-        data:{
+        data: {
           pageTitle: '<%= humanizedSingularName %> {{ articleResolve.name }}'
         }
       });
@@ -76,4 +76,4 @@
   function new<%= classifiedSingularName %>(<%= classifiedPluralName %>Service) {
     return new <%= classifiedPluralName %>Service();
   }
-})();
+}());
