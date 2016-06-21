@@ -58,7 +58,7 @@
           <%= slugifiedSingularName %>Resolve: get<%= classifiedSingularName %>
         },
         data:{
-          pageTitle: '<%= humanizedSingularName %> {{ articleResolve.name }}'
+          pageTitle: '<%= humanizedSingularName %> {{ <%= slugifiedSingularName %>Resolve.name }}'
         }
       });
   }
