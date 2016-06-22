@@ -3,6 +3,8 @@ node_js:
   - 0.12
   - 4
   - 5
+env:
+  - CXX=g++-4.8
 os: 
   - linux
   - centos
@@ -19,4 +21,10 @@ cache:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-meanjs' ]; then cd .. && eval "mv $currentfolder generator-meanjs" && cd generator-meanjs; fi
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 
