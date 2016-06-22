@@ -13,7 +13,7 @@ os:
 matrix:
   allow_failures:
     - node_js: 5
-sudo: false
+sudo: true
 cache:
   apt: true
   directories:
