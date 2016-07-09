@@ -62,7 +62,7 @@
         $scope: $scope
       });
 
-      //Spy on state go
+      // Spy on state go
       spyOn($state, 'go');
     }));
 
@@ -88,4 +88,4 @@
       }));
     });
   });
-})();
+}());

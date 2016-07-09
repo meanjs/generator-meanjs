@@ -6,7 +6,7 @@
     var $scope,
       <%= classifiedPluralName %>Service;
 
-    //We can start by loading the main application module
+    // We can start by loading the main application module
     beforeEach(module(ApplicationConfiguration.applicationModuleName));
 
     // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
@@ -53,7 +53,7 @@
             name: '<%= humanizedSingularName %> Name'
           });
 
-          //Initialize Controller
+          // Initialize Controller
           <%= classifiedPluralName %>Controller = $controller('<%= classifiedPluralName %>Controller as vm', {
             $scope: $scope,
             <%= camelizedSingularName %>Resolve: mock<%= classifiedSingularName %>
@@ -100,7 +100,7 @@
           // create mock <%= humanizedSingularName %>
           mock<%= classifiedSingularName %> = new <%= classifiedPluralName %>Service();
 
-          //Initialize Controller
+          // Initialize Controller
           <%= classifiedPluralName %>Controller = $controller('<%= classifiedPluralName %>Controller as vm', {
             $scope: $scope,
             <%= camelizedSingularName %>Resolve: mock<%= classifiedSingularName %>
@@ -149,7 +149,7 @@
             name: '<%= humanizedSingularName %> Name'
           });
 
-          //Initialize Controller
+          // Initialize Controller
           <%= classifiedPluralName %>Controller = $controller('<%= classifiedPluralName %>Controller as vm', {
             $scope: $scope,
             <%= camelizedSingularName %>Resolve: mock<%= classifiedSingularName %>
@@ -190,4 +190,4 @@
 
     });
   });
-})();
+}());

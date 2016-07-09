@@ -11,7 +11,11 @@ var should = require('should'),
 /**
  * Globals
  */
-var app, agent, credentials, user, <%= camelizedSingularName %>;
+var app,
+  agent,
+  credentials,
+  user,
+  <%= camelizedSingularName %>;
 
 /**
  * <%= humanizedSingularName %> routes tests
