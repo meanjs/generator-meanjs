@@ -43,7 +43,7 @@
     "yo": "~1.5.0"
   },
   "devDependencies": {
-    "gulp": "https://github.com/gulpjs/gulp.git#3311fcab7fe6de65a7a981d2433205c91d151c0a",
+    "gulp": "https://github.com/gulpjs/gulp.git#d8f5c90a0622d19ef1943a2a3d02dc50e3c853e7",
     "gulp-eslint": "~1.1.0",
     "gulp-jshint": "~1.12.0",
     "gulp-mocha": "~2.2.0",
