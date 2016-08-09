@@ -5,11 +5,11 @@
     .module('<%= slugifiedPluralName %>')
     .run(menuConfig);
 
-  menuConfig.$inject = ['Menus'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(Menus) {
+  function menuConfig(menuService) {
     // Set top bar menu items
-    Menus.addMenuItem('topbar', {
+    menuService.addMenuItem('topbar', {
       title: '<%= humanizedPluralName %>',
       state: '<%= slugifiedPluralName %>',
       type: 'dropdown',
@@ -17,13 +17,13 @@
     });
 
     // Add the dropdown list item
-    Menus.addSubMenuItem('topbar', '<%= slugifiedPluralName %>', {
+    menuService.addSubMenuItem('topbar', '<%= slugifiedPluralName %>', {
       title: 'List <%= humanizedPluralName %>',
       state: '<%= slugifiedPluralName %>.list'
     });
 
     // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', '<%= slugifiedPluralName %>', {
+    menuService.addSubMenuItem('topbar', '<%= slugifiedPluralName %>', {
       title: 'Create <%= humanizedSingularName %>',
       state: '<%= slugifiedPluralName %>.create',
       roles: ['user']
