@@ -6,9 +6,9 @@
     .module('<%= slugifiedPluralName %>')
     .controller('<%= classifiedPluralName %>Controller', <%= classifiedPluralName %>Controller);
 
-  <%= classifiedPluralName %>Controller.$inject = ['$scope', '$state', 'Authentication', '<%= camelizedSingularName %>Resolve'];
+  <%= classifiedPluralName %>Controller.$inject = ['$scope', '$state', '$window', 'Authentication', '<%= camelizedSingularName %>Resolve'];
 
-  function <%= classifiedPluralName %>Controller ($scope, $state, Authentication, <%= camelizedSingularName %>) {
+  function <%= classifiedPluralName %>Controller ($scope, $state, $window, Authentication, <%= camelizedSingularName %>) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -20,7 +20,7 @@
 
     // Remove existing <%= humanizedSingularName %>
     function remove() {
-      if (confirm('Are you sure you want to delete?')) {
+      if ($window.confirm('Are you sure you want to delete?')) {
         vm.<%= camelizedSingularName %>.$remove($state.go('<%= slugifiedPluralName %>.list'));
       }
     }

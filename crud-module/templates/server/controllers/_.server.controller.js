@@ -80,7 +80,7 @@ exports.delete = function(req, res) {
 /**
  * List of <%= humanizedPluralName %>
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   <%= classifiedSingularName %>.find().sort('-created').populate('user', 'displayName').exec(function(err, <%= camelizedPluralName %>) {
     if (err) {
       return res.status(400).send({
