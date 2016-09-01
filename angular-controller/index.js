@@ -5,6 +5,18 @@ var fs = require('fs'),
   yeoman = require('yeoman-generator');
 
 var ControllerGenerator = yeoman.generators.Base.extend({
+  config: function() {
+    this.config.defaults({
+      "suffixes": {
+        "client": {
+          "controller": ".client.controller.js",
+          "controller_tests": ".client.controller.tests.js"
+        }
+      }
+    });
+    this.suffixes = this.config.get('suffixes');
+
+  },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -52,8 +64,8 @@ var ControllerGenerator = yeoman.generators.Base.extend({
   },
 
   renderControllerFiles: function () {
-    this.template('_.client.controller.js', 'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedControllerName + '.client.controller.js');
-    this.template('_.client.controller.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/client/' + this.slugifiedControllerName + '.client.controller.tests.js');
+    this.template('_.client.controller.js', 'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedControllerName + this.suffixes.client.controller);
+    this.template('_.client.controller.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/client/' + this.slugifiedControllerName + this.suffixes.client.controller_tests);
   }
 });
 

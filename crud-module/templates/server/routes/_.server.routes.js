@@ -3,8 +3,8 @@
 /**
  * Module dependencies
  */
-var <%= camelizedPluralName %>Policy = require('../policies/<%= slugifiedPluralName %>.server.policy'),
-  <%= camelizedPluralName %> = require('../controllers/<%= slugifiedPluralName %>.server.controller');
+var <%= camelizedPluralName %>Policy = require('../policies/<%= slugifiedPluralName %><%= suffixes.server.policy.replace("/.js//", "") %>'),
+  <%= camelizedPluralName %> = require('../controllers/<%= slugifiedPluralName %><%= suffixes.server.controller.replace("/.js//", "") %>');
 
 module.exports = function(app) {
   // <%= humanizedPluralName %> Routes

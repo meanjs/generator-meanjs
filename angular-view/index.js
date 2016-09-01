@@ -7,6 +7,18 @@ var fs = require('fs'),
   htmlWiring = require("html-wiring");
 
 var ViewGenerator = yeoman.generators.Base.extend({
+  config: function() {
+    this.config.defaults({
+      "suffixes": {
+        "client": {
+          "views": ".client.view.html",
+          "routes": ".client.routes.js"
+        }
+      }
+    });
+    this.suffixes = this.config.get('suffixes');
+
+  },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -113,7 +125,7 @@ var ViewGenerator = yeoman.generators.Base.extend({
 
   renderRoute: function () {
     if (this.addRoute) {
-      var routesFilePath = process.cwd() + '/modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + '.client.routes.js';
+      var routesFilePath = process.cwd() + '/modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + this.suffixes.client.routes;
 
       // If routes file exists we add a new state otherwise we render a new one
       if (fs.existsSync(routesFilePath)) {
@@ -126,13 +138,13 @@ var ViewGenerator = yeoman.generators.Base.extend({
         // Save route file
         htmlWiring.writeFileFromString(routesFileContent, routesFilePath);
       } else {
-        this.template('_.client.routes.js', 'modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + '.client.routes.js')
+        this.template('_.client.routes.js', 'modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + this.suffixes.client.routes)
       }
     }
   },
 
   renderViewFile: function () {
-    this.template('_.client.view.html', 'modules/' + this.slugifiedModuleName + '/client/views/' + this.slugifiedName + '.client.view.html')
+    this.template('_.client.view.html', 'modules/' + this.slugifiedModuleName + '/client/views/' + this.slugifiedName + this.suffixes.client.views)
   }
 });
 

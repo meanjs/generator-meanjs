@@ -6,6 +6,16 @@ var fs = require('fs'),
 
 
 var FilterGenerator = yeoman.generators.Base.extend({
+  config: function() {
+    this.config.defaults({
+      "suffixes": {
+        "client": {
+          "filter": ".client.filter.js",
+        }
+      }
+    });
+    this.suffixes = this.config.get('suffixes');
+  },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -53,7 +63,7 @@ var FilterGenerator = yeoman.generators.Base.extend({
   },
 
   renderFilterFile: function () {
-    this.template('_.client.filter.js', 'modules/' + this.slugifiedModuleName + '/client/filters/' + this.slugifiedName + '.client.filter.js')
+    this.template('_.client.filter.js', 'modules/' + this.slugifiedModuleName + '/client/filters/' + this.slugifiedName + this.suffixes.client.filter)
   }
 });
 

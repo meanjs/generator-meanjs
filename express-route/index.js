@@ -5,6 +5,17 @@ var fs = require('fs'),
   yeoman = require('yeoman-generator');
 
 var RouteGenerator = yeoman.generators.Base.extend({
+  config: function() {
+    this.config.defaults({
+      "suffixes": {
+        "server": {
+          "routes": ".server.routes.js"
+        }
+      }
+    });
+    this.suffixes = this.config.get('suffixes');
+
+  },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -49,7 +60,7 @@ var RouteGenerator = yeoman.generators.Base.extend({
   },
 
   createRouteFile: function () {
-    this.template('_.server.routes.js', 'modules/' + this.slugifiedModuleName + '/server/routes/' + this.slugifiedName + '.server.routes.js')
+    this.template('_.server.routes.js', 'modules/' + this.slugifiedModuleName + '/server/routes/' + this.slugifiedName + this.suffixes.server.routes)
   }
 });
 

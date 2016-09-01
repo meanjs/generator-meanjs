@@ -6,6 +6,16 @@ var fs = require('fs'),
 
 
 var DirectiveGenerator = yeoman.generators.Base.extend({
+  config: function() {
+    this.config.defaults({
+      "suffixes": {
+        "client": {
+          "directive": ".client.directive.js",
+        }
+      }
+    });
+    this.suffixes = this.config.get('suffixes');
+  },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -53,7 +63,7 @@ var DirectiveGenerator = yeoman.generators.Base.extend({
   },
 
   renderDirectiveFile: function () {
-    this.template('_.client.directive.js', 'modules/' + this.slugifiedModuleName + '/client/directives/' + this.slugifiedName + '.client.directive.js')
+    this.template('_.client.directive.js', 'modules/' + this.slugifiedModuleName + '/client/directives/' + this.slugifiedName + this.suffixes.client.directive)
   }
 });
 

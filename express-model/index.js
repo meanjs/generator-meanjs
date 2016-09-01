@@ -7,6 +7,17 @@ var fs = require('fs'),
 
 
 var ModelGenerator = yeoman.generators.Base.extend({
+  config: function() {
+    this.config.defaults({
+      "suffixes": {
+        "server": {
+          "model": ".server.model.js",
+          "model_tests": ".server.model.tests.js"
+        }
+      }
+    });
+    this.suffixes = this.config.get('suffixes');
+  },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -59,9 +70,9 @@ var ModelGenerator = yeoman.generators.Base.extend({
 
   createModelFile: function () {
     // We create the model file
-    this.template('_.server.model.js', 'modules/' + this.slugifiedModuleName + '/server/models/' + this.slugifiedModelName + '.server.model.js');
+    this.template('_.server.model.js', 'modules/' + this.slugifiedModuleName + '/server/models/' + this.slugifiedModelName + this.suffixes.server.model);
     // We create the test file for the models
-    this.template('_.server.model.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/server/' + this.slugifiedModelName + '.server.model.tests.js');
+    this.template('_.server.model.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/server/' + this.slugifiedModelName + this.suffixes.server.model_tests);
   }
 });
 
