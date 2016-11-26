@@ -301,7 +301,10 @@ describe('<%= humanizedSingularName %> CRUD tests', function () {
     var <%= camelizedSingularName %>Obj = new <%= classifiedSingularName %>(<%= camelizedSingularName %>);
 
     // Save the <%= humanizedSingularName %>
-    <%= camelizedSingularName %>Obj.save(function () {
+    <%= camelizedSingularName %>Obj.save(function (err) {
+      if (err) {
+        done(err);
+      }
       // Try deleting <%= humanizedSingularName %>
       request(app).delete('/api/<%= camelizedPluralName %>/' + <%= camelizedSingularName %>Obj._id)
         .expect(403)
