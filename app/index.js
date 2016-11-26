@@ -28,7 +28,8 @@ var versions = {
   'master': 'master',
   '0.4.0': 'v0.4.0',
   '0.4.1': 'v0.4.1',
-  '0.4.2': 'v0.4.2'
+  '0.4.2': 'v0.4.2',
+  '0.5.0': '0.5.0'
 };
 
 module.exports = generators.Base.extend({
