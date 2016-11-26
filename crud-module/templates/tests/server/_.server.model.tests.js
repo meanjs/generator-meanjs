@@ -41,7 +41,7 @@ describe('<%= humanizedSingularName %> Model Unit Tests:', function() {
   describe('Method Save', function() {
     it('should be able to save without problems', function(done) {
       this.timeout(0);
-      return <%=camelizedSingularName %>.save(function(err) {
+      <%=camelizedSingularName %>.save(function(err) {
         should.not.exist(err);
         done();
       });
@@ -50,7 +50,7 @@ describe('<%= humanizedSingularName %> Model Unit Tests:', function() {
     it('should be able to show an error when try to save without name', function(done) {
       <%= camelizedSingularName %>.name = '';
 
-      return <%=camelizedSingularName %>.save(function(err) {
+      <%=camelizedSingularName %>.save(function(err) {
         should.exist(err);
         done();
       });
