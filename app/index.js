@@ -7,6 +7,7 @@ var Promise = require('bluebird'),
   path = require('path'),
   s = require('underscore.string'),
   generators = require('yeoman-generator'),
+  optionOrPrompt = require('yeoman-option-or-prompt'),
   log = require('./log');
 
 var exec = function (cmd) {
@@ -33,9 +34,17 @@ var versions = {
 };
 
 module.exports = generators.Base.extend({
-  
+
   init: function () {
     this.pkg = this.fs.readJSON(path.join(__dirname, '../package.json'));
+    this._optionOrPrompt = optionOrPrompt;
+
+    this.option('quiet', {
+      desc: 'Makes the installation process less verbose',
+      type: 'Boolean',
+      defaults: false,
+      hide: false
+    });
 
     this.on('end', function () {
       if (!this.options['skip-install']) {
@@ -72,7 +81,9 @@ module.exports = generators.Base.extend({
   },
 
   welcomeMessage: function () {
-    log.green('You\'re using the official MEAN.JS generator.');
+    if (!this.options['quiet']) {
+      log.green('You\'re using the official MEAN.JS generator.');
+    }
   },
 
   promptForVersion: function () {
@@ -83,15 +94,15 @@ module.exports = generators.Base.extend({
       choices.push(v);
     }
 
-    var prompt = {
+    var prompts = [{
       type: 'list',
       name: 'version',
       message: 'What mean.js version would you like to generate?',
       choices: choices,
       default: 1
-    };
+    }];
 
-    this.prompt(prompt, function (props) {
+    this._optionOrPrompt(prompts, function (props) {
       version = props.version;
       done();
     }.bind(this));
@@ -101,15 +112,17 @@ module.exports = generators.Base.extend({
   promptForFolder: function () {
     var done = this.async();
 
-    log.red(version);
+    if (!this.options['quiet']) {
+      log.red(version);
+    }
 
-    var prompt = {
+    var prompts = [{
       name: 'folder',
       message: 'In which folder would you like the project to be generated? This can be changed later.',
       default: 'mean'
-    };
+    }];
 
-    this.prompt(prompt, function (props) {
+    this._optionOrPrompt(prompts, function (props) {
       folder = props.folder;
       folderPath = './' + folder + '/';
       done();
@@ -119,7 +132,9 @@ module.exports = generators.Base.extend({
   cloneRepo: function () {
     var done = this.async();
 
-    log.green('Cloning the MEAN repo.......');
+    if (!this.options['quiet']) {
+      log.green('Cloning the MEAN repo.......');
+    }
 
     exec('git clone --branch ' + versions[version] + ' https://github.com/meanjs/mean.git ' + folder)
       .then(function () {
@@ -161,7 +176,7 @@ module.exports = generators.Base.extend({
       default: true
     }];
 
-    this.prompt(prompts, function(props) {
+    this._optionOrPrompt(prompts, function(props) {
       this.appName = props.appName;
       this.appDescription = props.appDescription;
       this.appKeywords = props.appKeywords;
