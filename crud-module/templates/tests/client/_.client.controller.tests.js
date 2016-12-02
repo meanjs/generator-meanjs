@@ -81,7 +81,7 @@
 
       it('should send a POST request with the form input values and then locate to new object URL', inject(function (<%= classifiedPluralName %>Service) {
         // Set POST response
-        $httpBackend.expectPOST('api/<%= slugifiedPluralName %>', sample<%= classifiedSingularName %>PostData).respond(mock<%= classifiedSingularName %>);
+        $httpBackend.expectPOST('/api/<%= slugifiedPluralName %>', sample<%= classifiedSingularName %>PostData).respond(mock<%= classifiedSingularName %>);
 
         // Run controller functionality
         $scope.vm.save(true);
@@ -95,7 +95,7 @@
 
       it('should set $scope.vm.error if error', function () {
         var errorMessage = 'this is an error message';
-        $httpBackend.expectPOST('api/<%= slugifiedPluralName %>', sample<%= classifiedSingularName %>PostData).respond(400, {
+        $httpBackend.expectPOST('/api/<%= slugifiedPluralName %>', sample<%= classifiedSingularName %>PostData).respond(400, {
           message: errorMessage
         });
 
