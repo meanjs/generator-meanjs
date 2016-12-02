@@ -75,7 +75,7 @@
 
       it('should send a GET request and return all <%= humanizedPluralName %>', inject(function (<%= classifiedPluralName %>Service) {
         // Set POST response
-        $httpBackend.expectGET('api/<%= slugifiedPluralName %>').respond(mock<%= classifiedSingularName %>List);
+        $httpBackend.expectGET('/api/<%= slugifiedPluralName %>').respond(mock<%= classifiedSingularName %>List);
 
 
         $httpBackend.flush();
