@@ -235,31 +235,35 @@ module.exports = generators.Base.extend({
     var done = this.async();
 
     if(!this.addChatExample) {
-      var p1 = Promise.defer();
-      promises.push(p1);
+      
+      promises.push( new Promise(function(resolve, reject) {
       
       rimraf(folderPath + 'modules/chat', function(err) {
         if (err) {
           log.red(err);
-          p1.reject(err);
+          reject(err);
         } else {
-          p1.resolve();
+          resolve();
         }
       });
+        
+      }));
     }
     
     if(!this.addArticleExample) {
-      var p2 = Promise.defer();
-      promises.push(p2);
+      
+      promises.push( new Promise(function(resolve, reject) {
       
       rimraf(folderPath + 'modules/articles', function(err) {
         if (err) {
           log.red(err);
-          p2.reject(err);
+          reject(err);
         } else {
-          p2.resolve();
+          resolve();
         }
       });
+        
+      }));
     }
     
     Promise
