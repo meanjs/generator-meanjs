@@ -6,6 +6,16 @@ var fs = require('fs'),
   yeoman = require('yeoman-generator');
 
 var ControllerGenerator = yeoman.generators.Base.extend({
+  config: function() {
+    this.config.defaults({
+      "suffixes": {
+        "server": {
+          "controller": ".server.controller.js"
+        }
+      }
+    });
+    this.suffixes = this.config.get('suffixes');
+  },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -54,7 +64,7 @@ var ControllerGenerator = yeoman.generators.Base.extend({
     }.bind(this));
   },
   createControllerFile: function () {
-    this.template('_.server.controller.js', 'modules/' + this.slugifiedModuleName + '/server/controllers/' + this.slugifiedControllerName + '.server.controller.js')
+    this.template('_.server.controller.js', 'modules/' + this.slugifiedModuleName + '/server/controllers/' + this.slugifiedControllerName + this.suffixes.server.controller)
   }
 });
 

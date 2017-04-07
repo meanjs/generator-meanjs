@@ -45,7 +45,7 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           viewstate = $state.get('<%= slugifiedPluralName %>.view');
-          $templateCache.put('modules/<%= slugifiedPluralName %>/client/views/view-<%= slugifiedSingularName %>.client.view.html', '');
+          $templateCache.put('modules/<%= slugifiedPluralName %>/client/views/view-<%= slugifiedSingularName %><%= suffixes.client.views %>', '');
 
           // create mock <%= humanizedSingularName %>
           mock<%= classifiedSingularName %> = new <%= classifiedPluralName %>Service({
@@ -84,7 +84,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(viewstate.templateUrl).toBe('modules/<%= slugifiedPluralName %>/client/views/view-<%= slugifiedSingularName %>.client.view.html');
+          expect(viewstate.templateUrl).toBe('modules/<%= slugifiedPluralName %>/client/views/view-<%= slugifiedSingularName %><%= suffixes.client.views %>');
         });
       });
 
@@ -95,7 +95,7 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           createstate = $state.get('<%= slugifiedPluralName %>.create');
-          $templateCache.put('modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %>.client.view.html', '');
+          $templateCache.put('modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %><%= suffixes.client.views %>', '');
 
           // create mock <%= humanizedSingularName %>
           mock<%= classifiedSingularName %> = new <%= classifiedPluralName %>Service();
@@ -130,7 +130,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(createstate.templateUrl).toBe('modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %>.client.view.html');
+          expect(createstate.templateUrl).toBe('modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %><%= suffixes.client.views %>');
         });
       });
 
@@ -141,7 +141,7 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           editstate = $state.get('<%= slugifiedPluralName %>.edit');
-          $templateCache.put('modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %>.client.view.html', '');
+          $templateCache.put('modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %><%= suffixes.client.views %>', '');
 
           // create mock <%= humanizedSingularName %>
           mock<%= classifiedSingularName %> = new <%= classifiedPluralName %>Service({
@@ -180,7 +180,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(editstate.templateUrl).toBe('modules/<%= slugifiedPluralName %>/client/views/form-<%= camelizedSingularName %>.client.view.html');
+          expect(editstate.templateUrl).toBe('modules/<%= slugifiedPluralName %>/client/views/form-<%= camelizedSingularName %><%= suffixes.client.views %>');
         });
 
         xit('Should go to unauthorized route', function () {

@@ -7,6 +7,20 @@ var fs = require('fs'),
   htmlWiring = require("html-wiring");
 
 var ViewGenerator = yeoman.generators.Base.extend({
+    config: function() {
+      this.config.defaults({
+        "suffixes": {
+          "client": {
+            "routes": ".client.routes.js",
+            "controller": ".client.controller.js",
+            "controller_tests": ".client.controller.tests.js",
+            "routes_tests": ".client.routes.tests.js",
+            "views": ".client.view.html"
+          }
+        }
+      });
+      this.suffixes = this.config.get('suffixes');
+    },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -92,7 +106,7 @@ var ViewGenerator = yeoman.generators.Base.extend({
   },
 
   renderRoute: function () {
-    var routesFilePath = process.cwd() + '/modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + '.client.routes.js';
+    var routesFilePath = process.cwd() + '/modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + this.suffixes.client.routes;
 
     // If routes file exists we add a new state otherwise we render a new one
     if (fs.existsSync(routesFilePath)) {
@@ -105,14 +119,14 @@ var ViewGenerator = yeoman.generators.Base.extend({
       // Save route file
       htmlWiring.writeFileFromString(routesFileContent, routesFilePath);
     } else {
-      this.template('_.client.routes.js', 'modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + '.client.routes.js')
+      this.template('_.client.routes.js', 'modules/' + this.slugifiedModuleName + '/client/config/' + this.slugifiedModuleName + this.suffixes.client.routes)
     }
   },
 
   renderRouteViewController: function () {
-    this.template('_.client.controller.js', 'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedControllerName + '.client.controller.js');
-    this.template('_.client.view.html', 'modules/' + this.slugifiedModuleName + '/client/views/' + this.slugifiedViewName + '.client.view.html');
-    this.template('_.client.controller.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/client/' + this.slugifiedControllerName + '.client.controller.tests.js');
+    this.template('_.client.controller.js', 'modules/' + this.slugifiedModuleName + '/client/controllers/' + this.slugifiedControllerName + this.suffixes.client.controller);
+    this.template('_.client.view.html', 'modules/' + this.slugifiedModuleName + '/client/views/' + this.slugifiedViewName + this.suffixes.client.views);
+    this.template('_.client.controller.tests.js', 'modules/' + this.slugifiedModuleName + '/tests/client/' + this.slugifiedControllerName + this.suffixes.client.controller_tests);
   }
 });
 

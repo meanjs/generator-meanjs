@@ -5,6 +5,16 @@ var fs = require('fs'),
   yeoman = require('yeoman-generator');
 
 var ServiceGenerator = yeoman.generators.Base.extend({
+  config: function() {
+    this.config.defaults({
+      "suffixes": {
+        "client": {
+          "services": ".client.service.js"
+        }
+      }
+    });
+    this.suffixes = this.config.get('suffixes');
+  },
   askForModuleName: function () {
     var modulesFolder = process.cwd() + '/modules/';
     var done = this.async();
@@ -52,7 +62,7 @@ var ServiceGenerator = yeoman.generators.Base.extend({
   },
 
   renderServiceFile: function () {
-    this.template('_.client.service.js', 'modules/' + this.slugifiedModuleName + '/client/services/' + this.slugifiedName + '.client.service.js')
+    this.template('_.client.service.js', 'modules/' + this.slugifiedModuleName + '/client/services/' + this.slugifiedName + this.suffixes.client.services)
   }
 });
 

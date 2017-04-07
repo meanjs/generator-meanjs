@@ -16,7 +16,7 @@
       })
       .state('<%= slugifiedPluralName %>.list', {
         url: '',
-        templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/list-<%= slugifiedPluralName %>.client.view.html',
+        templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/list-<%= slugifiedPluralName %><%= suffixes.client.views %>',
         controller: '<%= classifiedPluralName %>ListController',
         controllerAs: 'vm',
         data: {
@@ -25,7 +25,7 @@
       })
       .state('<%= slugifiedPluralName %>.create', {
         url: '/create',
-        templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %>.client.view.html',
+        templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %><%= suffixes.client.views %>',
         controller: '<%= classifiedPluralName %>Controller',
         controllerAs: 'vm',
         resolve: {
@@ -38,7 +38,7 @@
       })
       .state('<%= slugifiedPluralName %>.edit', {
         url: '/:<%= camelizedSingularName %>Id/edit',
-        templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %>.client.view.html',
+        templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/form-<%= slugifiedSingularName %><%= suffixes.client.views %>',
         controller: '<%= classifiedPluralName %>Controller',
         controllerAs: 'vm',
         resolve: {
@@ -51,7 +51,7 @@
       })
       .state('<%= slugifiedPluralName %>.view', {
         url: '/:<%= camelizedSingularName %>Id',
-        templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/view-<%= slugifiedSingularName %>.client.view.html',
+        templateUrl: 'modules/<%= slugifiedPluralName %>/client/views/view-<%= slugifiedSingularName %><%= suffixes.client.views %>',
         controller: '<%= classifiedPluralName %>Controller',
         controllerAs: 'vm',
         resolve: {
