@@ -6,9 +6,9 @@
     .module('<%= slugifiedModuleName %>')
     .run(menuConfig);
 
-  menuConfig.$inject = ['Menus'];
+  menuConfig.$inject = ['menuService'];
 
-  function menuConfig(Menus) {
+  function menuConfig(menusService) {
     // Config logic
     // ...
   }
