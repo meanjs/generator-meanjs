@@ -5,7 +5,7 @@
     .module('<%= slugifiedPluralName %>')
     .run(menuConfig);
 
-  menuConfig.$inject = ['Menus'];
+  menuConfig.$inject = ['menuService'];
 
   function menuConfig(menuService) {
     // Set top bar menu items
