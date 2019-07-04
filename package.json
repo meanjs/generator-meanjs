@@ -14,7 +14,9 @@
     "npm": ">=2.0.0"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "yeoman-generator",
@@ -40,7 +42,8 @@
     "underscore.inflections": "~0.2.1",
     "underscore.string": "~3.2.2",
     "yeoman-generator": "~0.21.1",
-    "yo": "~1.5.0"
+    "yo": "~1.5.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "gulp": "https://github.com/gulpjs/gulp.git#d8f5c90a0622d19ef1943a2a3d02dc50e3c853e7",
@@ -50,5 +53,6 @@
     "mocha": "~2.3.4",
     "temp": "~0.8.3"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
