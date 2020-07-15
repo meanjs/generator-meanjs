@@ -34,7 +34,7 @@
     "chalk": "~1.1.1",
     "ejs": "~2.3.4",
     "html-wiring": "~1.2.0",
-    "lodash": "~4.0.0",
+    "lodash": "~4.17.19",
     "mkdirp": "~0.5.1",
     "rimraf": "~2.5.0",
     "underscore.inflections": "~0.2.1",
