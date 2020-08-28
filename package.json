@@ -34,13 +34,13 @@
     "chalk": "~1.1.1",
     "ejs": "~2.3.4",
     "html-wiring": "~1.2.0",
-    "lodash": "~4.0.0",
+    "lodash": "~4.17.17",
     "mkdirp": "~0.5.1",
     "rimraf": "~2.5.0",
     "underscore.inflections": "~0.2.1",
     "underscore.string": "~3.2.2",
-    "yeoman-generator": "~0.21.1",
-    "yo": "~1.5.0"
+    "yeoman-generator": "~0.23.0",
+    "yo": "~2.0.3"
   },
   "devDependencies": {
     "gulp": "https://github.com/gulpjs/gulp.git#d8f5c90a0622d19ef1943a2a3d02dc50e3c853e7",
