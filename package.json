@@ -32,14 +32,14 @@
   "dependencies": {
     "bluebird": "~3.0.6",
     "chalk": "~1.1.1",
-    "ejs": "~2.3.4",
+    "ejs": "~3.1.6",
     "html-wiring": "~1.2.0",
     "lodash": "~4.0.0",
     "mkdirp": "~0.5.1",
     "rimraf": "~2.5.0",
     "underscore.inflections": "~0.2.1",
     "underscore.string": "~3.2.2",
-    "yeoman-generator": "~0.21.1",
+    "yeoman-generator": "~4.11.0",
     "yo": "~1.5.0"
   },
   "devDependencies": {
